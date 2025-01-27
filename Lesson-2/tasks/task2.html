@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 2</h1>
+
+   <p>
+      Дано рік народження (дата: 1 січня) та поточний рік. Знайти кількість років.
+   </p>
+
+   <script>
+      //1.Вводимо необхідні дані
+      const birthYear = parseInt(prompt('Enter your birth year please'));
+      const currentYear = 2025;
+
+      //2.Знаходимо результат
+      let yearsNumber = currentYear -birthYear;
+      
+
+      //3.Виводимо результат
+      document.write(
+         `Greetings! This year You become ${yearsNumber} years old!`)
+      
+   </script>
+</body>
+</html>

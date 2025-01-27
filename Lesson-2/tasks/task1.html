@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 1</h1>
+
+   <p>
+      Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі таблиці
+   </p>
+
+   <script>
+      //1.Вводимо необхідні дані
+      let number1 = parseFloat(prompt('Enter the first number please'));
+      let number2 = parseFloat(prompt('Enter the second number please'));
+
+      //2.Знаходимо результат
+      let calculatedSum = (number1 + number2).toFixed(2);
+      let multiplication = (number1 * number2).toFixed(2);
+      let devision = number2 !== 0 ? (number1 / number2).toFixed(2) : "Please enter number different fron 0";
+
+      //3.Виводимо результат
+      document.write(
+         `<h1>Результати операцій з двома числами у таблиці</h1>
+   <table>
+      <tr>
+         <th>Вид операції</th>
+         <th>Отримане значення</th>
+
+      </tr>
+      <tr>
+         <th>Cума</th>
+         <td>${calculatedSum}</td>
+      </tr>
+      <tr>
+         <th>Добуток</th>
+         <td>${multiplication}</td>
+      </tr>
+      <tr>
+         <th>Ділення</th>
+         <td>${devision}</td>
+      </tr>
+   </table>`)
+      
+   </script>
+   
+</body>
+</html>

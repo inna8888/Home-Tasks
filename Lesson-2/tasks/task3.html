@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 3. </h1>
+   <p>
+      Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5% від загальної вартості).
+   </p>
+   <script>
+      //1.Вводимо необхідні дані
+      const productNumber = parseInt(prompt('Enter the number of popcorn packages please'));
+      const productCost = parseFloat(prompt('Enter popcorn package cost please'));
+      const vatRate = 5;
+      
+      //2.Знаходимо результат
+      const totalCost = productNumber * productCost;
+      const vatValue = (totalCost * vatRate) / 100;
+
+      //3.Виводимо результат
+      document.write(
+         `You should pay $${totalCost} for the ${productNumber} packages of popcorn. The VAT is $${vatValue}.`)
+   </script>
+   
+</body>
+</html>
