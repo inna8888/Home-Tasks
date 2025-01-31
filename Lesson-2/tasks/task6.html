@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 6</h1>
+   <p>
+      З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+   </p>
+
+   <script>
+
+      //1.Вводимо необхідні дані
+      const product1 = parseInt(prompt('Product 1 amount'));
+      const product1Price = parseFloat(prompt('Product 1 price'));
+      const product2 = parseInt(prompt('Product 2 amount'));
+      const product2Price = parseFloat(prompt('Product 1 price'));
+      const product3 = parseInt(prompt('Product 3 amount'));
+      const product3Price = parseFloat(prompt('Product 1 price'));
+      
+      //2.Знаходимо результат
+      const product1Cost = (product1 * product1Price);
+      const product2Cost = (product2 * product2Price);
+      const product3Cost = (product3 * product3Price);
+      const total = product1Cost + product2Cost + product3Cost;
+      
+      //3.Виводимо результат
+      document.write(
+         `Product 1 <br>
+         ${product1} * $${product1Price.toFixed(2)} ............... $${product1Cost.toFixed(2)}<br>
+         <br>
+         Product 2 <br>
+         ${product2} * $${product2Price.toFixed(2)} ............... $${product2Cost.toFixed(2)}<br>
+         <br>
+         Product 3 <br>
+         ${product3} * $${product3Price.toFixed(2)} ............... $${product3Cost.toFixed(2)}<br>
+         <br>
+         Total ...............$${total.toFixed(2)}`)
+      
+   </script>
+</body>
+</html>
