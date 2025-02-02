@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      З клавіатури вводяться імена двох дітей та кількість у них цукерок. Вивести не екран ім’я тієї дитини, у якої кількість цукерок є більшою, або вивести, що кількість однакова.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      const childName11 = prompt('Enter child 1 name');
+      const number1 = parseInt(prompt('Enter candies number for the child 1'));
+      const childName22 = prompt('Enter child 2 name');
+      const number2 = parseInt(prompt('Enter candies number for the child 2'));
+      let childName1 = childName11[0].toUpperCase() + childName11.slice(1)
+      let childName2 = childName22[0].toUpperCase() + childName22.slice(1)
+      
+      //2.Знаходимо результат
+      if (number1 > number2) 
+
+      document.write(`Cool! ${childName1} has more candies!`);
+      
+      else if (number1 < number2) 
+
+      document.write(`Awesome! ${childName2} has more candies!`);
+   
+      else 
+      
+      document.write(`${childName1} and ${childName2} have equal number of candies!`);
+
+      //3.Виводимо результат
+      
+   </script>
+</body>
+</html>
