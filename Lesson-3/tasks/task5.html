@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 5</h1>
+   <p>
+      З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      const driverCategoryEntered = (prompt('Enter driver category - A, B, C')).toUpperCase()
+      let motorcycle = "motorcycle";
+      let car = "car";
+      let truck = "truck";
+      
+      //2.Знаходимо результат
+      switch (driverCategoryEntered) {
+         case "A":
+            result = `You can drive by ${motorcycle}.`
+            break;
+
+         case "B":
+         result = `You can drive by ${car}.`
+         break;
+
+         case "C":
+         result = `You can drive by ${truck}.`
+         break;
+         
+         default:
+         result = `Incorrect category.`
+            break;
+      }
+
+      //3.Виводимо результат
+      document.write(
+         `${result}`)
+      
+   </script>
+</body>
+</html>
