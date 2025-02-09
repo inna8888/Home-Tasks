@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 4</h1>
+   <p>
+      Вивести таблицю з 3 рядків і 7 стовпців. 
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+   document.write(`<h1>Таблиця з 3 рядками і 7 стовпцями</h1>
+  <table style="border-collapse: collapse; width: 100%; border: 1px solid black;">`);
+
+   for (let row = 1; row <= 3; row++) {
+      document.write(`<tr>`);  // Відкриваємо новий рядок
+
+      for (let col = 1; col <= 7; col++) {
+         document.write(
+            `<td style="border: 1px solid black; padding: 8px;">Рядок ${row}, Стовпець ${col}</td>`
+         );
+      }
+
+      document.write(`</tr>`);  // Закриваємо рядок
+   }
+
+   document.write(`</table>`);   
+   </script>
+</body>
+</html>

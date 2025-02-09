@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 2</h1>
+   <p>
+      Створити 10 елементів для введення цін продуктів. 
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let elementsQty = 10;
+      //2.Знаходимо результат
+      for (let i = 0; i < elementsQty ; i++) {
+      let input = document.createElement('input');
+      //input.type = 'number';  // Вказуємо, що це поле для введення чисел
+      input.placeholder = 'Введіть ціну продукту ' + (i + 1);  // Текст підказки
+      document.body.appendChild(input);  // Додаємо поле на сторінку
+
+      // Додаємо розрив рядка для кращого вигляду
+      document.body.appendChild(document.createElement('br'));
+      }
+      //3.Виводимо результат
+      
+   </script>
+</body>
+</html>

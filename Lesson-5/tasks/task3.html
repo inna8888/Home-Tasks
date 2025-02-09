@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 3</h1>
+   <p>
+      Вивести таблицю з одним рядком і  7 стовпцями. 
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let elementsQty = 7;
+      
+      //2.Знаходимо результат
+      document.write(`<h1>Таблиця в один рядок</h1>
+   <table style="border-collapse: collapse; width: 100%; border: 1px solid black;">
+      <tr>`)  
+   
+   for (let i = 1; i <= elementsQty ; i++) {
+      document.write(
+    `<td style="border: 1px solid black; padding: 8px;">Стовпець ${i}</td>`
+  );
+      }
+      //3.Виводимо результат
+      document.write(`
+      </tr>
+   </table>`)   
+   </script>
+</body>
+</html>
