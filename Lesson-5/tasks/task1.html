@@ -15,9 +15,10 @@
    <script>
       
       //1.Вводимо необхідні дані
+      if (confirm('Почати тестування?')) {
       let randoNum = parseInt(prompt('How many items do you want?'))
       //2.Знаходимо результат
-      if (confirm('Почати тестування?')) {
+      
          for (let i = 0; i < randoNum ; i++) {
       let randomValue = 1 + Math.floor(Math.random()*100);
       document.write(`<ul>
