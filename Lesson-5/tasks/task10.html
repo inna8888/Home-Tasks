@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 10</h1>
+   <p>
+      Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами. 
+   </p>
+   <script>
+      //1.Вводимо необхідні дані
+      let result;
+      let randomNumber;
+      //2.Знаходимо результат
+     for (let index = 1; index <= 3; index++) {
+      randomNumber = 1 + Math.floor(Math.random()*30);
+      result = confirm(`The number is ${randomNumber}?`);
+      
+      if (result) {
+         document.write(`Комп'ютер вгадав ваше число ${randomNumber}!<br>`);
+         break;  // Якщо комп'ютер вгадав, припиняємо цикл
+      } else {
+         document.write(`Спроба ${index}: Комп'ютер не вгадав, пробуємо ще раз.<br>`);
+      }   
+   }
+
+   if (!result) {
+      document.write("Комп'ютер не зміг вгадати ваше число за 3 спроби. Спробуйте ще раз!");
+   }
+           
+      //3.Виводимо результат
+            
+   </script>
+   
+</body>
+</html>

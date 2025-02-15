@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 3</h1>
+   <p>
+      Вивести на екран N абзаців (N вводиться користувачем) за зразком:
+
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let header, chapter;
+     
+      //2.Знаходимо результат
+      document.write(`<h1>Book</h1>`);
+      for (let header = 1; header <= 4; header++) {
+          
+          document.write(`<h1>Header ${header}<h1>`);
+          chapterCount = prompt("Enter chapters count");
+
+               for (let chapter = 0; chapter <= chapterCount; chapter++) {
+                   chapter++;
+                   document.write(
+                  `<p>Part ${header}, Chapter ${chapter}</p>`
+                   );
+                  
+               }
+          }
+
+   </script>
+</body>
+</html>

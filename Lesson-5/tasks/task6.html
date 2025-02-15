@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 3</h1>
+   <p>
+      Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком (клітинки 1-9, 10-18, 19-27). 
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let cellNumber = 1;
+      //2.Знаходимо результат
+      document.write(`<h1>Три таблиці</h1>`);
+      for (let tabl = 1; tabl <= 3; tabl++) {
+         document.write(`
+  <table style="border-collapse: collapse; width: 20%; border: 1px solid black;">`);
+
+          for (let row = 1; row <= 3; row++) {
+            document.write(`<tr>`);  // Відкриваємо новий рядок
+
+               for (let col = 1; col <= 3; col++) {
+                   document.write(
+                  `<td style="border: 1px solid black; padding: 8px;">${cellNumber}</td>`
+                   );
+                     cellNumber++;
+               }
+
+          document.write(`</tr>`);  // Закриваємо рядок
+          }
+
+      document.write(`</table>`);
+      document.write(`<br>`);
+      }
+
+   </script>
+</body>
+</html>
