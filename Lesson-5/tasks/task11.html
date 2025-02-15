@@ -6,15 +6,16 @@
    <title>Document</title>
 </head>
 <body>
-   <h1>Задача 10</h1>
+   <h1>Задача 11</h1>
    <p>
-      Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами. 
+      Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем числами.
    </p>
    <script>
       //1.Вводимо необхідні дані
       let userNumber1 = parseInt(prompt('Enter number 1'));
       let userNumber2 = parseInt(prompt('Enter number 2'));
       let numberToCount = 0;
+      let count =0;
 
       //2.Знаходимо результат
      if (userNumber1 > userNumber2) {
@@ -24,12 +25,17 @@
      }
 
      for (let index = userNumber1+1; index < userNumber2; index++) {
-      if (index%2!==0) {
+      if (index%2==0) {
       numberToCount += index;
-      document.write(`${index}<br>`);}
+      document.write(`${index}<br>`);
+      count++;
+      if (count === 5){
+         break;
+      }
+   }
       
      }
-      document.write(`Сума непарних чисел між ${userNumber1} та ${userNumber2}:  **${numberToCount}**`)
+      document.write(`Сума перших 5 парних чисел між ${userNumber1} та ${userNumber2}:  ${numberToCount}`)
    
 
              

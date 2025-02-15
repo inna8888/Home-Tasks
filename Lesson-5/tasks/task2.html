@@ -17,7 +17,8 @@
       //1.Вводимо необхідні дані
       let elementsQty = 10;
       //2.Знаходимо результат
-      for (let i = 0; i < elementsQty ; i++) {
+      if (confirm('Почати тестування?')) {
+         for (let i = 0; i < elementsQty ; i++) {
       let input = document.createElement('input');
       //input.type = 'number';  // Вказуємо, що це поле для введення чисел
       input.placeholder = 'Введіть ціну продукту ' + (i + 1);  // Текст підказки
@@ -26,6 +27,7 @@
       // Додаємо розрив рядка для кращого вигляду
       document.body.appendChild(document.createElement('br'));
       }
+   }
       //3.Виводимо результат
       
    </script>

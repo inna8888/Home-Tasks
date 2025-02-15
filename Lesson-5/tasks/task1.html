@@ -17,12 +17,14 @@
       //1.Вводимо необхідні дані
       let randoNum = parseInt(prompt('How many items do you want?'))
       //2.Знаходимо результат
-      for (let i = 0; i < randoNum ; i++) {
+      if (confirm('Почати тестування?')) {
+         for (let i = 0; i < randoNum ; i++) {
       let randomValue = 1 + Math.floor(Math.random()*100);
       document.write(`<ul>
         <li>${randomValue}</li>
       </ul>`)
       }
+   }
       //3.Виводимо результат
       
    </script>

@@ -20,7 +20,8 @@
       let evenNum=0; //парні
       
       //2.Знаходимо результат
-      for (let num = 1; num < 100; num++) {
+      if (confirm('Почати тестування?')) {
+         for (let num = 1; num < 100; num++) {
          let numPrint = 1 + Math.floor(Math.random()*1000);
          document.write(`${numPrint}<br>`);
          if (numPrint%2===0)
@@ -33,7 +34,7 @@
       document.write(`${evenNum} парних більше, ніж ${oddNum} непарних`);
       else 
       document.write(`${oddNum} непарних більше, ніж ${evenNum} парних`);
-
+   }
       //3.Виводимо результат
       
    </script>

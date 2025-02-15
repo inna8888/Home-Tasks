@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Стиль для квадратів */
+      .square {
+        position: fixed;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+   <h1>Задача</h1>
+   <p>Вивести матрицю, яка заповнена натуральними числами при цьому ці числа поступово зростають по діагоналям</p>
+   
+    <script>
+      const size = 100, // розмір квадрата
+        pSize = 100 // Розмір кроку
+
+      const xBase = 100 // Початкова горизонтальна позиція
+      const  yBase = 100 // Початкова вертикальна позиція
+
+      const matrixSize = 4
+
+      let num = 1
+
+      let rowInd = 1
+      let colInd = 1
+
+      do {
+        for (; colInd >= 1 && rowInd <= matrixSize; rowInd++, colInd--) {
+          document.write(
+            `<div class="square" style="width:${size}px; height:${size}px; left:${
+              xBase + colInd * pSize
+            }px; top:${yBase + rowInd * pSize}px;"> ${num++} </div>`
+          )
+        }
+        if (rowInd <= matrixSize) {
+          colInd = rowInd
+          rowInd = 1
+        } else {
+          rowInd = colInd + 2
+          colInd = matrixSize
+        }
+      } while (rowInd <= matrixSize)
+    </script>
+  </body>
+</html>
