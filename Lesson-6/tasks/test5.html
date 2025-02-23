@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 5</h1>
+   <p>
+      Інвестор вклав  тис. грн на 20 років під 20% річних. Визначити за допомогою циклів суму, яку він одержить (без оподаткування).
+
+   </p>
+   <script>
+      let start = confirm("Let's run the task?")
+      if (start) {
+      let funds = parseInt(prompt('Введіть скільки коштів інвестовано (тис. грн):'));
+      let years = 20;
+      let percentage = 0.2;
+      let totalIncome = 0;
+
+      for (let i = 0; i < years; i++) {
+      totalIncome += (funds + totalIncome) * percentage;         
+      }
+
+      document.write(`Дохід від ${funds} тис. грн за 20 років під 20% річних буде складати ${totalIncome.toFixed(2)} тис. грн`);
+   }
+
+   
+   </script>
+</body>
+</html>

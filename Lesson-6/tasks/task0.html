@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 0</h1>
+   <p>
+      Вивести на екран
+      A B C D E 
+      B C D E F 
+      C D E F G 
+      D E F G H 
+      E F G H I      
+   </p>
+
+   <script>
+      let startMessage = confirm("Let's run the task 0?");
+      let count = 0;
+      if (startMessage) {
+         let charcode = 65;
+
+         for (let i = 0; i < 26; i++) {
+            let letter = String.fromCharCode(charcode + i);
+            document.write(letter + "  ");
+
+            count++;
+
+            if (count == 5){
+            document.write('<br>');
+            count=0;
+            }
+         }
+      }
+   </script>
+   
+</body>
+</html>

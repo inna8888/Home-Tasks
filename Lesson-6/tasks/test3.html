@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 3</h1>
+   <p>
+      Відобразити трикутник за допомогою символів «о» (до меншої кількості 0).
+   </p>
+         
+      <script>
+      let start = confirm("Let's run the task?")
+      if (start) {
+      let rows = parseInt(prompt('Введіть кількість рядків'));
+
+      // Зовнішній цикл для кожного рядка
+      for (let i = rows; i > 0; i--) {
+      let line = '';
+
+      // Внутрішній цикл для кожного символа в рядку
+      for (let j = 0; j < i; j++) {
+        line += 'о'; 
+      }
+
+      document.write(`${line}<br>`);
+      }
+   }
+      
+   </script>
+</body>
+</html>
+
