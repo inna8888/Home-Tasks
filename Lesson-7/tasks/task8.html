@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 8</h1>
+   <p>
+      Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: <a> <img src=”шлях”> </a>
+     
+   </p>
+
+   <script>
+      let startMessage = confirm("Let's run the task?");
+      
+      if (startMessage) {
+   
+         let imageSrc = `../images/banner.png`;
+         let link = `https://en.wikipedia.org/wiki/Mountain`;
+         let title = "Click here to visit Wikipedia site!";
+            
+         function showBanner(imageSrc, link, title) {
+            // Створення елемента <a>
+            let anchor = document.createElement("a");
+            anchor.href = link;  // Встановлюємо посилання
+            anchor.target = "_blank";  // Відкривати в новій вкладці
+   
+            // Створення елемента <img>
+            let img = document.createElement("img");
+            img.src = imageSrc;  // Встановлюємо шлях до зображення
+            img.alt = "Banner Image";
+            img.style.display = "block";  // Перетворюємо зображення на блоковий елемент
+            img.style.margin = "0 auto"; 
+   
+            // Створення елемента <h2> для заголовка
+            let header = document.createElement("h2");
+            header.textContent = title;
+            header.style.textAlign = "center";
+            
+            // Додаємо зображення всередину тега <a>
+            anchor.appendChild(img);
+   
+            // Додаємо банер (зображення та заголовок) на сторінку
+            document.body.appendChild(header);
+            document.body.appendChild(anchor);
+         }
+   
+         showBanner(imageSrc, link, title);
+      }
+   </script>
+   
+</body>
+</html>

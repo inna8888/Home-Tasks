@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 4</h1>
+   <p>
+      Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: 
+      <ul>
+         <li>Кількість парних чисел.</li>
+         <li>Кількість додатних чисел.</li>
+         <li>Кількість чисел, більших за 100.</li>
+      </ul>
+   </p>
+         
+   <script>
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+      let a = parseInt(prompt('Enter number 1:'));
+      let b = parseInt(prompt('Enter number 2:'));
+      let c = parseInt(prompt('Enter number 3:'));
+
+      let evenFunc = function(a, b, c) {
+         let countEven = 0;
+         if (a%2===0) countEven++;
+         if (b%2===0) countEven++;
+         if (c%2===0) countEven++;
+         return countEven;
+      }
+
+      let positiveFunc = function(a, b, c) {
+         let count = 0;
+         if (a > 0) count++;
+         if (b > 0) count++;
+         if (c > 0) count++;
+         return count;
+      }
+
+      let graterThenHundredFunc = function(a, b, c) {
+         let count = 0;
+         if (a > 100) count++;
+         if (b > 100) count++;
+         if (c > 100) count++;
+         return count;
+      }
+
+      document.write(`Серед введених 3 чисел  (${a}, ${b} та ${c}) <br>`);
+      document.write(`Кількість парних чисел: ${evenFunc(a, b, c)} <br>`);
+      document.write(`Кількість додатних чисел: ${positiveFunc(a, b, c)} <br>`);
+      document.write(`Кількість чисел більших за 100: ${graterThenHundredFunc(a, b, c)} <br>`);
+      
+      }
+   </script>
+</body>
+</html>
+

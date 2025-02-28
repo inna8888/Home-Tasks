@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 2</h1>
+   <p>
+      З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      const productPrice = parseFloat(prompt('Enter product price'));
+      const money = parseFloat(prompt('Enter money amount'));
+      let result;
+
+      //2.Знаходимо результат
+      if (productPrice > money)
+      result = "Canceled. You need more money."
+   else if (money - productPrice >= 4)
+   result = "You can buy a lottery ticket, the cost is $4."
+else result = "Success! Thank you for the purchase!"
+
+      //3.Виводимо результат
+      document.write(
+         `${result}`)
+      
+   </script>
+</body>
+</html>

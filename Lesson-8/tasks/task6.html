@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 6</h1>
+   <p>
+      З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      //дні від 1 до 7, мін 1, макс 7
+      // (initailNumber-min + delta)%(max-min+1)+min, якщо мін<>0
+      const currentDay = parseInt(prompt('Enter the current day number'));
+      const dayAdded = parseInt(prompt('Enter how many days to add'));
+      let nextDay =  (currentDay-1 + dayAdded)%(7-1+1)+1;
+      
+      let dayName;
+      
+      //2.Знаходимо результат
+      switch (nextDay) {
+         case 1:
+            result = `Next day number ${nextDay}, it is Monday.`
+            break;
+
+            case 2:
+            result = `Next day number ${nextDay}, it is Tuesday.`
+            break;
+
+            case 3:
+            result = `Next day number ${nextDay}, it is Wednesday.`
+            break;
+            
+            case 4:
+            result = `Next day number ${nextDay}, it is Thursday.`
+            break;
+            
+            case 5:
+            result = `Next day number ${nextDay}, it is Friday.`
+            break;
+
+            case 6:
+            result = `Next day number ${nextDay}, it is Saturday.`
+            break;
+
+            case 7:
+            result = `Next day number ${nextDay}, it is Sunday.`
+            break;
+         }
+
+      //3.Виводимо результат
+      document.write(
+         `${result}`)
+      
+   </script>
+</body>
+</html>

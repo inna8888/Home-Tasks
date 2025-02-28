@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 5</h1>
+   <p>
+      Створити окремі функції, які переводять:
+      <ul>
+         <li>Сантиметри у дюйми;</li>
+         <li>Кілограми у фунти;</li>
+         <li>Кілометри у милі.</li>
+      </ul>
+
+   </p>
+   <script>
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+      let centimeters = parseInt(prompt('Enter centimeters:'));
+      let kilograms = parseInt(prompt('Enter kilograms:'));
+      let kilometers = parseInt(prompt('Enter kilometers:'));
+
+      let inchFunc = function(centimeters) {
+         let inchPerCentimeter = 0.3937;
+         return (centimeters * inchPerCentimeter).toFixed(2);
+      }
+
+      let poundFunc = function(kilograms) {
+         let poundPerKilo = 2.20462;
+         return (kilograms * poundPerKilo).toFixed(2);
+      }
+
+      let mileFunc = function(kilometers) {
+         let milePerKilometer = 0.621371;
+         return (kilometers * milePerKilometer).toFixed(2);
+      }
+
+      
+      document.write(`Ваші введені дані:<br> ${centimeters} Сантиметри - ${inchFunc(centimeters)} дюйми <br>`);
+      document.write(`${kilograms} Кілограми - ${poundFunc(kilograms)} фунти <br>`);
+      document.write(`${kilometers} Кілометри - ${mileFunc(kilometers)} милі <br>`);
+      
+      }
+   </script>
+</body>
+</html>

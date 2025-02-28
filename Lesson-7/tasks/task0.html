@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 0</h1>
+   <p>
+      Створити функцію, яка за номером місяця повертає пору року, до якої відноситься цей місяць.
+         
+   </p>
+
+   <script>
+      let startMessage = confirm("Let's run the task?");
+      let monthNumberentered = parseInt(prompt('Enter month number:'));
+      if (startMessage) {
+      function returnSeason (monthNumberentered)
+      {
+         let monthNumber = monthNumberentered;
+         switch (monthNumber) {
+         case 1:
+         case 2:
+         case 12:
+         result = `${monthNumber} month is winter season.`
+         break;
+
+         case 3:
+         case 4:
+         case 5:
+         result = `${monthNumber} month is spring season.`
+         break;
+
+         case 6:
+         case 7:
+         case 8:
+         result = `${monthNumber} month is summer season.`
+         break;
+         
+         case 9:
+         case 10:
+         case 11:
+         result = `${monthNumber} month is fall season.`
+         break;
+
+         default:
+         result = `Incorrect month number.`
+            break;
+      }
+         return result;
+      }
+
+      document.write(returnSeason(monthNumberentered));
+   }
+   </script>
+   
+</body>
+</html>

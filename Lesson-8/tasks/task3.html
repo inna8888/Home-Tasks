@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 3</h1>
+   <p>
+      Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      //const randomNumber = min + Math.floor( Math.random()(max -min +1);
+      let tryNumber = parseFloat(prompt('Enter number from 1 to 5'));
+      const min = 1;
+      const max =5;
+      const randNumber = min + Math.floor( Math.random() * (max - min +1));
+      
+      let result;
+
+      //2.Знаходимо результат
+      if (randNumber == tryNumber)
+      result = `Success, you guess it on the first try - ${randNumber}!`;
+   else {
+      tryNumber = parseFloat(prompt('Incorrect, enter a number one more time'));
+      if (randNumber == tryNumber)
+      result = `Success! you guess it on the second try- ${randNumber}!`;
+   else 
+   result = `Incorrect, the challenge is closed. The random number was ${randNumber}`
+   }
+
+      //3.Виводимо результат
+      document.write(
+         `${result}`)
+      
+   </script>
+</body>
+</html>

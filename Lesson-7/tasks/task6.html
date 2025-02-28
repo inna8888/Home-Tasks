@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 6</h1>
+   <p>
+      Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим фіксованим повідомленням).
+
+   </p>
+   <script>
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+         let rows = parseInt(prompt('Enter rows number'));
+         let columns = parseInt(prompt('Enter columns number'));
+
+         function makeTable(rows, columns) {
+            // Створення елемента таблиці
+            let table = document.createElement("table");
+            table.style.borderCollapse = "collapse";
+            table.style.width = "50%";
+            table.style.border = "2px solid black";
+            
+            // Додавання таблиці на сторінку
+            document.body.appendChild(table);
+
+            // Створення рядків і стовпців таблиці
+            for (let row = 1; row <= rows; row++) {
+               let tr = document.createElement("tr");
+
+               for (let col = 1; col <= columns; col++) {
+                  let td = document.createElement("td");
+                  td.style.border = "2px solid black";
+                  td.style.padding = "8px";
+                  td.textContent = `Ряд.${row}, Ст.${col}`;
+                  tr.appendChild(td);
+               }
+
+               table.appendChild(tr);
+            }
+         }
+
+         // Викликаємо функцію для створення таблиці
+         makeTable(rows, columns);
+      }
+   </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 7</h1>
+   <p>
+      Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень передаються у функцію)        
+   </p>
+
+  <script>
+   let startMessage = confirm("Let's run the task?");
+   
+   if (startMessage) {
+
+      let image1 = `../images/01.png`;
+      let image2 = `../images/02.png`;
+      let image3 = `../images/03.png`;
+      let image4 = `../images/04.png`;
+
+      function showRandomImage(image1, image2, image3, image4) {
+         let randomNumber = Math.floor(Math.random() * 4);  // Генерація випадкового числа від 0 до 3
+
+         let imageToShow;
+         switch(randomNumber) {
+            case 0:
+               imageToShow = image1;
+               break;
+            case 1:
+               imageToShow = image2;
+               break;
+            case 2:
+               imageToShow = image3;
+               break;
+            case 3:
+               imageToShow = image4;
+               break;
+         }
+
+         // Створення елемента img
+         let img = document.createElement("img");
+         img.src = imageToShow;  // Встановлюємо випадковий шлях до зображення
+         img.alt = "Random Image";  // Альтернативний текст
+
+         // Задаємо стилі для зображення
+         img.style.maxWidth = "200px";
+         img.style.marginTop = "10px";
+
+         // Додаємо зображення на сторінку
+         document.body.appendChild(img);
+      }
+
+      showRandomImage(image1, image2, image3, image4);
+   }
+</script>
+   
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 2</h1>
+   <p>
+      Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим.   
+   </p>
+
+   <script>
+      let startMessage = confirm("Let's run the task?");
+      let dayNumberEntered = parseInt(prompt('Enter day number:'));
+
+      function returnSeason (dayNumberEntered)
+      {
+         let dayNumber = dayNumberEntered;
+         switch (dayNumber) {
+         case 1: 
+         case 2: 
+         case 3: 
+         case 4: 
+         case 5: result = `Day #${dayNumber} is working day.`
+         break;
+         case 6: 
+         case 7: result = `Day #${dayNumber} is weekend.`
+         break;
+         
+         default:
+         result = `Incorrect month number.`
+            break;
+      }
+         return result;
+      }
+
+      document.write(returnSeason(dayNumberEntered));
+      
+   </script>
+   
+</body>
+</html>
