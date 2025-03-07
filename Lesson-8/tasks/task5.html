@@ -8,40 +8,69 @@
 <body>
    <h1>Задача 5</h1>
    <p>
-      З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.
+      Дано послідовність оцінок учня. Підрахувати кількість:
+      <ul>
+         <li>двійок;</li>
+         <li>кількість хороших оцінок (добре, відмінно);</li>
+         <li>кількість оцінок, які нижче середнього;</li>
+      </ul>
    </p>
 
    <script>
       
       //1.Вводимо необхідні дані
-      const driverCategoryEntered = (prompt('Enter driver category - A, B, C')).toUpperCase()
-      let motorcycle = "motorcycle";
-      let car = "car";
-      let truck = "truck";
+
+      let confirmMessage = confirm("Let's start the task?");
+      if (confirmMessage) {
+      const studentMarks = [];
       
-      //2.Знаходимо результат
-      switch (driverCategoryEntered) {
-         case "A":
-            result = `You can drive by ${motorcycle}.`
-            break;
-
-         case "B":
-         result = `You can drive by ${car}.`
-         break;
-
-         case "C":
-         result = `You can drive by ${truck}.`
-         break;
-         
-         default:
-         result = `Incorrect category.`
-            break;
+      function getStudentMarks() {
+         for (let i = 0; i < 5; i++) {
+            let id = parseInt(prompt('Enter student mark (1, 2, 3, 4, 5):'));
+            studentMarks.push(id); 
+         }
+         return studentMarks
       }
 
-      //3.Виводимо результат
-      document.write(
-         `${result}`)
-      
+      getStudentMarks();
+
+      //кількість двійок;;
+      function countTwo(arr) {
+         let count = 0; 
+         for (let i = 0; i < 5; i++) {
+            if (arr[i] === 2)
+               count++;
+         }
+         return count;
+      }
+
+      //кількість хороших оцінок (добре, відмінно);
+      function countFourFive(arr) {
+         let count = 0; 
+         for (let i = 0; i < 5; i++) {
+            if (arr[i] === 4 || arr[i] === 5)
+               count++;
+         }
+         return count;
+      }
+      //кількість оцінок, які нижче середнього;
+      function countLessThenAvg(arr) {
+         let count = 0; 
+         let avg = (1 + 2 + 3 + 4 + 5)/5;
+         for (let i = 0; i < 5; i++) {
+            if (arr[i] < avg) count++;
+         }
+         return  count;
+      }
+
+      //3. Виводимо результат
+      document.write(`Оцінки студента: ${studentMarks.join(", ")} <br><hr>`);
+      document.write(`
+         ${countTwo(studentMarks)} - двійок отримав учень; <br>
+         ${countFourFive(studentMarks)} - кількість хороших оцінок (добре, відмінно) отримав учень; <br>
+         ${countLessThenAvg(studentMarks)} - кількість оцінок, які нижче середнього; <br>
+         `);
+   }
    </script>
 </body>
 </html>

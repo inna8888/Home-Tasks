@@ -8,35 +8,40 @@
 <body>
    <h1>Задача 3</h1>
    <p>
-      Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+      Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
    </p>
 
    <script>
-      
       //1.Вводимо необхідні дані
-      //const randomNumber = min + Math.floor( Math.random()(max -min +1);
-      let tryNumber = parseFloat(prompt('Enter number from 1 to 5'));
-      const min = 1;
-      const max =5;
-      const randNumber = min + Math.floor( Math.random() * (max - min +1));
+   let confirmMessage = confirm("Let's start the task?");
+   if (confirmMessage) {
+      const studentsNames = [];
       
-      let result;
+      //2.Функція для отримання імен студентів
+      function getStudentsNames() {
+         for (let i = 0; i < 5; i++) {
+            let name = prompt('Enter student name'); // Зберігаємо введене ім’я
+            studentsNames.push(name); // Додаємо ім’я до масиву
+         }
+         return studentsNames
+      }
 
-      //2.Знаходимо результат
-      if (randNumber == tryNumber)
-      result = `Success, you guess it on the first try - ${randNumber}!`;
-   else {
-      tryNumber = parseFloat(prompt('Incorrect, enter a number one more time'));
-      if (randNumber == tryNumber)
-      result = `Success! you guess it on the second try- ${randNumber}!`;
-   else 
-   result = `Incorrect, the challenge is closed. The random number was ${randNumber}`
+      //3.Функція для підрахунку кількості "Іванів"
+      function countIvans(arr) {
+         let count = 0; // Лічильник "Іванів"
+         for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === "Іван") count++; // Якщо ім’я "Іван", збільшуємо лічильник
+         }
+         return count;
+      }
+
+      // Отримуємо імена студентів
+      getStudentsNames();
+
+      //3. Виводимо результат
+      document.write(`Масив імен учнів: ${studentsNames} <br>`);
+      document.write(`Ім’я «Іван» зустрічається ${countIvans(studentsNames)} разів. <br>`);
    }
-
-      //3.Виводимо результат
-      document.write(
-         `${result}`)
-      
-   </script>
+</script>
 </body>
 </html>

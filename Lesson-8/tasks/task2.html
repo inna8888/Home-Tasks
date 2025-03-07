@@ -8,27 +8,70 @@
 <body>
    <h1>Задача 2</h1>
    <p>
-      З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
-   </p>
+      Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:
+      <ul>
+         <li>номери днів, протягом яких кількість відвідувачів була меншою за 20;</li>
+         <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+         <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+         <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість кліентів на вихідних.</li>
+      </ul>
+</p>
 
    <script>
       
       //1.Вводимо необхідні дані
-      const productPrice = parseFloat(prompt('Enter product price'));
-      const money = parseFloat(prompt('Enter money amount'));
-      let result;
 
-      //2.Знаходимо результат
-      if (productPrice > money)
-      result = "Canceled. You need more money."
-   else if (money - productPrice >= 4)
-   result = "You can buy a lottery ticket, the cost is $4."
-else result = "Success! Thank you for the purchase!"
-
-      //3.Виводимо результат
-      document.write(
-         `${result}`)
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+      const clientsNumberPerDay = [2, 14, 100, 2, 45, 80, 100];
+      let daysNumber = clientsNumberPerDay.length
       
-   </script>
+      //2.Знаходимо результат для номери днів, протягом яких кількість відвідувачів була меншою за 20;
+      function showDaysWhenLessThen20(arr) {
+         let newArr = [];
+         for (let i = 0; i <= daysNumber; i++) {
+            if (arr[i] < 20) newArr.push(i + 1);
+            }
+         return newArr
+      }
+      
+      //номери днів, коли кількість відвідувачів була мінімальною;
+      function showDaysMin(arr) {
+         let minValue = Math.min(...arr); 
+         let newArr = [];
+         for (let i = 0; i < daysNumber; i++) {
+            if (arr[i] === minValue) newArr.push(i + 1);
+         }
+         return newArr;
+      }
+
+       //номери днів, коли кількість відвідувачів була максимальною;
+       function showDaysMax(arr) {
+         let maxValue = Math.max(...arr); 
+         let newArr = [];
+         for (let i = 0; i < daysNumber; i++) {
+            if (arr[i] === maxValue) newArr.push(i + 1);
+         }
+         return newArr;
+      }
+
+      //загальна кількість клієнтів на робочі дні та вихідні:
+      function totalVisitorsOnWorkdaysAndWeekends(arr) {
+         let workdaysTotal = arr[0] + arr[1] + arr[2] + arr[3] + arr[4]; 
+         let weekendsTotal = arr[5] + arr[6]; 
+         return { workdaysTotal, weekendsTotal };
+      }
+
+      //3. Виводимо результат
+      document.write(`Кількість відвідувачів кожен день: ${clientsNumberPerDay} <br><hr>`);
+      document.write(`
+         ${showDaysWhenLessThen20(clientsNumberPerDay)} - номери днів, протягом яких кількість відвідувачів була меншою за 20; <br>
+         ${showDaysMin(clientsNumberPerDay)} - номери днів, коли кількість відвідувачів була мінімальною;<br>
+         ${showDaysMax(clientsNumberPerDay)} - номери днів, коли кількість відвідувачів була максимальною;<br>
+         Загальна кількість відвідувачів на робочі дні: ${totalVisitorsOnWorkdaysAndWeekends(clientsNumberPerDay).workdaysTotal}<br>
+         Загальна кількість відвідувачів на вихідні: ${totalVisitorsOnWorkdaysAndWeekends(clientsNumberPerDay).weekendsTotal}<br>
+      `);
+   }
+</script>
 </body>
 </html>

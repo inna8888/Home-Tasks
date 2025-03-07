@@ -8,31 +8,86 @@
 <body>
    <h1>Задача 4</h1>
    <p>
-      З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у садочку, школярем, студентом, працівником, пенсіонером).
+      Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+
+      <ul>
+         <li>починаються на букву «А»;</li>
+         <li>перша і остання літери співпадають;</li>
+         <li>складаються з більше ніш 5 символів;</li>
+      </ul>
    </p>
 
    <script>
       
       //1.Вводимо необхідні дані
-      const humanAge = parseInt(prompt('Enter your age'));
-         
-      let result;
 
-      //2.Знаходимо результат
-      if (humanAge <= 6)
-      result = `You are kindergarten visitor.`;
-   else if (humanAge <= 18)
-   result = `You are schoolchild.`;
-   else if (humanAge <= 23)
-   result = `You are student.`;
-   else if (humanAge < 65)
-   result = `You are employee.`;
-else 
-result = 'You are retired person.'
-      //3.Виводимо результат
-      document.write(
-         `${result}`)
+      let confirmMessage = confirm("Let's start the task?");
+      if (confirmMessage) {
+      const carIds = [];
       
+      //2.Функція для отримання новерів машин
+      function getCarIds() {
+         for (let i = 0; i < 4; i++) {
+            let id = prompt('Enter car Id, you can use letters and numbers');
+            carIds.push(id); 
+         }
+         return carIds
+      }
+      
+      getCarIds();
+
+      //підрахунок номерів з літери А;
+      function countA(arr) {
+         let firstLetter = "A";
+         let count = 0; 
+         let newArr = [];
+         for (let i = 0; i < 4; i++) {
+            if (arr[i][0].toUpperCase() === "A")
+            { newArr.push(arr[i]);
+               count++;
+            }
+         }
+         return {newArr, count};
+      }
+
+      //перша і остання літери співпадають;
+      function matchFirstLastLetter(arr) {
+         let count = 0; 
+         let newArr = [];
+         
+         for (let i = 0; i < 4; i++) {
+         let firstChar = arr[i][0].toUpperCase();  
+         let lastChar = arr[i][arr[i].length - 1].toUpperCase();
+            if (firstChar === lastChar) {
+               newArr.push(arr[i]);
+               count++;
+            }
+         }
+         return {newArr, count};
+      }
+
+      //складаються з більше ніш 5 символів;
+      function longerThenFive(arr) {
+         let count = 0; 
+         let newArr = [];
+         
+         for (let i = 0; i < 4; i++) {
+            if (arr[i].length > 5) {
+               newArr.push(arr[i]);
+               count++;
+            }
+         }
+         return {newArr, count};
+      }
+
+      //3. Виводимо результат
+      document.write(`Номери машин від користувача: ${carIds.join(", ")} <br><hr>`);
+      document.write(`
+         ${countA(carIds).newArr.join(", ")} - ${countA(carIds).count} номери машин починаються на букву «А»; <br>
+         ${matchFirstLastLetter(carIds).newArr.join(", ")} - ${matchFirstLastLetter(carIds).count} номери машин, у яких перша і остання літери співпадають; <br>
+         ${longerThenFive(carIds).newArr.join(", ")} - ${longerThenFive(carIds).count} номери машин складаються з більше ніш 5 символів; <br>
+         `);
+   }
    </script>
 </body>
 </html>

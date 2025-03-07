@@ -16,22 +16,47 @@
    <script>
       
       //1.Вводимо необхідні дані
-      const childName11 = prompt('Enter child 1 name');
+      let confirmMessage = confirm("Let's student assessment for 4 subjects?")
+      if (confirmMessage) {
+         let studentMarks = []; 
+
+      function getStudentMarks() {   
+         studentMarks = [];      
+         for (let i = 0; i < 4; i++) {
+            let id = parseInt(prompt('Enter student mark:'));
+            studentMarks.push(id); 
+         }
+         return studentMarks
+      }
+
+      getStudentMarks();
+
+         function avgMark (array) {
+            let total = 0;
+            let avg = 0;
+            for (let i = 0; i < array.length; i++) {
+               total += array[i]; 
+            }
+            avg = total/array.length;
+            return avg;
+         }
+
+         function studentAssessment(array) {
+            if (array.includes(2)) return "двійочник";
+            if (array.includes(3)) return "трійочник";
+            if (array.includes(4)) return "хорошист";
+            return "відмінник";
+}
+
+
+         //3.Виводимо результат
+         document.write(`Оцінки студента: ${studentMarks.join(", ")} <br><hr>`);
+               document.write(`
+                  ${avgMark(studentMarks)} -  середній бал студента - ${studentAssessment(studentMarks)}<br>
+                  
+                  `);
+      }
             
-      //2.Знаходимо результат
-      if (number1 > number2) 
-
-      document.write(`Cool! ${childName1} has more candies!`);
-      
-      else if (number1 < number2) 
-
-      document.write(`Awesome! ${childName2} has more candies!`);
-   
-      else 
-      
-      document.write(`${childName1} and ${childName2} have equal number of candies!`);
-
-      //3.Виводимо результат
       
    </script>
 </body>

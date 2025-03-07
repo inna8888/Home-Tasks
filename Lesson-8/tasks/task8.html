@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 8</h1>
+   <p>
+      Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів  (поки він не відмовиться). Знаходити сумарний виграш.
+    
+   </p>
+
+   <script>
+      let startMessage = confirm("Let's run the task?");
+      
+      if (startMessage) {
+   
+         // 1. Генеруємо масив випадкових виграшних сум від -500 до 500
+   const winnings = [];
+   const arraySize = 10; // Кількість елементів у масиві
+   for (let i = 0; i < arraySize; i++) {
+      winnings.push(Math.floor(Math.random() * 1001) - 500);
+   }
+
+   // 2. Виводимо масив для зручності (можна прибрати в фінальному коді)
+   console.log("Виграшний масив:", winnings);
+
+   // 3. Початкові значення
+   let totalWin = 0; 
+   let userChoice;
+   
+   // 4. Цикл вибору елементів масиву користувачем
+   while (true) {
+      userChoice = prompt(`Введіть номер елемента (0-${arraySize - 1}) або 'exit' для виходу:`);
+      
+      if (userChoice === "exit") break; // Якщо користувач ввів "exit", зупиняємося
+      
+      let index = parseInt(userChoice); // Перетворюємо введене значення на число
+      
+      if (!isNaN(index) && index >= 0 && index < arraySize) {
+         totalWin += winnings[index]; // Додаємо вибране значення до загального виграшу
+         alert(`Ваш виграш: ${winnings[index]}. Загальна сума: ${totalWin}`);
+      } else {
+         alert("Некоректний номер, спробуйте ще раз!");
+      }
+   }
+
+   // 5. Виводимо фінальний результат
+   document.write(`Ваш загальний виграш: ${totalWin}`);
+}
+</script>
+   
+</body>
+</html>

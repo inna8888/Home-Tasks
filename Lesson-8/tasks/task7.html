@@ -8,49 +8,113 @@
 <body>
    <h1>Задача 7</h1>
    <p>
-      З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься.
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
+      <ul>
+         <li>за весь рік;</li>
+         <li>у першій половині року;</li>
+         <li>у другій половині року;</li>
+         <li>за літо;</li>
+         <li>за ІІ квартал;</li>
+         <li>за парні місяці (з парними номерами);</li>
+         <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
+      </ul>
    </p>
 
    <script>
       
       //1.Вводимо необхідні дані
-      const monthNumber = parseInt(prompt('Enter month number'));
+      let confirmMessage = confirm("Let's run the task?");
+      if (confirmMessage) {
+      
+
+      const monthPayment = [10, 20, 30, 10, 20, 30, 10, 20, 30, 10, 20, 30];
+      
+
+      function displayPayments (arr) {
+         let display = [];
+         for (let i = 0; i < arr.length; i++) {
+            display.push(`${i + 1} m - $${arr[i]}`);
             
+         }
+         return display;
+      }    
+      let display = displayPayments(monthPayment);
+
+
       //2.Знаходимо результат
-      switch (monthNumber) {
-         case 1:
-         case 2:
-         case 12:
-            result = `${monthNumber} month is winter season.`
-            break;
-
-         case 3:
-         case 4:
-         case 5:
-         result = `${monthNumber} month is spring season.`
-         break;
-
-         case 6:
-         case 7:
-         case 8:
-         result = `${monthNumber} month is summer season.`
-         break;
-         
-         case 9:
-         case 10:
-         case 11:
-         result = `${monthNumber} month is fall season.`
-         break;
-
-         default:
-         result = `Incorrect month number.`
-            break;
+      function sumYear (arr) {
+         let sumTotal = 0;
+         for (let i = 0; i < arr.length; i++) {
+            sumTotal += arr[i];   
+         } return sumTotal;
       }
 
-      //3.Виводимо результат
-      document.write(
-         `${result}`)
+      let firstHalf = monthPayment.length/2;
+      let secondHalf = monthPayment.length;
+      //у першій половині року;
+      function sumFirstHalf (arr) {
+         let sumTotal = 0;
+         for (let i = 0; i < firstHalf; i++) {
+            sumTotal += arr[i];   
+         } return sumTotal;
+      }
       
+      //у другій половині року;
+      function sumSecondHalf (arr) {
+         let sumTotal = 0;
+         for (let i = firstHalf; i < secondHalf; i++) {
+            sumTotal += arr[i];   
+         } return sumTotal;
+      }
+      
+      //за літо
+      let juneIndex = 5; // Індекс червня
+      let augustIndex = 7; // Індекс серпня
+
+      function sumSummer (arr) {
+         let sumTotal = 0;
+         for (let i = juneIndex; i <= augustIndex; i++) {
+            sumTotal += arr[i];   
+         } return sumTotal;
+      }
+
+      //за ІІ квартал
+      let marchIndex = 2; 
+      let mayIndex = 4; 
+
+      function sum2Quarter (arr) {
+         let sumTotal = 0;
+         for (let i = marchIndex; i <= mayIndex; i++) {
+            sumTotal += arr[i];   
+         } return sumTotal;
+      }
+
+      //за  парні місяці
+      function sumEven(arr) {
+         let sumTotal = 0;
+         for (let i = 1; i <= arr.length; i += 2) {
+            sumTotal += arr[i];   
+         } return sumTotal;
+      }
+
+      //за місяці, які є початковими у сезоні (весна, літо, осінь, зима)
+      function sumFirstSeasonMonths(arr) {
+         let sumTotal = 0;
+         for (let i = 2; i < arr.length; i += 3) {
+            sumTotal += arr[i];   
+         } return sumTotal;
+      }
+      //3.Виводимо результат
+      document.write(`Payments: <br> ${display.join("<br>")} <br> <hr>
+      за весь рік - $${sumYear(monthPayment)}; <br>
+      у першій половині року - $${sumFirstHalf(monthPayment)}; <br>
+      у другій половині року - $${sumSecondHalf(monthPayment)}; <br>
+      за літо - $${sumSummer(monthPayment)}; <br>
+      за ІІ квартал - $${sum2Quarter(monthPayment)}; <br>
+      за парні місяці (з парними номерами - ) - $${sumEven(monthPayment)}; <br>
+      за місяці, які є початковими у сезоні (весна, літо, осінь, зима) - $${sumFirstSeasonMonths(monthPayment)}.
+      `)
+   }
    </script>
 </body>
 </html>
