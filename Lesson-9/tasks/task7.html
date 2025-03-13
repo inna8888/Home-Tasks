@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 7</h1>
+   <p>
+      Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.
+
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let arrayPrices = [10, 300, 400, 600, 3100, 5000, 7000]; 
+      
+      // for..each - перегляд і можлива зміна елементів масива arr.forEach((element, index, arr) => { do smth})
+      //якщо треба змінити то обов'язково всі три параметри зазначити - arr.forEach((element, index, arr)
+      arrayPrices.forEach((price, index, arr) => {if (price > 1000) {arr[index] -= arr[index]*0.3}})
+
+      //3.Виводимо результат
+      document.write(`Масив, де ціни товарів, які більші за 1000 грн., будуть з 30% знижки:<br> <br> ${arrayPrices.join("грн, ")}грн <br>`);       
+      
+      }
+
+   </script>
+  
+</body>
+</html>

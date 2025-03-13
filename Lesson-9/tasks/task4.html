@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 4</h1>
+   <p>
+      Дано масив елементів. Вивести на екран елементи, що більші за 100
+
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let arrayElements = [1, 344, 500, 342, 34, 67, 78, 5, 10]; 
+      
+      // for..of - цикл тільки для прегляду
+      function displayOverHundred(arrayElements) {
+      let arrayOverHundred = [];
+        for (const element of arrayElements) {
+         if (element > 100) arrayOverHundred.push(element);
+        }
+         return arrayOverHundred;
+         }
+   
+      //3.Виводимо результат
+      document.write(`Eлементи, що більші за 100: ${displayOverHundred(arrayElements).join(", ")} <br><hr>`);       
+    }
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 6</h1>
+   <p>
+      Дано масив елементів. Усі елементи, які більші за перший елемент помножити на 2
+
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let arrayElements = [1, 210, 500, 300, -34, -67, 70, 5, 100]; 
+      
+      // for..each - перегляд і можлива зміна елементів масива arr.forEach((element, index, arr) => { do smth})
+      arrayElements.forEach((el, index, arr) => {if (el > arr[0]) {arr[index] *=  2}})
+      //3.Виводимо результат
+      document.write(`Масив, елементи, які більші за перший елемент, помножені на 2: ${arrayElements.join(", ")} <br>`);       
+      }
+
+   </script>
+</body>
+</html>

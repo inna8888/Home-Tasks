@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 8</h1>
+   <p>
+      Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+    
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let carNumber = ["DF1045RT", "AA300WE", "TD5511AF", "WD5511AF", "AD5511AF", "LD5511AF", "LL5511AF"]; 
+      
+      // filter - Не змінює початковий масив. Повертає новий масив.
+      let carNumberWithA = carNumber.filter(carnum => carnum[0] == "A");
+
+      //3.Виводимо результат
+      document.write(`Масив номерів авто, які починаються на «А»:<br>  ${carNumberWithA.join(", ")} <br>`);       
+      
+      }
+
+   </script>
+  
+</body>
+</html>

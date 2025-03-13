@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 9</h1>
+   <p>
+      Дано масив імен. Сформувати масив з перших літер цих імен.
+    
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let names = ["Hanna", "Iryna", "Mariia", "Andriy", "Oleg", "Stasia", "Inna"]; 
+      
+      // map - Не змінює початковий масив. Повертає новий масив.
+      //let firstLetterOfNames = names.map(name => name.slice(0, 1));
+      let firstLetterOfNames = names.map(name => name.charAt(0));
+
+      //3.Виводимо результат
+      document.write(`Масив з перших літер цих імен:<br>  ${firstLetterOfNames.join(", ")} <br>`);       
+      
+      }
+
+   </script>
+  
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 5</h1>
+   <p>
+      Дано масив елементів. Знайти добуток додатних елементів
+   </p>
+
+   <script>
+      
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let arrayElements = [1, -344, 500, -342, -34, -67, -78, 5, 10]; 
+      
+   // for..of - цикл тільки для прегляду
+      function productPositive(arrayElements) {
+         let product = 1;
+         let hasPositive = false; // Перевіряємо, чи є хоча б одне додатне число
+
+         for (const element of arrayElements) {
+            if (element > 0) {
+               product *= element;
+               hasPositive = true;
+            }
+         }
+
+         return hasPositive ? product : 0; // Якщо немає додатних чисел, повертаємо 0
+         }
+   
+      //3.Виводимо результат
+      document.write(`Добуток додатних елементів: ${productPositive(arrayElements)} <br><hr>`);       
+    }
+
+   </script>
+</body>
+</html>

@@ -22,11 +22,12 @@
    const winnings = [];
    const arraySize = 10; // Кількість елементів у масиві
    for (let i = 0; i < arraySize; i++) {
+      //rand = min + Math.floor( Math.random()(max -min +1)
       winnings.push(Math.floor(Math.random() * 1001) - 500);
    }
 
    // 2. Виводимо масив для зручності (можна прибрати в фінальному коді)
-   console.log("Виграшний масив:", winnings);
+   document.writeln("Виграшний масив:", winnings);
 
    // 3. Початкові значення
    let totalWin = 0; 
@@ -36,16 +37,14 @@
    while (true) {
       userChoice = prompt(`Введіть номер елемента (0-${arraySize - 1}) або 'exit' для виходу:`);
       
-      if (userChoice === "exit") break; // Якщо користувач ввів "exit", зупиняємося
+      if (userChoice == false) break; // Якщо користувач ввів "exit", зупиняємося
       
       let index = parseInt(userChoice); // Перетворюємо введене значення на число
       
       if (!isNaN(index) && index >= 0 && index < arraySize) {
          totalWin += winnings[index]; // Додаємо вибране значення до загального виграшу
          alert(`Ваш виграш: ${winnings[index]}. Загальна сума: ${totalWin}`);
-      } else {
-         alert("Некоректний номер, спробуйте ще раз!");
-      }
+      } 
    }
 
    // 5. Виводимо фінальний результат

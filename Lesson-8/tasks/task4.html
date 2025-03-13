@@ -37,12 +37,11 @@
       getCarIds();
 
       //підрахунок номерів з літери А;
-      function countA(arr) {
-         let firstLetter = "A";
+      function countA(arr, firstLetter) {
          let count = 0; 
          let newArr = [];
          for (let i = 0; i < 4; i++) {
-            if (arr[i][0].toUpperCase() === "A")
+            if (arr[i][0].toUpperCase() === firstLetter)
             { newArr.push(arr[i]);
                count++;
             }
@@ -83,7 +82,7 @@
       //3. Виводимо результат
       document.write(`Номери машин від користувача: ${carIds.join(", ")} <br><hr>`);
       document.write(`
-         ${countA(carIds).newArr.join(", ")} - ${countA(carIds).count} номери машин починаються на букву «А»; <br>
+         ${countA(carIds, "A").newArr.join(", ")} - ${countA(carIds, "A").count} номери машин починаються на букву «А»; <br>
          ${matchFirstLastLetter(carIds).newArr.join(", ")} - ${matchFirstLastLetter(carIds).count} номери машин, у яких перша і остання літери співпадають; <br>
          ${longerThenFive(carIds).newArr.join(", ")} - ${longerThenFive(carIds).count} номери машин складаються з більше ніш 5 символів; <br>
          `);

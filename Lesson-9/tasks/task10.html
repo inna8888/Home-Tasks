@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+
+   <h1>Задача 10</h1>
+   <p>
+      Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у грн.   
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let arrayPrices = [25, 50, 60, 100, 200]; 
+      
+      // map, Array.from - Не змінює початковий масив. Повертає новий масив.
+      //let arrayFeeToPay = arrayPrices.map(price => price * 0.2);
+      let arrayFeeToPay = Array.from(arrayPrices, (price, index) => price * 0.2);
+
+      //3.Виводимо результат
+      document.write(`Масив цін у грн.:<br>  ${arrayPrices.join("грн, ")}грн<br>  <br>
+      Масив, який містить величину сплаченого податку у грн.:<br>  ${arrayFeeToPay.join("грн, ")}грн<br>`);       
+      
+      }
+
+   </script>
+  
+</body>
+</html>

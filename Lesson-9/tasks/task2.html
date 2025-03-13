@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 2</h1>
+   <p>
+      Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1-цями, а друга заповнена 7-ками.
+
+</p>
+
+<script>
+      
+   //1.Вводимо необхідні дані
+   let confirmMessage = confirm("Let's run the task?")
+   if (confirmMessage) {
+   let getElementsNumber = parseInt(prompt("Enter number of elements:")); 
+   
+
+   function createArrayWithTwoNumbers(getElementsNumber) {
+      let halfArray = Math.floor(getElementsNumber/2);
+      let arrayWithTwoNumbers = new Array(getElementsNumber).fill(1, 0, halfArray).fill(7, halfArray);
+      return arrayWithTwoNumbers;
+      }
+
+   //3.Виводимо результат
+   document.write(`Масив з одиниць та семірок: ${createArrayWithTwoNumbers(getElementsNumber).join(", ")} <br><hr>`);       
+ }
+
+</script>
+</body>
+</html>
