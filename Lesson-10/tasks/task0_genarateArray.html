@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача </h1>
+   <p>
+      Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000)
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+          
+      function generaterandomNumber(minNumber, maxNumber) {
+         return minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1))
+      }
+
+      function generateArray(length, minNumber, maxNumber) {
+         const array= [];
+         for (let i = 0; i < length; i++) {
+            array.push(generaterandomNumber(minNumber, maxNumber));
+         }
+         return array
+      }
+      //3.Виводимо результат
+      document.write(`Масив: ${generateArray(15, 1, 10000).join(", ")} <br><hr>`);       
+    
+   </script>
+</body>
+</html>

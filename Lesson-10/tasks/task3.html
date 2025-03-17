@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 3</h1>
+   <p>
+      Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000) <br>
+      3.Сформувати список з тих цін, які більші за попереднє значення
+
+   </p>
+
+<script>
+      
+   //1.Вводимо необхідні дані
+   let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let prices = [4676, 2664, 383, 8290, 1959, 2041, 504, 4790, 5859, 8113, 85, 9398, 602, 20, 5440]; 
+      
+      prices.forEach((price, ind, array) => {if (ind > 0 && price > array[ind - 1]) document.writeln(`<div>${price}<div>`)})
+
+      //3.Виводимо результат
+      }
+
+</script>
+</body>
+</html>

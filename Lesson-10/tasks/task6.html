@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 6</h1>
+   <p>
+      Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000) <br>
+      6.Визначити, чи є ціна, що менше 1000
+
+   </p>
+
+<script>
+      
+   //1.Вводимо необхідні дані
+   let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+      let prices = [4676, 2664, 383, 8290, 1959, 2041, 504, 4790, 5859, 8113, 85, 9398, 602, 20, 5440]; 
+
+      let lowPrice = prices.some(price => price < 1000 )
+      
+      //3.Виводимо результат
+      document.writeln(`${lowPrice ? 
+      'Так, є ціна менше за 1000' : 'Ні, немає ціни менше за 1000'}`)
+            
+      }
+
+</script>
+</body>
+</html>
