@@ -23,8 +23,14 @@
       prices.forEach((price, ind, array) => {if (price > 1000) document.writeln(`<div>${prices.indexOf(price)}<div>`)})
          //indexOf(значення, початковий індекс пошуку)
 
-      //3.Виводимо результат
-      }
+      // let filteredIndexes = prices.reduce((acc, price, index) => {
+      // if (price > 1000) acc.push(index); 
+      // return acc;
+      // }, []); 
+      // document.write(`<p>Номери елементів, що більше за 1000 грн: ${filteredIndexes.join(', ')}</p>`);
+      // Цей підхід ефективний, бо дозволяє обійти масив один раз
+
+   }
 
 </script>
 </body>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      Знайти суми елементів у вказаній області (зафарбована область охоплює відповідну половину рядків і стовпців)
+      <br> 1) номери рядків від 0 до половини, стовпці від 0 до половини
+		<br> 2) номери рядків від 0 до половини, стовпці від половини до кінця
+		<br> 3) номери рядків від половини до кінця, стовпці від 0 до половини
+		<br> 4) номери рядків від половини до кінця , стовпці від половини до кінця
+		<br> 5) Суму парних рядків
+		<br> 6) Суму непарних стовпців
+		<br> 7) У парних рядках – непарні стовпці, у непарних – парні.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+         
+         //генерування двовимірного масива
+         function generateRandomTable(rowsNumber, columnsNumber, minValue = 1, maxValue = 100) {
+            const table = [];
+            for (let rowIndex = 0; rowIndex < rowsNumber; rowIndex++) {
+               table.push([]);
+               for (let columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                  const randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
+                  table[rowIndex].push(randNum)
+               }
+            }
+            return table
+         }
+
+         const table1 = generateRandomTable(4, 4, 1, 4);
+         document.write(`<p>Масив:<br> ${table1.join('<br>')} </p>`);
+
+         //1) номери рядків від 0 до половини, стовпці від 0 до половини
+         const rowsNumber = table1.length; //кількість елементів/рядків масиву
+         const rowsNumberHalf = Math.floor(rowsNumber/2);
+         const colsNumber = table1[0].length;//кількість елементів у нульовому рядку
+         const colsNumberHalf = Math.floor(colsNumber/2); 
+
+         function getSum1Quarter(arr) {
+            let sum = 0;
+            for (let rowInd = 0; rowInd < rowsNumberHalf; rowInd++) {
+               for (let columnInd = 0; columnInd < colsNumberHalf; columnInd++) {
+               sum += arr[rowInd][columnInd];
+               }
+            }
+            return sum;
+         }
+
+         const Sum1Quarter = getSum1Quarter(table1);
+         document.write(`<p>1) Сума, номери рядків від 0 до половини, стовпці від 0 до половини: ${Sum1Quarter}</p>`);
+
+         //2) номери рядків від 0 до половини, стовпці від половини до кінця
+         function getSum2Quarter(arr) {
+            let sum = 0;
+            for (let rowInd = 0; rowInd < rowsNumberHalf; rowInd++) {
+               for (let columnInd = colsNumberHalf; columnInd < colsNumber; columnInd++) {
+               sum += arr[rowInd][columnInd];
+               }
+            }
+            return sum;
+         }
+
+         const Sum2Quarter = getSum2Quarter(table1);
+         document.write(`<p>2) Сума, номери рядків від 0 до половини, стовпці від половини до кінця: ${Sum2Quarter}</p>`);
+
+         //3) номери рядків від половини до кінця, стовпці від 0 до половини
+         function getSum3Quarter(arr) {
+            let sum = 0;
+            for (let rowInd = rowsNumberHalf; rowInd < rowsNumber; rowInd++) {
+               for (let columnInd = 0; columnInd < colsNumberHalf; columnInd++) {
+               sum += arr[rowInd][columnInd];
+               }
+            }
+            return sum;
+         }
+
+         const Sum3Quarter = getSum3Quarter(table1);
+         document.write(`<p>3) Сума, номери рядків від половини до кінця, стовпці від 0 до половини: ${Sum3Quarter}</p>`);
+
+         //4) номери рядків від половини до кінця, стовпці від половини до кінця
+         function getSum4Quarter(arr) {
+            let sum = 0;
+            for (let rowInd = rowsNumberHalf; rowInd < rowsNumber; rowInd++) {
+               for (let columnInd = colsNumberHalf; columnInd < colsNumber; columnInd++) {
+                  sum += arr[rowInd][columnInd];
+               }
+            }
+            return sum;
+         }
+
+         const Sum4Quarter = getSum4Quarter(table1);
+         document.write(`<p>4) Сума, номери рядків від половини до кінця, стовпці від половини до кінця: ${Sum4Quarter}</p>`);
+
+         //5) Суму парних рядків
+         function getSumEvenRows(arr) {
+            let sum = 0;
+            for (let rowInd = 1; rowInd < rowsNumber; rowInd += 2) {
+               for (let columnInd = 0; columnInd < colsNumber; columnInd++) {
+                  sum += arr[rowInd][columnInd];
+               }
+            }
+            return sum;
+         }
+
+         const SumEvenRows = getSumEvenRows(table1);
+         document.write(`<p>5) Сума у парних рядках: ${SumEvenRows}</p>`);
+
+
+          //6) Суму непарних стовпців
+          function getSumOddColumns(arr) {
+            let sum = 0;
+            for (let rowInd = 0; rowInd < rowsNumber; rowInd++) {
+               for (let columnInd = 0; columnInd < colsNumber; columnInd +=2 ) {
+                   sum += arr[rowInd][columnInd];
+               }
+            }
+            return sum;
+         }
+
+         const SumOddColumns = getSumOddColumns(table1); 
+         document.write(`<p>6) Сума у непарних стовпцях: ${SumOddColumns}</p>`);
+                        //інший спосіб з додаванням умови:
+                        // function getSumEvenColumns(arr) {
+                        //    let sum = 0;
+                        //    for (let rowInd = 0; rowInd < rowsNumber; rowInd ++) {
+                        //       for (let columnInd = 0; columnInd < colsNumber; columnInd ++) {
+                        //          if (columnInd % 2 === 0) sum += arr[rowInd][columnInd];
+                        //       }
+                        //    }
+                        //    return sum;
+                        // }
+
+                        // const SumEvenColumns = getSumEvenColumns(table1); 
+                        // document.write(`<p>) Сума у парних стовпцях: ${SumEvenColumns}</p>`);
+
+         //7) У парних рядках – непарні стовпці, у непарних – парні
+         function getSumOddColumns(arr) {
+               let sum = 0;
+               for (let rowInd = 0; rowInd < rowsNumber; rowInd++) {
+                  sum += arr[rowInd].reduce(
+                  (acc, num, columnInd) =>
+                     (rowInd % 2 === 0 && columnInd % 2 !== 0) ||
+                     (rowInd % 2 !== 0 && columnInd % 2 === 0)
+                        ? acc + num
+                        : acc,
+                  0
+                  );
+               }
+               return sum;
+            }
+         const Sum = getSumOddColumns(table1); 
+         document.write(`<p>7) У парних рядках – непарні стовпці, у непарних – парні: ${Sum}</p>`);
+
+   }     
+   </script>
+</body>
+</html>

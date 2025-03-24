@@ -22,9 +22,11 @@
 
       let lastPriceFind = prices.reduceRight((acc, price, ind) => (acc == -1 && price > 1000 ? price : acc), -1);
 
-      //3.Виводимо результат
       document.writeln(`Остання ціна, що більше за 1000 - ${lastPriceFind}грн`)
-            
+
+      //---2 findLast - новий метод????
+    prices.findLast
+        
       }
 
 </script>

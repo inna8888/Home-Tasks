@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+   <h1>Задача 2</h1>
+   <p>
+      Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+
+      <br> 1) загальний прибуток кожного магазину за тиждень;
+
+		<br> 2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+		<br> 3)  загальний прибуток за робочі дні
+
+		<br> 4) загальний прибуток за вихідні дні
+
+		<br> 5) максимальний прибуток за середу
+
+		<br> 6)  сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+
+		<br> 7) відсортувати кожен тиждень за зростанням
+      <br> 8)  відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+      <br> 9)  упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше)
+
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+         
+         //генерування двовимірного масива
+         function generateRandomTable(rowsNumber, columnsNumber, minValue = 1, maxValue = 100) {
+            const table = [];
+            for (let rowIndex = 0; rowIndex < rowsNumber; rowIndex++) {
+               table.push([]);
+               for (let columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                  const randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
+                  table[rowIndex].push(randNum)
+               }
+            }
+            return table
+         }
+
+         const profit = generateRandomTable(5, 7, 100, 500 ); // 5 магазинів протягом тижня або семи днів
+         document.write(`<p>Масив інформації про прибуток 5 магазинів протягом тижня по днях: </p>`);
+
+         profit.forEach((shop, index) => {
+         document.write(`Магазин ${index + 1}: ${shop.join(", ")}<br>`);
+         });
+
+         const rowsNumber = profit.length; //кількість елементів/рядків масиву
+         const rowsNumberHalf = Math.floor(rowsNumber/2);
+         const colsNumber = profit[0].length;//кількість елементів у нульовому рядку
+         const colsNumberHalf = Math.floor(colsNumber/2);
+
+         //1) загальний прибуток кожного масиву за тиждень;
+         function getSumForEveryShop(arr) {
+            let result = [];
+            for (const shop of arr) {
+               let sum = shop.reduce((acc, el) => acc + el, 0);
+               result.push(sum);
+            }
+            return result;
+         } 
+         // function getSumForEveryShop(arr) {
+         //    return arr.map(shop => shop.reduce((acc, el) => acc + el, 0));
+         // }
+         const SumProfit = getSumForEveryShop(profit);
+         document.write(`<p><strong>1) загальний прибуток кожного магазину за тиждень:</strong><br> ${SumProfit.join(' грн <br>')} грн</p>`);
+
+         //2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+         
+         function getProfitPerDays(profit) {
+         let profitPerDays = new Array(7).fill(0); // Ініціалізуємо масив нулями
+
+            for (const shop of profit) {
+               for (let dayInd = 0; dayInd < shop.length; dayInd++) {
+                  profitPerDays[dayInd] += shop[dayInd]; // Додаємо прибуток за день
+               }
+            }
+            return profitPerDays;
+         }
+
+         const profitPerEveryDay = getProfitPerDays(profit);
+
+         const daysOfWeek = ["Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота", "Неділя"];
+         document.write(`<p><strong>2) загальний прибуток усіх магазинів по дням:</strong></p>`);
+         for (let i = 0; i < profitPerEveryDay.length; i++) {
+            document.write(`${daysOfWeek[i]}: ${profitPerEveryDay[i]} грн<br>`);
+         }
+
+        // 3)  загальний прибуток за робочі дні
+        function getProfitPerWorkDays(profit) {
+         let profitPerDays = new Array(5).fill(0); // Ініціалізуємо масив нулями
+
+            for (const shop of profit) {
+               for (let dayInd = 0; dayInd < 5; dayInd++) {
+                  profitPerDays[dayInd] += shop[dayInd]; // Додаємо прибуток за день
+               }
+            }
+            return profitPerDays;
+         }
+
+         const profitPerWorkDay = getProfitPerWorkDays(profit);
+
+         document.write(`<p><strong>3)  загальний прибуток за робочі дні:</strong></p>`);
+         for (let i = 0; i < profitPerWorkDay.length; i++) {
+            document.write(`${daysOfWeek[i]}: ${profitPerWorkDay[i]} грн<br>`);
+         } 
+
+         //4) загальний прибуток за вихідні дні
+         document.write(`<p><strong>4) загальний прибуток за вихідні дні</strong></p>`);
+         for (let i = 5; i < profitPerEveryDay.length; i++) {
+            document.write(`${daysOfWeek[i]}: ${profitPerEveryDay[i]} грн<br>`);
+         }
+
+         //5) максимальний прибуток за середу
+         function getMaxProfitWednesday(profit) {
+            return Math.max(...profit.map(shop => shop[2])); 
+         // Індекс 2, бо середа — третій день
+         }
+         const maxProfitWednesday = getMaxProfitWednesday(profit);
+
+         document.write(`<p><strong>5) максимальний прибуток за середу:</strong> <br> ${maxProfitWednesday} грн </p>`);
+
+         //6)  сформувати загальний список (одновимірний масив) зі значенням, що більші за 200
+
+        const profitOver200 = profit.flat(2).filter(day => day > 200)
+        document.writeln(`<p><strong>6) загальний список (одновимірний масив) зі значенням, що більші за 200:</strong> <br> ${profitOver200.join(', ')} </p>`)
+
+        //7) відсортувати кожен тиждень за зростанням
+        // arr.sort((a, b) => a - b) за зростанням
+        // arr.sort((a, b) => b - a) за спаданням
+        for (let rowIndex = 0; rowIndex < rowsNumber; rowIndex++) {
+            profit[rowIndex].sort((a, b) => a - b);
+           
+         }
+        document.writeln(`<p><strong>7) відсортувати кожен тиждень за зростанням:</strong> </p>`)
+        document.writeln(`${profit.map(row => row.join(', ')).join('<br>')}`)
+
+        //8)  відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+         profit.sort((a, b) => Math.max(...b) - Math.max(...a));
+         document.writeln(`<p><strong>8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків:</strong> </p>`)
+         document.writeln(`${profit.map(row => row.join(', ')).join('<br>')}`)
+
+         //9)  упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше)
+
+         profit.sort((a, b) => b.reduce((acc, el) => acc += el) - a.reduce((acc, el) => acc += el));
+         document.writeln(`<p><strong>9)  упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше)</strong> </p>`)
+         document.writeln(`${profit.map(row => row.join(', ')).join('<br>')}`)
+         
+   }     
+   </script>
+</body>
+</html>

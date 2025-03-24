@@ -16,13 +16,26 @@
 <script>
       
    //1.Вводимо необхідні дані
+   
    let confirmMessage = confirm("Let's run the task?")
       if (confirmMessage) {
       let prices = [4676, 2664, 383, 8290, 1959, 2041, 504, 4790, 5859, 8113, 85, 9398, 602, 20, 5440]; 
-      
+   //----1 
       prices.forEach((price, ind, array) => {if (ind > 0 && price > array[ind - 1]) document.writeln(`<div>${price}<div>`)})
+      document.writeln(`<hr>`)
 
-      //3.Виводимо результат
+   //----2 with reduce
+      let listOfPricesBiggerThenPrevious = prices.reduce((acc, el, ind, arr) => {
+         if(arr[ind] > 0 && el > arr[ind-1]) acc.push(el)
+         return acc
+      }, [])
+      document.writeln(`<div>${listOfPricesBiggerThenPrevious.join(', <br>')}<div>`)
+       document.writeln(`<hr>`)
+
+   //-----3 filter
+      let listOfPricesBiggerThenPrevious1 = prices.filter((price, ind, arr) =>   price > arr[ind-1])
+      document.writeln(`<div>${listOfPricesBiggerThenPrevious1.join(', <br>')}<div>`)
+
       }
 
 </script>
