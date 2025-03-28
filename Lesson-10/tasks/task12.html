@@ -25,7 +25,8 @@
       document.writeln(`Остання ціна, що більше за 1000 - ${lastPriceFind}грн`)
 
       //---2 findLast - новий метод????
-    prices.findLast
+    let last = prices.findLast(( el ) => el > 1000);
+    document.writeln(`<hr> ${last}`);
         
       }
 

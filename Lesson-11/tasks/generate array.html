@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's student assessment for 4 subjects?")
+      if (confirmMessage) {
+         
+         //генерування двовимірного масива
+
+         function generateRandomTable(rowsNumber, columnsNumber, minValue = 1, maxValue = 100) {
+            const table = [];
+            for (let rowIndex = 0; rowIndex < rowsNumber; rowIndex++) {
+               table.push([]);
+               for (let columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                  const randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1));
+                  table[rowIndex].push(randNum)
+               }
+            }
+            return table
+         }
+
+         const table1 = generateRandomTable(5, 5);
+
+      //введення елементів двовимірного масива
+         //  function generateRandomTable(rowsNumber, columnsNumber, minValue = 1, maxValue = 100) {
+         //    const table = [];
+         //    for (let rowIndex = 0; rowIndex < rowsNumber; rowIndex++) {
+         //       table.push([]);
+         //       for (let columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+         //          const randNum = parseInt(prompt(`Веедіть елемент для ${rowIndex + 1} рядка та ${columnIndex + 1} стовпця`));
+         //          table[rowIndex].push(randNum)
+                  
+         //       }
+               
+         //    }
+         //    return table
+         // }
+
+         // const table1 = generateRandomTable(5, 5);
+
+      //3.Виводимо результат
+         document.write(`<p>Масив у таблиці:<br> ${table1.join('<br>')} </p>`);
+
+      // загальний прибуток
+         const rowsNumber = table1.length; //кількість елементів/рядків масиву
+         const colsNumber = table1[0].length; //кількість елементів у нульовому рядку
+
+         // let sum = 0;
+         // for (let rowIndex = 0; rowIndex < rowsNumber; rowIndex++) {
+         //    for (let colIndex = 0; colIndex < colsNumber; colIndex++) {
+         //       sum += table1[rowIndex][colIndex]; 
+         //    }
+         // }
+         // document.writeln(`Sum: ${sum}`)
+
+         let totalSum = table1.reduce((prevTotalSum, row) => prevTotalSum + 
+                                 row.reduce((prevRowSum, el) => prevRowSum + el, 0),
+                              0
+                           );
+         document.writeln(`Sum: ${totalSum}`)
+}
+            
+      
+   </script>
+</body>
+</html>
