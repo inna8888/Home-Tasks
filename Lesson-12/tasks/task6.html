@@ -8,8 +8,7 @@
 <body>
    <h1>Задача 6</h1>
    <p>
-      
-
+      Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я довжиною 5 символів і під яким індексом.
    </p>
 
    <script>
@@ -17,7 +16,79 @@
       //1.Вводимо необхідні дані
       let confirmMessage = confirm("Let's run the task?");
       if (confirmMessage) {
-      
+
+      const namesNotSorted = ["Inna", "Yaroslav", "Marta", "Andriy", "Robert", "Edvinn",  "Diana", "Mira", "Zoryan", "Iryna", "Arsen", "Olga"]
+
+      const originalArray = [...namesNotSorted];
+      document.writeln(`Масив імен: ${originalArray.join(', ')} <br><hr>`)
+
+      // сортування БУЛЬБАШКОЮ
+      function bubbleSortArray(arr) {
+         let change; 
+         let compared = 0, replaced = 0, endIndex = arr.length;
+         do {
+            change = false;
+            for (let i = 1; i < endIndex; i++) {
+               compared++
+               if (arr[i - 1].length > arr[i].length) {
+               const elementTemporary = arr[i - 1];
+               arr[i - 1] = arr[i];
+               arr[i] = elementTemporary;
+               change = true;
+               replaced++
+               }
+            }
+            endIndex--; //на кожному кроці максимальне справа вже є, тому скорочуємо індекси для цикла
+         } while (change)
+         return arr;
+      }
+
+      let sortedArray = bubbleSortArray(namesNotSorted);
+
+      // Бінарний пошук
+      // для упорядкованого (вже відсортованого) масива
+      // належить - true, не належить -false
+
+      function includesByBinarySearch (arr) {
+         let start = 0;
+         let end = arr.length - 1;
+         while (start <= end) {
+            const middle = Math.floor((start + end)/2);
+            if (arr[middle].length === 5) return true;
+            if (arr[middle].length < 5) start = middle + 1;
+            if (arr[middle].length > 5) end = middle - 1;
+         }
+         return false;
+      }
+      const printMessage = (func) => {
+         func ? document.writeln(`У масиві є ім'я з 5 символів <br>`) :
+                document.writeln(`У масиві немає імені з 5 символів <br> `)}
+
+      printMessage(includesByBinarySearch(sortedArray));
+
+      let indexOfSearchElement = function(arr) {
+         let indexes = [];
+         for (let index = 0; index < arr.length; index++) {
+         if (arr[index].length === 5) {
+            indexes.push(index);
+            }          
+         }
+         return indexes;
+      }
+      document.writeln(`Індекс імені з 5 символів - ${indexOfSearchElement(originalArray).join(', ')} <br>`);
+
+      let orderNumberOfSearchElement = function(arr) {
+         let indexes = [];
+         for (let index = 0; index < arr.length; index++) {
+         if (arr[index].length === 5) {
+            indexes.push(index + 1);
+            }          
+         }
+         return indexes;
+      }
+
+      document.writeln(`Або ж порядковий номер імені з 5 символів у наданому списку - ${orderNumberOfSearchElement(originalArray).join(', ')}`);
+
       
       
    }

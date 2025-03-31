@@ -18,9 +18,9 @@
       let confirmMessage = confirm("Let's start the task?")
       if (confirmMessage) {
          function getRandomArr(length=30, min=10, max=99) {   
-         arr = [];      
+         let arr = [];      
          for (let i = 0; i < length; i++) {
-            let randomNumber = min + Math.floor(Math.random()*(max - min +1));
+            let randomNumber = min + Math.floor(Math.random() * (max - min + 1));
             arr.push(randomNumber); 
          }
          return arr
@@ -29,7 +29,7 @@
       let originalArray = [...randomArray]; //зберігаю створений масив у початковому вигляді
 
      // сортування ЗМІШУВАННЯМ
-      function sortArray(arr) {
+      function coctailSortArray(arr) {
 
          let change; 
          let compared = 0, replaced = 0; 
@@ -67,7 +67,7 @@
          return {arr, compared, replaced}
       }
 
-      let sortedArray = sortArray(randomArray);
+      let sortedArray = coctailSortArray(randomArray);
 
       document.writeln(`Масив до сортування: ${originalArray} <br>
       Масив після сортування: ${sortedArray.arr} <br>

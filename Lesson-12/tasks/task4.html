@@ -8,17 +8,151 @@
 <body>
    <h1>Задача 4</h1>
    <p>
-      
+      Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком .
    </p>
 
    <script>
-      
       //1.Вводимо необхідні дані
+   let confirmMessage = confirm("Let's start the task?");
+   if (confirmMessage) {
+      function getRandomArr(length=10, min=10, max=99) {   
+         let arr = [];      
+         for (let i = 0; i < length; i++) {
+            let randomNumber = min + Math.floor(Math.random() * (max - min + 1));
+            arr.push(randomNumber); 
+         }
+         return arr
+      }
+      let randomArray = getRandomArr();
+      let originalArray = [...randomArray]; //зберігаю створений масив у початковому вигляді
+      function makeTable(array) {
+            // Створення елемента таблиці
+            let table = document.createElement("table");
+            table.style.borderCollapse = "collapse";
+            table.style.marginBottom = "10px";
+                        
+            let tr = document.createElement("tr");
 
-      let confirmMessage = confirm("Let's start the task?");
-      if (confirmMessage) {
-      
+            // Створення стовпців таблиці
+            for (let col = 0; col < array.length; col++) {
+                  let td = document.createElement("td");
+                  td.style.border = "2px solid black";
+                  td.style.padding = "8px";
+                  td.style.textAlign = "center";
+                  td.textContent = array[col];
+                  tr.appendChild(td);
+               }
+
+               table.appendChild(tr);
+               document.body.appendChild(table);
+         }
+
+      // сортування БУЛЬБАШКОЮ
+      document.writeln('Сортування БУЛЬБАШКОВИМ МЕТОДОМ:')
+      function bubbleSortArray(arr) {
+         let change; 
+         let compared = 0, replaced = 0, endIndex = arr.length;
+         do {
+            change = false;
+            for (let i = 1; i < endIndex; i++) {
+               compared++
+               if (arr[i - 1] > arr[i]) {
+               const elementTemporary = arr[i - 1];
+               arr[i - 1] = arr[i];
+               arr[i] = elementTemporary;
+               change = true;
+               replaced++;
+               makeTable([...arr]); // виведення таблиці після кожної зміни 
+               }
+            }
+            endIndex--; //на кожному кроці максимальне справа вже є, тому скорочуємо індекси для цикла
+         } while (change)
+         return {arr, compared, replaced}
+      }
+
+      let bubbleSortedArray = bubbleSortArray(randomArray);
+
+      document.writeln(`Масив до сортування: ${originalArray} <br>
+      Масив після сортування: ${bubbleSortedArray.arr} <br>
+      Кількість порівнянь: ${bubbleSortedArray.compared} <br>
+      Кількість обмінів: ${bubbleSortedArray.replaced} <br><hr>`)
+
+      // сортування ЗМІШУВАННЯМ
+      document.writeln('Сортування МЕТОДОМ ЗМІШУВАННЯ:')
+      function coctailSortArray(arr) {
+         let change; 
+         let compared = 0, replaced = 0; 
+         let leftIndex = 0;
+         let rightIndex = arr.length - 1;
+
+      while (leftIndex < rightIndex) {
+         //цикл проходить зліва направо
+         change = false;
+         for (let i = leftIndex + 1; i <= rightIndex; i++) {
+            compared++
+            if (arr[i - 1] > arr[i]) {
+            let elementTemporary = arr[i - 1];
+            arr[i - 1] = arr[i];
+            arr[i] = elementTemporary;
+            change = true;
+            replaced++;
+            makeTable([...arr]); // виведення таблиці після кожної зміни 
+            }
+         }
+         rightIndex--; //на кожному кроці максимальне справа вже є, тому скорочуємо індекси для цикла
+         if (change === false) break
+         //цикл проходить справа наліво
+         change = false;
+         for (let i = rightIndex; i > leftIndex; i--) {
+            if (arr[i - 1] > arr[i]) {
+               let elementTemporary = arr[i - 1];
+            arr[i - 1] = arr[i];
+            arr[i] = elementTemporary;
+            change = true;
+            replaced++;
+            makeTable([...arr]); // виведення таблиці після кожної зміни 
+            }
          
+         }
+      }
+      return {arr, compared, replaced}
+      }
+
+      let randomArray1 = [...originalArray]; 
+      let coctailSortedArray = coctailSortArray(randomArray1);
+
+      document.writeln(`Масив до сортування: ${originalArray} <br>
+      Масив після сортування: ${coctailSortedArray.arr} <br>
+      Кількість порівнянь: ${coctailSortedArray.compared} <br>
+      Кількість обмінів: ${coctailSortedArray.replaced} <br><hr>`)
+
+      // сортування ВКЛЮЧЕННЯМИ
+      document.writeln('Сортування ВКЛЮЧЕННЯМИ:')
+      function InsertionSortArray(arr) {
+         let compared = 0, replaced = 0; 
+         let endIndex = arr.length;
+         for (let k = 1; k < endIndex; k++) {
+            let key = arr[k];
+            let i = k - 1;
+            while (i >= 0 && arr[i] > key) {
+               compared++;
+               arr[i + 1] = arr[i];
+               i = i - 1;
+            }
+            arr[i + 1] = key;
+            replaced++;
+            makeTable([...arr]); // виведення таблиці після кожної зміни         
+         }
+         return { arr, compared, replaced };
+      }
+      let randomArray2 = [...originalArray]; 
+      let sortedArray = InsertionSortArray(randomArray2);
+
+      document.writeln(`Масив до сортування: ${originalArray} <br>
+      Масив після сортування: ${sortedArray.arr} <br>
+      Кількість порівнянь: ${sortedArray.compared} <br>
+      Кількість обмінів: ${sortedArray.replaced} <br>`)
+
    }
    </script>
 </body>

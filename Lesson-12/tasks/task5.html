@@ -8,7 +8,7 @@
 <body>
    <h1>Задача 5</h1>
    <p>
-      
+      Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я «Olga» і під яким індексом.
    </p>
 
    <script>
@@ -17,6 +17,58 @@
 
       let confirmMessage = confirm("Let's start the task?");
       if (confirmMessage) {
+      
+      const namesNotSorted = ["Inna", "Yaroslav", "Andriy", "Robert", "Edvin", "Marta", "Diana", "Mira", "Zoryan", "Iryna", "Arsen", "Olga"]
+
+      const originalArray = [...namesNotSorted];
+      document.writeln(`Масив імен: ${originalArray.join(', ')} <br><hr>`)
+
+      // сортування ВКЛЮЧЕННЯМИ
+      function InsertionSortArray(arr) {
+         let key, i; 
+         let compared = 0, replaced = 0, endIndex = arr.length;
+         for (let k = 1; k < endIndex; k++) {
+            key = arr[k];
+            i = k - 1;
+            while (i >= 0 && arr[i].localeCompare(key) > 0) {
+               compared++;
+               arr[i + 1] = arr[i];
+               i = i - 1;
+               
+            }
+            arr[i + 1] = key;
+            replaced++;           
+         }
+         return arr
+      }
+
+      let sortedArray = InsertionSortArray(namesNotSorted);//використовую сортування лише для пошуку елемента у масиві
+      let searchElement = "Olga";
+
+      // Бінарний пошук
+      // для упорядкованого (вже відсортованого) масива
+      // належить - true, не належить -false
+      function includesByBinarySearch (arr, searchElement) {
+         let start = 0;
+         let end = arr.length - 1;
+         while (start <= end) {
+            const middle = Math.floor((start + end)/2);
+            if (arr[middle] === searchElement) return true;
+            if (arr[middle] < searchElement) start = middle + 1;
+            if (arr[middle] > searchElement) end = middle - 1;
+         }
+         return false;
+      }
+
+      const printMessage = (func) => {
+         func ? document.writeln(`Iм'я ${searchElement} входить у масив <br>`) :
+                document.writeln(`Iм'я ${searchElement} не входить у масив <br> `)}
+
+      printMessage(includesByBinarySearch(sortedArray, searchElement));
+
+      let indexOfSearchElement = originalArray.indexOf(`${searchElement}`);
+      document.writeln(`Індекс потрібного елемента - ${indexOfSearchElement}`);
+
       }
    </script>
 </body>

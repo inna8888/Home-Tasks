@@ -19,7 +19,7 @@
       if (confirmMessage) {
       
       function getRandomArr(length=30, min=10, max=99) {   
-         arr = [];      
+         let arr = [];      
          for (let i = 0; i < length; i++) {
             let randomNumber = min + Math.floor(Math.random()*(max - min +1));
             arr.push(randomNumber); 
@@ -30,7 +30,7 @@
       let originalArray = [...randomArray]; //зберігаю створений масив у початковому вигляді
 
      // сортування БУЛЬБАШКОЮ
-      function sortArray(arr) {
+      function bubbleSortArray(arr) {
          let change; 
          let compared = 0, replaced = 0, endIndex = arr.length;
          do {
@@ -50,7 +50,7 @@
          return {arr, compared, replaced}
       }
 
-      let sortedArray = sortArray(randomArray);
+      let sortedArray = bubbleSortArray(randomArray);
 
       document.writeln(`Масив до сортування: ${originalArray} <br>
       Масив після сортування: ${sortedArray.arr} <br>

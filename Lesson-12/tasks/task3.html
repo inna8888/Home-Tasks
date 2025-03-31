@@ -17,9 +17,9 @@
    let confirmMessage = confirm("Let's start the task?");
    if (confirmMessage) {
       function getRandomArr(length=30, min=10, max=99) {   
-         arr = [];      
+         let arr = [];      
          for (let i = 0; i < length; i++) {
-            let randomNumber = min + Math.floor(Math.random()*(max - min +1));
+            let randomNumber = min + Math.floor(Math.random() * (max - min + 1));
             arr.push(randomNumber); 
          }
          return arr
@@ -28,27 +28,25 @@
       let originalArray = [...randomArray]; //зберігаю створений масив у початковому вигляді
 
      // сортування ВКЛЮЧЕННЯМИ
-      function sortArray(arr) {
-         let change; 
+      function InsertionSortArray(arr) {
+         let key = 0, i = 0; 
          let compared = 0, replaced = 0, endIndex = arr.length;
-         do {
-            change = false;
-            for (let i = 1; i < endIndex; i++) {
-               compared++
-               if (arr[i - 1] > arr[i]) {
-               const elementTemporary = arr[i - 1];
-               arr[i - 1] = arr[i];
-               arr[i] = elementTemporary;
-               change = true;
-               replaced++
-               }
+         for (let k = 1; k < endIndex; k++) {
+            key = arr[k];
+            i = k - 1;
+            while (i >= 0 && arr[i] > key) {
+               compared++;
+               arr[i + 1] = arr[i];
+               i = i - 1;
+               
             }
-            endIndex--; //на кожному кроці максимальне справа вже є, тому скорочуємо індекси для цикла
-         } while (change)
-         return {arr, compared, replaced}
+            arr[i + 1] = key;
+            replaced++;           
+         }
+         return { arr, compared, replaced };
       }
 
-      let sortedArray = sortArray(randomArray);
+      let sortedArray = InsertionSortArray(randomArray);
 
       document.writeln(`Масив до сортування: ${originalArray} <br>
       Масив після сортування: ${sortedArray.arr} <br>
