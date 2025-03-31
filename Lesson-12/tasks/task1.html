@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування бульбашкою.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task")
+      if (confirmMessage) {
+      
+      function getRandomArr(length=30, min=10, max=99) {   
+         arr = [];      
+         for (let i = 0; i < length; i++) {
+            let randomNumber = min + Math.floor(Math.random()*(max - min +1));
+            arr.push(randomNumber); 
+         }
+         return arr
+      }
+      let randomArray = getRandomArr();
+      let originalArray = [...randomArray]; //зберігаю створений масив у початковому вигляді
+
+     // сортування БУЛЬБАШКОЮ
+      function sortArray(arr) {
+         let change; 
+         let compared = 0, replaced = 0, endIndex = arr.length;
+         do {
+            change = false;
+            for (let i = 1; i < endIndex; i++) {
+               compared++
+               if (arr[i - 1] > arr[i]) {
+               const elementTemporary = arr[i - 1];
+               arr[i - 1] = arr[i];
+               arr[i] = elementTemporary;
+               change = true;
+               replaced++
+               }
+            }
+            endIndex--; //на кожному кроці максимальне справа вже є, тому скорочуємо індекси для цикла
+         } while (change)
+         return {arr, compared, replaced}
+      }
+
+      let sortedArray = sortArray(randomArray);
+
+      document.writeln(`Масив до сортування: ${originalArray} <br>
+      Масив після сортування: ${sortedArray.arr} <br>
+      Кількість порівнянь: ${sortedArray.compared} <br>
+      Кількість обмінів: ${sortedArray.replaced} <br>`)
+
+      }
+   </script>
+</body>
+</html>
