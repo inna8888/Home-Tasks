@@ -36,8 +36,7 @@
          let countCorrect = 0;
          let lettersOfIteratedWord = letterIterator(word); 
          for (let ind = 0; ind < word.length; ind++) {
-            const letterFromUser = prompt(`Назва пори року після зими. Має 6 літер. \n
-            Веедіть ${ind + 1} літеру:`);
+            const letterFromUser = prompt(`Назва пори року після зими. Має 6 літер.\nВведіть ${ind + 1} літеру:`);
             if (lettersOfIteratedWord().toLowerCase() === letterFromUser.toLowerCase()) {
                countCorrect++;
             }
