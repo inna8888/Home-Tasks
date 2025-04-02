@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 2</h1>
+   <p>
+      Дано масив імен спортсменів. Розробити програму для виведення усіх можливих результатів змагань (списки імен у відповідності до місць, які вони займуть).
+   </p>
+
+   <script>
+
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+      
+      function generateCombinations(arr, result = [], allResults = []) {
+         if (result.length === 3) 
+         {
+            //document.writeln(`${result} <br>`);
+            allResults.push([...result]); //зберігаю копію результата
+            return;
+         }
+
+         for (const name of arr) {
+            result.push(name)
+            generateCombinations(arr.filter((n) => n!== name), result, allResults);//рекурсія для підбору інших імен крім вже запушеного у новий масив
+            result.pop()
+            }
+         return allResults;
+      }
+
+      let arrayWithNames = ["Sofia", "Ivan", "Dmytro", "Nina"];
+
+      let winnersCombinations = generateCombinations(arrayWithNames);//отримала список комбінацій призових місць для імен
+
+      function printWinnersCombinations(arr) {
+         for (let combinationIndex = 0; combinationIndex < arr.length; combinationIndex++) {
+            for (let winnerIndex = 0; winnerIndex < arr[combinationIndex].length; winnerIndex++) {
+               document.writeln(`${arr[combinationIndex][winnerIndex]} - ${winnerIndex + 1} місце <br>`)
+            }
+            document.writeln("<br>");
+         }
+      }
+
+      let printWinners = printWinnersCombinations(winnersCombinations);
+
+   }
+</script>
+</body>
+</html>

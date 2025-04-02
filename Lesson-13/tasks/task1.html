@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      Генерація всіх підмножин: Реалізуйте рекурсивну функцію, яка генерує всі можливі підмножини заданого масиву. Наприклад, для масиву [1, 2, 3] можливі підмножини: [], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3].
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task")
+      if (confirmMessage) {
+      
+         function generateSubsets(arr, index = 0) {
+            const currentSubset = []; 
+            const result = [];
+
+            function next(index, current) {
+               if (index === arr.length) {
+                  result.push([...current])
+                  return
+               }
+    
+         // Вибір не включати поточний елемент у підмножину
+         next(index + 1, current)
+         
+         // Вибір включити поточний елемент у підмножину
+         current.push(arr[index])
+         next(index + 1, current)
+         current.pop()// Повернення стану після рекурсії
+         }
+         
+         //Починаємо тут з пустої підмножини:
+         next(0, [])
+         return result
+         }
+
+         // Приклад використання
+         const array = [1, 2, 3];
+         let testSubsets = generateSubsets(array);
+         document.writeln(`[${testSubsets.join('], [')}]`);
+      }
+   </script>
+</body>
+</html>

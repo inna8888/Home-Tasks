@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 3</h1>
+   <p>
+      Виведіть всі можливі наступні комбінації ходів користувачів у грі“Хрестики-нулики”, починаючи з деякої заданої ситуації (тобто маємо двовимірний масив з елементами : 0 - нулик, Х - хрестик, пробіл - ще не зайнято, і вам треба самостійно вивести всі можливі шляхи заповнення ще незаповнених клітинок (де пробіли). Поки можна не підраховувати чи вже є 3 хрестики чи 3 нулики у рядок.
+
+   </p>
+
+   <script>
+      //1.ТРЕБА ЗРОБИТИ!!!!
+   let confirmMessage = confirm("Let's start the task?");
+   if (confirmMessage) {
+      
+      
+      function generateCombinations(arr, result = [], allResults = []) {
+         if (result.length === 3) 
+         {
+            //document.writeln(`${result} <br>`);
+            allResults.push([...result]); //зберігаю копію результата
+            return;
+         }
+
+         for (const name of arr) {
+            let zeroTool = 0, xTool = x;
+            result.push(zeroTool)
+            generateCombinations(arr.filter((n) => n === ""), result, allResults);
+            result.pop()
+            }
+      }
+
+      let battleField = [
+      ["", "", ""]
+      ["", "", ""]
+      ["", "", ""]
+      ["x", "0", "x"]
+      ];
+
+      let getFilledField = generateCombinations(battleField);
+
+   }
+</script>
+</body>
+</html>
