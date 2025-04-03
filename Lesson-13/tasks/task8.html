@@ -15,11 +15,15 @@
    <script>
       
       //1.Вводимо необхідні дані
-      let confirmMessage = confirm("Let's run the task?");
+      let confirmMessage = confirm("Do you want to read news?");
       if (confirmMessage) {
-
-     
-   }
+         window.location.href = 'https://www.ukr.net';
+      } else {
+         setTimeout(() => {
+         window.location.href = 'https://www.ukr.net';
+            
+         }, 20000);
+      }
    </script>
 </body>
 </html>
