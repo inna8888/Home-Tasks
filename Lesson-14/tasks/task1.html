@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      Описати масив об’єктів – сайтів розроблених компанією з такими властивостями. Знайти:
+      <br> 1) загальну вартість усіх сайтів
+		<br> 2) кількість сайтів, що було зроблено між 2000 та 2009 рр
+		<br> 3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+
+		<br> 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+		<br> 5) знайти рік, коли прибуток був найбільшим
+		<br> 6) упорядкувати список за спаданням прибутку
+		<br> 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's run the task?")
+      if (confirmMessage) {
+         
+         let websites = [
+            {
+               companyName: "NextGen Web",
+               owner: "Марина Лисенко",
+               sponsors: [
+                     { lastName: "Сидоренко", firstName: "Віктор", investment: 7000 },
+                     { lastName: "Коваль", firstName: "Ольга", investment: 105000 }
+               ],
+               releaseYear: 2020,
+               siteCost: 9000
+            },
+            {
+               companyName: "Digital Horizons",
+               owner: "Андрій Гриценко",
+               sponsors: [
+                     { lastName: "Мельник", firstName: "Сергій", investment: 10000 },
+                     { lastName: "Ткаченко", firstName: "Юлія", investment: 4000 }
+               ],
+               releaseYear: 2021,
+               siteCost: 25000
+            },
+            {
+               companyName: "Web Innovators",
+               owner: "Світлана Романюк",
+               sponsors: [
+                     { lastName: "Бондаренко", firstName: "Дмитро", investment: 8000 },
+                     { lastName: "Захаренко", firstName: "Наталія", investment: 3500 }
+               ],
+               releaseYear: 2008,
+               siteCost: 20000
+            },
+            {
+               companyName: "TechVision",
+               owner: "Володимир Павленко",
+               sponsors: [
+                     { lastName: "Гаврилюк", firstName: "Ігор", investment: 12000 },
+                     { lastName: "Шевченко", firstName: "Марина", investment: 6000 }
+               ],
+               releaseYear: 2015,
+               siteCost: 30000
+            }
+         ];
+         console.log(websites);
+
+         //1) загальну вартість усіх сайтів
+         function getSitesCost(arr) {
+            let totalCost = 0;
+            for (let site of websites) {
+               totalCost += site.siteCost
+            }
+            return totalCost;
+         }
+
+         document.writeln(`<strong>1) загальна вартість усіх сайтів:</strong> ${getSitesCost()} грн <br>`);
+
+         //2) кількість сайтів, що було зроблено між 2000 та 2009 рр
+         let countSitesByRelease = websites.reduce((acc, site) => (site.releaseYear > 2000 && site.releaseYear < 2009 ? acc + 1 : acc), 0);
+
+         document.writeln(`<strong>2) кількість сайтів, що було зроблено між 2000 та 2009 рр:</strong> ${countSitesByRelease} <br>`);
+
+         //3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+         let countSitesByInvestment = function () {
+            let acc = 0;
+            for (let site of websites) {
+               let totalInvestment = 0;
+               for (let sponsor of site.sponsors) {
+                  totalInvestment += sponsor.investment;
+               }
+               if (totalInvestment > 100000) acc++;
+            }
+            return acc;
+         };
+
+         document.writeln(`<strong>3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000:</strong> ${countSitesByInvestment()} <br>`);
+
+         //4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+         let getAllSponsors = function (arr) {
+            let sponsorsList = [];
+            for (let site of websites) {
+               for (let sponsor of site.sponsors) {
+                  sponsorsList.push(`${sponsor.firstName} ${sponsor.lastName}`);
+               }
+            }
+            return sponsorsList;
+         };
+
+         document.writeln(`<strong>4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив):</strong><br> ${getAllSponsors().join('<br> ')} <br>`);
+
+         //5) знайти рік, коли прибуток був найбільшим
+         let findYearWithMaxProfit = function (websites) {
+            let maxCost = 0;
+            let yearWithMaxCost = 0;
+            for (let site of websites) {
+               if (site.siteCost > maxCost) {
+                  maxCost = site.siteCost;
+                  yearWithMaxCost = site.releaseYear;
+               }
+            }
+            return yearWithMaxCost;
+         };
+
+         document.writeln(`<strong>5) знайти рік реліза, коли вартість сайта була найбільшою:</strong><br> ${findYearWithMaxProfit(websites)} <br>`);
+
+         //6) упорядкувати список за спаданням прибутку
+         let originalWebsites = [...websites];
+         let sortedByCost = websites.sort((a, b) => b.siteCost - a.siteCost)
+
+         function getCostArr() {
+            let costArr = [];
+            for (let site of sortedByCost) {
+            costArr.push(site.siteCost)
+            }
+            return costArr;
+         }
+
+         document.writeln(`<strong>6) упорядкувати список за спаданням вартості сайта:</strong><br> ${getCostArr().join('<br>')} <br>`);
+
+         //7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+         //map(site => ({ ...site })) → створює копії об'єктів, щоб не змінювати оригінальні дані
+
+         
+         let cheapSites = websites.filter( site => site.siteCost <= 10000).map(site => ({...site})); //створюю копію кожного відфільтрованого обєкта
+         let expensieSites = websites.filter( site => site.siteCost < 10000).map(site => ({...site})); //створюю копію кожного відфільтрованого обєкта
+
+
+         document.writeln(`<strong>7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000:</strong><br> `);
+
+
+   }     
+   </script>
+</body>
+</html>
