@@ -17,11 +17,30 @@
       //1.Вводимо необхідні дані
       let confirmMessage = confirm("Let's run the task?")
       if (confirmMessage) {
+
+         const date = {
+            day: 3,
+            month: 4,
+            year: 2025
+         }
+
+         let monthNumber = parseInt(prompt('Введіть кількість місяців:'))
          
+         function getFutureYear (date, monthNumber) {
+            let yearsFromMonthNumber = Math.floor(monthNumber/12);
+            let remainingMonths = monthNumber % 12;
+            let futureYear = date.year + yearsFromMonthNumber;
+
+            // Якщо додані місяці переходять на новий рік
+            if (date.month + remainingMonths > 12) {
+                futureYear++;
+            }
+            return futureYear;
+         }
          
 
-         document.writeln(`<p><strong>9)  упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше)</strong> </p>`)
-         document.writeln(`${profit.map(row => row.join(', ')).join('<br>')}`)
+         document.writeln(`<p><strong>Через ${monthNumber} місяців буде ${getFutureYear(date, monthNumber)} рік</strong> </p>`)
+        
          
    }     
    </script>
