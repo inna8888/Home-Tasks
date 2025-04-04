@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+         
+   <h1>Задача 1</h1>
+   <p>
+      Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку. Метод пострілу (задається позиція пострілу). Виведення ігрового поля.
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+      let confirmMessage = confirm("Let's play Shooting Gallery game? ")
+      if (confirmMessage) {
+      
+         let shootingGallery = {
+
+            shootingField: [1, 0, 1, 0, 0, 0, 1, 1, 0, 1], // 1 - заєць, 0 - порожньо
+            attempts: 0,
+            shotsPerformed: 0,
+
+            init() {
+               this.attempts = Math.ceil(this.shootingField.length/2);
+            },
+
+            shootAction() {
+               let timeOutId = setInterval(() => {
+                  
+                  if (this.shotsPerformed >= this.attempts) {
+                     clearInterval(timeOutId);
+                     this.showResult();
+                     return;
+                  }
+                  let userGuessPosition = parseInt(prompt(`Введіть номер поля (від 1 до 10). У вас залишилось ${this.attempts - this.shotsPerformed} спроб`)) - 1;
+
+                  if (this.shootingField[userGuessPosition] === 1) {
+                        alert ('Зайця вбито!');
+                        this.shootingField[userGuessPosition] = "*";//влучено
+                     } else if (this.shootingField[userGuessPosition] === 0) { 
+                        alert('Пуста клітинка');
+                        this.shootingField[userGuessPosition] = "-";//промах
+                     } else {
+                        alert ('Ви вже стріляли тут')
+                     }
+
+                     this.shotsPerformed++;
+                  
+               }, 1000);
+            },
+
+            showResult() {
+               document.writeln(`Результат гри: [${this.shootingField.join('], [')}]`);
+            }
+         };
+
+         shootingGallery.init(); // Ініціалізуємо гру
+         shootingGallery.shootAction(); // Запускаємо гру
+         
+      }
+   </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 5</h1>
+   <p>
+      Розробити клас «Керівник танців»
+
+   </p>
+
+   <script>
+      
+      //1.Вводимо необхідні дані
+
+      let confirmMessage = confirm("Let's start the task?");
+      if (confirmMessage) {
+      
+      function generateMonthNumbers(startMonth = 1, endMonth = 12) {
+         let current = startMonth;
+         function innerFunc() {
+            let temporary = current;
+            if (current === endMonth) {current = startMonth}
+            else current++;
+            return temporary;
+         }
+         return innerFunc;
+      }
+
+      let monthNumbers = generateMonthNumbers();
+
+      for (let ind = 0; ind < 25; ind++) {
+         document.writeln(`Номер місяця ${monthNumbers()}<br>`)
+         
+      }
+
+      }
+
+   </script>
+</body>
+</html>

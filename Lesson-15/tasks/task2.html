@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 2</h1>
+   <p>
+      Створити об’єкт «Авто». 
+      Поля:
+      Марка
+      Розмір бака
+      Кількість наявних літрів
+      Кількість місць
+      Кількість пасажирів
+      Методи:
+      Заправка на вказану кількість літрів
+      Виведення кількості пасажирів
+      Додавання пасажирів
+      Висадка пасажирів
+   </p>
+
+   <script>
+
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+      
+      let car = {
+         brand: "Renault Megane",
+         tankCapacity: 50, // Розмір бака
+         fuelAmount: 20, // Поточна кількість пального
+         seatCount: 5, // Кількість місць 
+         passengerCount: 2, // Кількість пасажирів 
+
+         // Метод: заправка на вказану кількість літрів
+         fillFuel(liters) {
+            availableTankCapacity = this.tankCapacity - this.fuelAmount;
+            if (liters > availableTankCapacity) {
+               this.fuelAmount = this.tankCapacity;
+               alert(`Заправлено тільки вільні ${availableTankCapacity} літрів`)
+            } else {
+               this.fuelAmount += liters;
+               alert(`Заправлено ${liters}`)
+            }
+         },
+
+         showPassengerCount() {
+            document.writeln(`У машині ${this.passengerCount} пасажир(и)`)
+         },
+
+         addPassenger(number) {
+            if (this.passengerCount + number > this.seatCount - 1) {
+            alert("Не вистачає місця для всіх пасажирів!");
+            } else {
+            this.passengerCount += count;
+            alert(`Додано ${number} пасажирів. Зараз у машині ${this.passengerCount} пасажирів.`);
+            }
+
+         },
+
+         deletePassenger(number){
+            if (number > this.passengerCount) {
+            alert("У машині нема стільки пасажирів для висадки.");
+            } else {
+            this.passengerCount -= number;
+            alert(`Висаджено ${number} пасажирів. Залишилось ${this.passengerCount}.`);
+            }
+         },
+
+      }
+
+      car.showPassengerCount();
+
+   }
+</script>
+</body>
+</html>

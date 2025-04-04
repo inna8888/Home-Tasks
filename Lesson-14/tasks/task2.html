@@ -26,13 +26,13 @@
 
          let monthNumber = parseInt(prompt('Введіть кількість місяців:'))
          
-         function getFutureYear (date, monthNumber) {
+         function getFutureYear ({month, year}, monthNumber) {
             let yearsFromMonthNumber = Math.floor(monthNumber/12);
             let remainingMonths = monthNumber % 12;
-            let futureYear = date.year + yearsFromMonthNumber;
+            let futureYear = year + yearsFromMonthNumber;
 
             // Якщо додані місяці переходять на новий рік
-            if (date.month + remainingMonths > 12) {
+            if (month + remainingMonths > 12) {
                 futureYear++;
             }
             return futureYear;

@@ -17,3 +17,4 @@ let intervalId = setInterval(() => {
 setTimeout(() => {
    clearInterval(intervalId)
 }, 8000);
+
