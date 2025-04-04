@@ -49,6 +49,10 @@
 
          function getSum1Quarter(arr) {
             let sum = 0;
+            const rowsNumber = arr.length; //кількість елементів/рядків масиву
+            const rowsNumberHalf = Math.floor(rowsNumber/2);
+            const colsNumber = arr[0].length;//кількість елементів у нульовому рядку
+            const colsNumberHalf = Math.floor(colsNumber/2); 
             for (let rowInd = 0; rowInd < rowsNumberHalf; rowInd++) {
                for (let columnInd = 0; columnInd < colsNumberHalf; columnInd++) {
                sum += arr[rowInd][columnInd];
@@ -63,6 +67,10 @@
          //2) номери рядків від 0 до половини, стовпці від половини до кінця
          function getSum2Quarter(arr) {
             let sum = 0;
+            const rowsNumber = arr.length; //кількість елементів/рядків масиву
+            const rowsNumberHalf = Math.floor(rowsNumber/2);
+            const colsNumber = arr[0].length;//кількість елементів у нульовому рядку
+            const colsNumberHalf = Math.floor(colsNumber/2); 
             for (let rowInd = 0; rowInd < rowsNumberHalf; rowInd++) {
                for (let columnInd = colsNumberHalf; columnInd < colsNumber; columnInd++) {
                sum += arr[rowInd][columnInd];
@@ -77,6 +85,10 @@
          //3) номери рядків від половини до кінця, стовпці від 0 до половини
          function getSum3Quarter(arr) {
             let sum = 0;
+            const rowsNumber = arr.length; //кількість елементів/рядків масиву
+            const rowsNumberHalf = Math.floor(rowsNumber/2);
+            const colsNumber = arr[0].length;//кількість елементів у нульовому рядку
+            const colsNumberHalf = Math.floor(colsNumber/2); 
             for (let rowInd = rowsNumberHalf; rowInd < rowsNumber; rowInd++) {
                for (let columnInd = 0; columnInd < colsNumberHalf; columnInd++) {
                sum += arr[rowInd][columnInd];
@@ -91,6 +103,10 @@
          //4) номери рядків від половини до кінця, стовпці від половини до кінця
          function getSum4Quarter(arr) {
             let sum = 0;
+            const rowsNumber = arr.length; //кількість елементів/рядків масиву
+            const rowsNumberHalf = Math.floor(rowsNumber/2);
+            const colsNumber = arr[0].length;//кількість елементів у нульовому рядку
+            const colsNumberHalf = Math.floor(colsNumber/2);
             for (let rowInd = rowsNumberHalf; rowInd < rowsNumber; rowInd++) {
                for (let columnInd = colsNumberHalf; columnInd < colsNumber; columnInd++) {
                   sum += arr[rowInd][columnInd];
@@ -105,6 +121,8 @@
          //5) Суму парних рядків
          function getSumEvenRows(arr) {
             let sum = 0;
+            const rowsNumber = arr.length; //кількість елементів/рядків масиву
+            const colsNumber = arr[0].length;//кількість елементів у нульовому рядку
             for (let rowInd = 1; rowInd < rowsNumber; rowInd += 2) {
                for (let columnInd = 0; columnInd < colsNumber; columnInd++) {
                   sum += arr[rowInd][columnInd];
@@ -120,6 +138,8 @@
           //6) Суму непарних стовпців
           function getSumOddColumns(arr) {
             let sum = 0;
+            const rowsNumber = arr.length; //кількість елементів/рядків масиву
+            const colsNumber = arr[0].length;//кількість елементів у нульовому рядку
             for (let rowInd = 0; rowInd < rowsNumber; rowInd++) {
                for (let columnInd = 0; columnInd < colsNumber; columnInd +=2 ) {
                    sum += arr[rowInd][columnInd];
@@ -147,6 +167,7 @@
          //7) У парних рядках – непарні стовпці, у непарних – парні
          function getSumOddColumns(arr) {
                let sum = 0;
+               const rowsNumber = arr.length; //кількість елементів/рядків масиву
                for (let rowInd = 0; rowInd < rowsNumber; rowInd++) {
                   sum += arr[rowInd].reduce(
                   (acc, num, columnInd) =>

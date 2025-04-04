@@ -30,11 +30,14 @@
       //document.writeln(`${battleField.join(', <br>')}`)
 
       function makeShipsInBattleField(array) {
-         for (let index = 0; index < 5; index++) {
+         let ships = 0;
+
+         while (ships < 5) {
             const randomRow = Math.floor(Math.random()*6);
             const randomColumn = Math.floor(Math.random()*6);
             if (array[randomRow][randomColumn] === '') {
                array[randomRow][randomColumn] = 0;
+               ships++;
             }
          }
          return array;
@@ -43,8 +46,7 @@
       let battleFieldWithShips = makeShipsInBattleField(battleField);
       // document.writeln(`${battleFieldWithShips.join(', <br>')}`)
 
-      function 
-      checkAttempts(array, row, column) {
+      function checkAttempts(array, row, column) {
          let resultMessage = '';
          if (row < 0 || row >= 6 || column < 0 || column >= 6) {
             resultMessage = "Incorrect number";
