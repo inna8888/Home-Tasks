@@ -30,7 +30,7 @@
       let car = {
          brand: "Renault Megane",
          tankCapacity: 50, // Розмір бака
-         fuelAmount: 20, // Поточна кількість пального
+         fuelAmount: 10, // Поточна кількість пального
          seatCount: 5, // Кількість місць 
          passengerCount: 2, // Кількість пасажирів 
 
@@ -54,7 +54,7 @@
             if (this.passengerCount + number > this.seatCount - 1) {
             alert("Не вистачає місця для всіх пасажирів!");
             } else {
-            this.passengerCount += count;
+            this.passengerCount += number;
             alert(`Додано ${number} пасажирів. Зараз у машині ${this.passengerCount} пасажирів.`);
             }
 
@@ -71,7 +71,10 @@
 
       }
 
-      car.showPassengerCount();
+      //car.fillFuel(30);
+      //car.showPassengerCount();
+      car.addPassenger(2);
+      car.deletePassenger(8);
 
    }
 </script>

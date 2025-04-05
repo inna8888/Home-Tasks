@@ -13,37 +13,77 @@
    </p>
 
    <script>
-      //1.ТРЕБА ЗРОБИТИ!!!!
-   let confirmMessage = confirm("Let's start the task?");
-   if (confirmMessage) {
-      
-      
-      function generateCombinations(arr, result = [], allResults = []) {
-         if (result.length === 3) 
-         {
-            //document.writeln(`${result} <br>`);
-            allResults.push([...result]); //зберігаю копію результата
-            return;
-         }
+      //1.ТРЕБА ЗРОБИТИ!!!! зробила з уроку
+      let confirmMessage = confirm("Let's start the task?");
+if (confirmMessage) {
+   let battleField = [
+      ["", "x", ""],
+      ["", "", "0"],
+      ["x", "0", ""],
+   ];
 
-         for (const name of arr) {
-            let zeroTool = 0, xTool = x;
-            result.push(zeroTool)
-            generateCombinations(arr.filter((n) => n === ""), result, allResults);
-            result.pop()
+   function displayTable(array) {
+      document.writeln('<table border="1" style="border-collapse:collapse; margin-bottom: 10px;">')
+      for (let i = 0; i < array.length; i++) {
+         document.writeln('<tr>');
+         for (let j = 0; j < array[i].length; j++) {
+            document.writeln(`<td style="padding: 8px; text-align: center; width: 20px; height: 20px;"> ${array[i][j]}</td>`);
+         }
+         document.writeln('</tr>');
+      }
+      document.writeln('</table><hr>');
+   }
+
+   function getStatistics(array) {
+      const emptyCells = [];
+      let num_x = 0;
+      let num_0 = 0;
+
+      for (let i = 0; i < array.length; i++) {
+         for (let j = 0; j < array[i].length; j++) {
+            switch (array[i][j]) {
+               case '':
+                  emptyCells.push([i, j]);
+                  break;
+               case '0':
+                  num_0++;
+                  break;
+               case 'x':
+                  num_x++;
+                  break;
             }
+         }
+      }
+      return { emptyCells, num_x, num_0 };
+   }
+
+   function next(array, emptyCells, emptyIndex, left_x, left_0) {
+      if (emptyIndex === emptyCells.length) {
+         displayTable(array);
+         return;
       }
 
-      let battleField = [
-      ["", "", ""]
-      ["", "", ""]
-      ["", "", ""]
-      ["x", "0", "x"]
-      ];
+      const [i, j] = emptyCells[emptyIndex];
 
-      let getFilledField = generateCombinations(battleField);
+      if (left_x > 0) {
+         array[i][j] = 'x';
+         next(array, emptyCells, emptyIndex + 1, left_x - 1, left_0);
+      }
 
+      if (left_0 > 0) {
+         array[i][j] = '0';
+         next(array, emptyCells, emptyIndex + 1, left_x, left_0 - 1);
+      }
+
+      array[i][j] = ''; // повертаємо назад, рекурсія завершена
    }
+
+   const { emptyCells, num_x, num_0 } = getStatistics(battleField);
+   const left_x = 5 - num_x;
+   const left_0 = 4 - num_0;
+
+   next(battleField, emptyCells, 0, left_x, left_0);
+}
 </script>
 </body>
 </html>
