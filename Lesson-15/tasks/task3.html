@@ -16,8 +16,48 @@
       
    let confirmMessage = confirm("Let's start the task?");
    if (confirmMessage) {
-      
 
+      const numberToCheck = 7;
+      
+      class MultChecker {
+         constructor(parameter) {
+           this.parameter = parameter;
+           this.correctAnswer = 0;
+           this.wrongAnswer = 0;
+         }
+
+         generateCase() {
+            let randomNum = 1 + (Math.floor(Math.random() * 9 ));
+            let userAnswer = parseInt(prompt(`Скільки буде ${this.parameter} * ${randomNum} ?`));
+            let calculated = this.parameter * randomNum;
+            return {randomNum, userAnswer, calculated};
+         };
+
+         checkAnswer() {
+            const example = this.generateCase();
+            if (example.calculated === example.userAnswer) {
+               this.correctAnswer++;
+               this.renderOnPage(`Приклад ${this.parameter} * ${example.randomNum} вирішено правильно <br>`)
+            } else {
+               this.wrongAnswer++;
+               this.renderOnPage(`Приклад ${this.parameter} * ${example.randomNum} вирішено не правильно. Правильна відповідь: ${example.calculated}<br>`)
+            }
+
+         };
+
+         renderOnPage(message) {
+            document.body.innerHTML += `<p>${message}</p>`;
+            document.body.innerHTML += `<p>Правильних: ${this.correctAnswer}.   Помилкових: ${this.wrongAnswer}</p>`;
+         };
+
+      }
+
+      let checker = new MultChecker(numberToCheck);
+      let cases = 3;
+      for (let i = 0; i < cases; i++) {
+         checker.checkAnswer();
+      }
+      
    }
 </script>
 </body>
