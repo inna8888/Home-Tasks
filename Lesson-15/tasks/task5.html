@@ -12,6 +12,8 @@
 
    </p>
 
+   <div id="dance-floor"></div> <!-- Місце, куди виводитимемо пари -->
+
    <script>
       
       //1.Вводимо необхідні дані
@@ -19,41 +21,47 @@
       let confirmMessage = confirm("Let's start the task?");
       if (confirmMessage) {
       
-         function getCombinationsForDancing(arrListBoys, arrListGirls) {
-         if (arrListBoys.length === 0 || arrListGirls.length === 0) return [[]];
-         const resCombinations = [];
-         const selectBoy = arrListBoys[0];
-         const changeArrListBoys = arrListBoys.slice(1);
-         for (let girlNum = 0; girlNum < arrListGirls.length; girlNum++) {
-            const selectGirl = arrListGirls[girlNum];
-            const changeArrListGirls = [
-            ...arrListGirls.slice(0, girlNum),
-            ...arrListGirls.slice(girlNum + 1),
-            ];
-            const currentArr = getCombinationsForDancing(
-            changeArrListBoys,
-            changeArrListGirls
-            );
-            for (const subCurrentArr of currentArr) {
-            resCombinations.push([
-               `${selectBoy} - ${selectGirl}`,
-               ...subCurrentArr,
-            ]);
+         const listBoys = ["Dmytro", "Ivan", "Igor"];
+         const listGirls = ["Inna", "Hanna", "Mariia"];
+
+         class DanceDirector {
+            constructor (listBoys, listGirls) {
+               this.boys = listBoys;
+               this.girls = listGirls;
+               this.danceFloor = document.getElementById("dance-floor");
+            }
+            getRandomBoy(){
+               const randomBoy = Math.floor(Math.random()*this.boys.length);
+               return this.boys[randomBoy];
+            }
+            getRandomGirl(){
+               const randomGirl = Math.floor(Math.random()*this.girls.length);
+               return this.girls[randomGirl];
+            }
+            showPair(){
+               const boyInPair = this.getRandomBoy();
+               const girlInPair = this.getRandomGirl();
+
+               const pair = document.createElement("p");
+               pair.textContent = `Пара для танців ${boyInPair} та ${girlInPair}`;
+               this.danceFloor.appendChild(pair);
+            }
+
+            run(){
+               this.showPair();
+               this.intervalId = setInterval(() => this.showPair(), 5000);
+            }
+
+            stop(){
+               setTimeout(() => {clearInterval(this.intervalId)});
             }
          }
-         return resCombinations;
-      }
 
-      const listBoys = ["Dmytro", "Ivan", "Igor"];
-      const listGirls = ["Inna", "Hanna", "Mariia"];
-      const combinations = getCombinationsForDancing(listBoys, listGirls);
-      document.write(
-         `Список хлопців: ${listBoys}<br>
-         Список дівчат: ${listGirls}<br><br>
-         Можливі комбінації для танців:<br>${combinations.join(
-            "<br>"
-         )}`
-      );
+         const director = new DanceDirector(listBoys, listGirls);
+         director.run();
+
+         // Автоматично зупинити після 20 секунд (наприклад)
+         setTimeout(() => director.stop(), 20000);
 
       }
 

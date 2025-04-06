@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Задача 0</h1>
+   <p>
+      Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням.
+      Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+
+   </p>
+
+   <script>
+
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+      
+      let object1 = {
+         arrWithNumbers: [1, 3, 5, 7, 9],
+         getSum() {
+            return this.arrWithNumbers.reduce((acc, number) => acc +=number, 0);
+         },
+      }
+
+      let object2 = {
+         arrWithNumbers: [2, 4, 6, 8, 10],
+         getProduct(min, max) {
+            return this.arrWithNumbers.reduce((acc, number) => (number > min && number < max ? acc *=number : acc), 1);
+         },
+      }
+
+      //call - викликати метод по відношенню до якого обєкта у дужках вказати, якщо описано стрілковою функцією то працювати не буде - undefined. Додаткові параметри передаються через кому
+      let sumOfObject2 = object1.getSum.call(object2);
+      let sumOfObject2Apply = object1.getSum.apply(object2);
+      let productOfObject1 = object2.getProduct.call(object1, 1, 7);
+      let productOfObject1Apply = object2.getProduct.apply(object1, [1, 7]);
+        
+
+      document.write(`Сума масиву цілих чисел object2 with call: ${sumOfObject2}<br>
+      Сума масиву цілих чисел object2 with apply: ${sumOfObject2Apply}<br><br>
+      Добуток чисел масиву object1, які знаходяться між заданими мінімальним і максимальних значенням, with call :  ${productOfObject1}<br>
+      Добуток чисел масиву objject1, які знаходяться між заданими мінімальним і максимальним значенням, with apply:  ${productOfObject1Apply}<br>`)
+
+
+   }
+</script>
+</body>
+</html>
