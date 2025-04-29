@@ -9,19 +9,175 @@
          
    <h1>Задача 1</h1>
    <p>
-      Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та виведення дати реалізувати за допомогою методу  toString.
+      Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та виведення дати реалізувати за допомогою методу toString.
 
    </p>
 
    <script>
       
       //1.Вводимо необхідні дані
-      let confirmMessage = confirm("Let's play Shooting Gallery game? ")
+      let confirmMessage = confirm("Let's run the task? ")
       if (confirmMessage) {
       
-         
-         
-      }
+         class TDate {
+            #day
+            #month
+            #year
+            //для стрілкової функції важливо де вона описана, для того обєкта і буде викликатись
+            constructor( day = 1, month = 1, year = 2000) {
+               this.Day = day;
+               this.Month = month;
+               this.Year = year;
+            }
+
+            get Day() {
+               return this.#day;
+            }
+
+            get Month() {
+               return this.#month;
+            }
+
+            get Year() {
+               return this.#year;
+            }
+
+            //сетери
+            set Day(value) {
+               if (!Number.isInteger(value) || value < 1 || value > this.#getDaysInMonth(this.#month, this.#year)) {
+                  throw new Error (`Некоректне значення дня`);
+               }
+               this.#day = value;
+            }
+
+            set Month(value) {
+               if (value < 1 || value > 12) {
+                  throw new Error (`Некоректне значення місяця`);
+               }
+               this.#month = value;
+               // Після зміни місяця оновлюємо день, якщо він став некоректним
+               if (this.#day > this.#getDaysInMonth(this.#month, this.#year)) {
+                  this.#day = this.#getDaysInMonth(this.#month, this.#year);
+               }
+            }
+
+            set Year(value) {
+               if (value < 1) {
+                  throw new Error (`Рік повинен бути додатнім числом`);
+               }
+               this.#year = value;
+               // Перевірка дня після зміни року
+               if (this.#day > this.#getDaysInMonth(this.#month, this.#year)) {
+                  this.#day = this.#getDaysInMonth(this.#month, this.#year);
+               }
+            }
+
+            //методи
+            #getDaysInMonth(month, year) {
+               let daysNumber = [31, this.#isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+               return daysNumber[month-1];
+            }
+
+            #isLeapYear(year) {
+               return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            }
+
+            addDays(n) {
+               if (!Number.isInteger(n)) return;
+               let d = this.#day + n;
+               let m = this.#month;
+               let y = this.#year;
+               while (d > this.#getDaysInMonth(m, y)) {
+                  d -= this.#getDaysInMonth(m, y);
+                  m++;
+                  if (m > 12) {
+                     m = 1;
+                     y++;
+                  }
+               }
+               this.Year = y;
+               this.Month = m;
+               this.Day = d;
+            }
+
+            minusDays(n) {
+               if (!Number.isInteger(n)) return;
+               let d = this.#day - n;
+               let m = this.#month;
+               let y = this.#year;
+               while (d < 1) {
+                  m--;
+                  if (m < 1) {
+                     m = 12;
+                     y--;
+                  }
+                  d += this.#getDaysInMonth(m, y);
+               }
+               this.Year = y;
+               this.Month = m;
+               this.Day = d;
+            }
+
+            addMonths(n) {
+               if (!Number.isInteger(n)) return;
+               let m = this.#month + n;
+               let y = this.#year;
+               while (m > 12) {
+                  m -= 12;
+                  y++;
+               }
+               let d = Math.min(this.#day, this.#getDaysInMonth(m, y));
+               this.Year = y;
+               this.Month = m;
+               this.Day = d;
+            }
+
+            minusMonths(n) {
+               if (!Number.isInteger(n)) return;
+               let m = this.#month - n;
+               let y = this.#year;
+               while (m < 1) {
+                  m += 12;
+                  y--;
+               }
+               let d = Math.min(this.#day, this.#getDaysInMonth(m, y));
+               this.Year = y;
+               this.Month = m;
+               this.Day = d;
+            }
+
+            addYears(n) {
+               if (!Number.isInteger(n)) return;
+               let y = this.#year + n;
+               this.Year = y;
+            }
+
+            minusYears(n) {
+               if (!Number.isInteger(n)) return;
+               let y = this.#year - n;
+               this.Year = y;
+            }
+
+            toString() {
+               return `${this.Day} ${this.Month} ${this.Year}`;
+            }
+  
+            //отримати get, toString
+            //ввести set
+            //збільшення дати на n днів, місяців, років
+            //зменшення дати на n днів, місяців, років
+            }
+
+
+            const date = new TDate();
+            console.log(`Start date: ${date.toString()}`); 
+            date.addDays(3);
+            console.log(`Added days date: ${date.toString()}`); 
+            date.minusMonths(1);
+            console.log(`Minus months date: ${date.toString()}`);
+            date.addYears(2);
+            console.log(`Added years date: ${date.toString()}`); 
+         }
    </script>
 </body>
 </html>
