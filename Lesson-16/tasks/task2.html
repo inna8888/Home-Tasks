@@ -16,6 +16,79 @@
 
       let confirmMessage = confirm("Let's start the task?")
       if (confirmMessage) {
+
+         class Money {
+            //захищений баланс у доларах
+            #dollarAmount
+            #rate
+
+            constructor(dollarAmount = 1, rate = 41.5) {
+               this.DollarAmount = dollarAmount;
+               this.Rate = rate;
+            }
+
+            //гетери
+            get DollarAmount() {
+               return this.#dollarAmount;
+            }
+
+            get Rate() {
+               return this.#rate;
+            }
+
+            //сетери
+            set DollarAmount(dolSum) {
+               if (typeof dolSum !== 'number' || dolSum < 0) {
+                  throw new Error ("Сума у доларах має бути додатним числом");
+               }
+               this.#dollarAmount = dolSum;
+            }
+
+            set Rate(rate) {
+               if (typeof rate !== 'number' || rate < 0) {
+                  throw new Error ("Курс долара має бути додатним числом");
+               } 
+               this.#rate = rate;
+            }
+
+            //додати гривні до балансу
+            addCash (addHrn) {
+               if (typeof addHrn !== 'number' || addHrn < 0) return;
+               let dollars = addHrn / this.#rate;
+               this.DollarAmount += dollars;
+            }
+
+            //зняти гривні з баланса
+            withdrawCash (withdrawHrn) {
+               if (typeof withdrawHrn !== 'number' || withdrawHrn < 0) return;
+               let dollars = withdrawHrn / this.#rate;
+               if (dollars > this.#dollarAmount) return;
+               this.DollarAmount -= dollars;
+            }
+
+            //визначення курсу долара, при якому сума у гривнях збільшиться на 100
+            rateForExtra100Hrn() {
+               const uahNow = this.#dollarAmount * this.#rate;
+               const targetUAH = uahNow + 100;
+               const newRate = targetUAH / this.#dollarAmount;
+               return newRate.toFixed(2);
+            }
+
+            //рядкове представлення об'єкта
+            toString () {
+               return `Сума: ${this.#dollarAmount.toFixed(2)}$ при курсі ${this.#rate} грн/$`;
+            }
+
+         }
+
+
+         const wallet = new Money();
+         console.log(`Поточний стан баланса - ${wallet.toString()}`); // Сума: 100.00$ при курсі 40 грн/$
+         wallet.addCash(400);             // додати 400 грн => 10$
+         console.log(`Баланс після додавання коштів - ${wallet.toString()}`); // Сума: 110.00$
+         wallet.withdrawCash(200);          // зняти 200 грн => 5$
+         console.log(`Баланс після зняття коштів- ${wallet.toString()}`); // Сума: 105.00$
+         console.log(`Новий курс для +100 грн: ${wallet.rateForExtra100Hrn()} грн/$`);
       
       
 
