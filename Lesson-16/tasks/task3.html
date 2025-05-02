@@ -8,13 +8,39 @@
 <body>
    <h1>Задача 3</h1>
    <p>
-      
+      Об’єкт “Фірма” (використати члени-класи). Поля - назва компанії, дата заснуванняб послуги, адреси філіалів. Методи - визначення кількості років, виведення всіх філіалів у вказаному місті, виведення на екран певних послуг
    </p>
 
    <script>
       
    let confirmMessage = confirm("Let's start the task?");
    if (confirmMessage) {
+
+      class BirthDate {
+         #year;
+         #month;
+         constructor(year, month) {
+            this.Year = year;
+            this.Month = month;
+         }
+
+         get Year() {
+            return this.#year;
+         }
+         get Month() {
+            return this.#month;
+         }
+         
+         set Year (value) {
+            if (!Number.isInteger(value) || value < 1950) throw new Error ("Некоректне значення року");
+            this.#year = value
+         }
+      }
+
+      class Company {
+         #birthDate
+
+      }
 
       
    }
