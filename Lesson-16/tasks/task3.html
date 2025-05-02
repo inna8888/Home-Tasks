@@ -8,7 +8,7 @@
 <body>
    <h1>Задача 3</h1>
    <p>
-      Об’єкт “Фірма” (використати члени-класи). Поля - назва компанії, дата заснуванняб послуги, адреси філіалів. Методи - визначення кількості років, виведення всіх філіалів у вказаному місті, виведення на екран певних послуг
+      Об’єкт “Фірма” (використати члени-класи). Поля - назва компанії, дата заснування, послуги, адреси філіалів. Методи - визначення кількості років, виведення всіх філіалів у вказаному місті, виведення на екран певних послуг
    </p>
 
    <script>
@@ -32,13 +32,87 @@
          }
          
          set Year (value) {
-            if (!Number.isInteger(value) || value < 1950) throw new Error ("Некоректне значення року");
+            if (!Number.isInteger(value) || value < 1900) throw new Error ("Некоректне значення року");
             this.#year = value
+         }
+
+         set Month(value) {
+            if (!Number.isInteger(value) || value < 1 || value > 12) throw new Error ('Некоректний місяць');
+            this.#month = value;
+         }
+
+      }
+
+      class Service {
+         constructor (name, price, term){
+           this.name = name;
+           this.price = price;
+           this.term = term; 
+         }
+
+         toString() {
+            return `${this.name} - ${this.price}грн, ${this.term} днів`;
+         }
+      }
+
+      class Branch {
+         constructor(country, city, street, buldingNum) {
+            this.country = country;
+            this.city = city;
+            this.street = street;
+            this.buldingNum = buldingNum;
+         }
+
+         toString() {
+            return `${this.country} - ${this.city}, ${this.street}, буд.${this.buldingNum} `
          }
       }
 
       class Company {
-         #birthDate
+         #name;
+         #birthDate;
+         #services;
+         #branches;
+
+         constructor(name, birthDate, services = [], branches = []) {
+            this.Name = name;
+            this.#birthDate = birthDate;
+            this.#services = services;
+            this.#branches = branches;
+         }
+
+         get Name() {
+            return this.#name;
+         }
+
+         set Name(title) {
+            if (value.trim() === '') throw new Error ('Назва фірми не може бути порожнім полем');
+            this.#name = title;
+         }
+
+         addService(service) {
+            this.#services.push(service);
+         }
+
+         addBranch(branch) {
+            this.#branches.push(branch);
+         }
+
+         getYearsOfWork(currentYear = 2025) {
+            return currentYear - this.#birthDate.Year;
+         }
+
+         getBranchesInCity(city) {
+            return this.#branches.filter(branch => branch.city.toLowerCase() === city.toLowerCase());
+         }
+
+         getFilteredServices(maxPrice, maxTerm) {
+            return this.#services.filter(service => service.price <= maxPrice && service.term <= maxTerm);
+         }
+
+         toString() {
+            return `Компанія '${this.#name}', `
+         }
 
       }
 
