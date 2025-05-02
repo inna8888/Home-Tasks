@@ -41,6 +41,10 @@
             this.#month = value;
          }
 
+         toString() {
+            return `${this.#month.toString().padStart(2, '0')}.${this.#year}`;
+         }
+
       }
 
       class Service {
@@ -86,7 +90,7 @@
          }
 
          set Name(title) {
-            if (value.trim() === '') throw new Error ('Назва фірми не може бути порожнім полем');
+            if (title.trim() === '') throw new Error ('Назва фірми не може бути порожнім полем');
             this.#name = title;
          }
 
@@ -111,12 +115,29 @@
          }
 
          toString() {
-            return `Компанія '${this.#name}', `
+            return `Компанія '${this.#name}'. Заснована - ${this.#birthDate.toString()}`;
          }
 
       }
 
-      
+      // створення компаній через клас
+      const company1 = new Company ('Company1', new BirthDate(2000, 5));
+      company1.addService(new Service('Послуга1', 1000, 5))
+      company1.addService(new Service("Послуга2", 7000, 15));
+      company1.addService(new Service("Послуга3", 5000, 10));
+
+      company1.addBranch(new Branch("Україна", "Київ", "Хрещатик", 10));
+      company1.addBranch(new Branch("Україна", "Чернігів", "Шевченка", 23));
+      company1.addBranch(new Branch("Україна", "Чернігів", "Перемоги", 15));
+
+      console.log(company1.toString());
+      console.log(`Компанія працює вже ${company1.getYearsOfWork()} років`);
+
+      console.log("Філіали у місті Чернігів:");
+      company1.getBranchesInCity("Чернігів").forEach(branch => console.log(branch.toString()));
+
+      console.log("Послуги до 4000 грн і до 15 днів:");
+      company1.getFilteredServices(4000, 15).forEach(service => console.log(service.toString()));
    }
 </script>
 </body>
