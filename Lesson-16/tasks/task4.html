@@ -15,9 +15,88 @@
    
    let confirmMessage = confirm("Let's start the task?");
    if (confirmMessage) {
+      class TBankomat {
+        constructor(bills) {
 
-         
-   }
+          //bills - об'єкт , де ключ номінал, а значення - кількість купюр
+          this.denominations = [5, 10, 20, 50, 100, 200];
+          this.bills = {};
+
+          //ініціалізація номіналів
+          for (let denom of this.denominations) {
+            this.bills[denom] = bills[denom] || 0;
+          }
+        }
+        
+        //максимальна сума, яку може видати банкомат
+        getMaxSum() {
+          return this.denominations.reduce((sum, denom) => {
+            return sum + denom * this.bills[denom];
+          }, 0);
+        }
+
+        // Мінімальна сума, яку можна видати (найменший наявний номінал)
+        getMinSum() {
+          for (let denom of this.denominations) {
+            if (this.bills[denom] > 0) {
+              return denom;
+            }
+          }
+          return 0; // якщо купюр немає
+        }
+        
+        //метод зняття певної суми
+        withdraw(amount) {
+          if (amount % 5 !== 0) {
+            console.log('Сума має бути кратна 5');
+            return null;
+          }
+
+          let remaining = amount;
+          let result = {};
+          let tempBills = { ...this.bills };
+          //рухаємось від найбільшого номіналу
+          for (let i = this.denominations.length - 1; i >= 0; i--) {
+            const denom = this.denominations[i];
+            const count = Math.min(Math.floor(remaining / denom), tempBills[denom]);
+            if (count > 0) {
+              result[denom] = count;
+              remaining -= denom * count;
+              tempBills[denom] -= count;
+            }
+          }
+
+          if (remaining === 0) {
+            //оновлюємо стан банкомата
+            this.bills = tempBills;
+            return result; //повертаємо  які купюри видано
+          } else {
+            console.log('Неможливо видати вказану суму з наявних купюр');
+            return null;
+          }
+        }
+
+        //Друк стану банкомата
+        printState() {
+          console.log('Стан банкомата:');
+          for (let denom of this.denominations) {
+            console.log(`${denom}: ${this.bills[denom]} купюр`);
+          }
+        }
+      }
+
+      //приклад використання
+      const bankomat = new TBankomat();
+
+      bankomat.printState();
+      console.log('Максимальна сума:', bankomat.getMaxSum());
+      console.log('Мінімальна сума:', bankomat.getMinSum());
+      const withdrawn = bankomat.withdraw(485);
+      if (withdrawn) {
+        console.log('Видано купюри:', withdraw);
+      }
+      bankomat.printState();
+  }
    </script>
 </body>
 </html>
