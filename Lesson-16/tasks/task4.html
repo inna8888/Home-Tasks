@@ -86,14 +86,21 @@
       }
 
       //приклад використання
-      const bankomat = new TBankomat();
+      const bankomat = new TBankomat({
+        5: 10,
+        10: 5,
+        20: 10,
+        50: 5,
+        100: 3,
+        200: 2
+      });
 
       bankomat.printState();
       console.log('Максимальна сума:', bankomat.getMaxSum());
       console.log('Мінімальна сума:', bankomat.getMinSum());
       const withdrawn = bankomat.withdraw(485);
       if (withdrawn) {
-        console.log('Видано купюри:', withdraw);
+        console.log('Видано купюри:', withdrawn);
       }
       bankomat.printState();
   }
