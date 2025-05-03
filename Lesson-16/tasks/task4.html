@@ -15,6 +15,7 @@
    
    let confirmMessage = confirm("Let's start the task?");
    if (confirmMessage) {
+
       class TBankomat {
         constructor(bills) {
 
@@ -103,6 +104,105 @@
         console.log('Видано купюри:', withdrawn);
       }
       bankomat.printState();
+
+
+      // class TBankomat {
+      //     constructor(bills) {
+      //       this.denominations = [5, 10, 20, 50, 100, 200];
+      //       this._bills = {};
+
+      //       for (let denom of this.denominations) {
+      //         this._bills[denom] = bills[denom] || 0;
+      //       }
+      //     }
+
+      //     // Геттер для maxSum
+      //     get maxSum() {
+      //       return this.denominations.reduce((sum, denom) => {
+      //         return sum + denom * this._bills[denom];
+      //       }, 0);
+      //     }
+
+      //     // Геттер для minSum
+      //     get minSum() {
+      //       for (let denom of this.denominations) {
+      //         if (this._bills[denom] > 0) {
+      //           return denom;
+      //         }
+      //       }
+      //       return 0;
+      //     }
+
+      //     // Сеттер для оновлення купюр
+      //     set setBills(newBills) {
+      //       for (let denom of this.denominations) {
+      //         if (newBills[denom] !== undefined) {
+      //           this._bills[denom] = newBills[denom];
+      //         }
+      //       }
+      //     }
+
+      //     // Метод зняття певної суми
+      //     withdraw(amount) {
+      //       if (amount % 5 !== 0) {
+      //         console.log('Сума має бути кратна 5');
+      //         return null;
+      //       }
+
+      //       let remaining = amount;
+      //       let result = {};
+      //       let tempBills = { ...this._bills };
+
+      //       for (let i = this.denominations.length - 1; i >= 0; i--) {
+      //         const denom = this.denominations[i];
+      //         const count = Math.min(Math.floor(remaining / denom), tempBills[denom]);
+      //         if (count > 0) {
+      //           result[denom] = count;
+      //           remaining -= denom * count;
+      //           tempBills[denom] -= count;
+      //         }
+      //       }
+
+      //       if (remaining === 0) {
+      //         this._bills = tempBills;
+      //         return result;
+      //       } else {
+      //         console.log('Неможливо видати вказану суму з наявних купюр');
+      //         return null;
+      //       }
+      //     }
+
+      //     // Метод друку стану банкомата
+      //     printState() {
+      //       console.log('Стан банкомата:');
+      //       for (let denom of this.denominations) {
+      //         console.log(`${denom}: ${this._bills[denom]} купюр`);
+      //       }
+      //     }
+      //   }
+       
+      //   const bankomat = new TBankomat({
+      //     5: 10,
+      //     10: 5,
+      //     20: 10,
+      //     50: 5,
+      //     100: 3,
+      //     200: 2
+      //   });
+
+      //   bankomat.printState();
+      //   console.log('Максимальна сума:', bankomat.maxSum);
+      //   console.log('Мінімальна сума:', bankomat.minSum);
+
+      //   const withdrawn = bankomat.withdraw(485);
+      //   if (withdrawn) {
+      //     console.log('Видано купюри:', withdrawn);
+      //   }
+
+      //   // Оновимо кількість купюр
+      //   bankomat.setBills = { 100: 10, 200: 5 };
+      //   bankomat.printState();
+      
   }
    </script>
 </body>
