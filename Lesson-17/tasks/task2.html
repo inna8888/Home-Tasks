@@ -24,15 +24,15 @@
 
             #driver;
             #brand;
-            #identificator;
+            #identifier;
             
-            constructor (driver, brand, identificator) {
+            constructor (driver, brand, identifier) {
                if(CompanyCar.createOneTime) {
                   return CompanyCar.createOneTime;
                }
                this.Driver = driver;
                this.Brand = brand;
-               this.Identificator = identificator;
+               this.Identifier = identifier;
                CompanyCar.createOneTime = this;
             }
 
@@ -42,8 +42,8 @@
             get Brand() {
                return this.#brand;
             }
-            get Identificator() {
-               return this.#identificator;
+            get Identifier() {
+               return this.#identifier;
             }
 
             set Driver(name) {
@@ -56,13 +56,13 @@
                this.#brand = title;
             }
 
-            set Identificator(ident) {
+            set Identifier(ident) {
                if (ident === '') throw new Error('Введіть номер автомобіля');
-               this.#identificator = ident;
+               this.#identifier = ident;
             }
 
             toString() {
-               return `Службове авто ${this.Brand} з номером ${this.Identificator}, відповідальний водій - ${this.Driver} <br>`
+               return `Службове авто ${this.Brand} з номером ${this.Identifier}, відповідальний водій - ${this.Driver} <br>`
             }
          } 
          
