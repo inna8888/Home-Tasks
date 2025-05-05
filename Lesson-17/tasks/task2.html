@@ -9,19 +9,74 @@
    <h1>Задача 2</h1>
    <p>
       Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
- 
-
-   </p>
-
-   
+   </p> 
    <script>
       
       //1.Вводимо необхідні дані
       let confirmMessage = confirm("Let's run the task? ")
       if (confirmMessage) {
-      
+
+         class CompanyCar {
+
+            //змінні статік належать одному класу, ане всім іншим обєктам
+            //singleton - єдиний екзкмляр - корисно коли з базою даних  повинен бути зв"язаний лише один об"єкт
+            static createOneTime;
+
+            #driver;
+            #brand;
+            #identificator;
+            
+            constructor (driver, brand, identificator) {
+               if(CompanyCar.createOneTime) {
+                  return CompanyCar.createOneTime;
+               }
+               this.Driver = driver;
+               this.Brand = brand;
+               this.Identificator = identificator;
+               CompanyCar.createOneTime = this;
+            }
+
+            get Driver() {
+               return this.#driver;
+            }
+            get Brand() {
+               return this.#brand;
+            }
+            get Identificator() {
+               return this.#identificator;
+            }
+
+            set Driver(name) {
+               if(name === '') throw new Error('Введіть ім\'я водія');
+               this.#driver = name; 
+            }
+
+            set Brand(title) {
+               if(title === '') throw new Error('Введіть марку автомобіля');
+               this.#brand = title;
+            }
+
+            set Identificator(ident) {
+               if (ident === '') throw new Error('Введіть номер автомобіля');
+               this.#identificator = ident;
+            }
+
+            toString() {
+               return `Службове авто ${this.Brand} з номером ${this.Identificator}, відповідальний водій - ${this.Driver} <br>`
+            }
+         } 
          
+         
+         try {
+            const car1 = new CompanyCar('Олег Шевченко', 'BMW', 'qw3456aa');
+            document.writeln(car1);
+            const car2 = new CompanyCar('Микола Мозговий', 'Renault', 'qw1111pp');
+            document.writeln(car1);
+         } catch (error) {
+            document.writeln(error.message);
          }
+         
+      }
    </script>
 </body>
 </html>
