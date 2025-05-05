@@ -19,8 +19,68 @@
       let confirmMessage = confirm("Let's run the task? ")
       if (confirmMessage) {
       
-         class Remainder {
-            
+         class Reminder {
+            static #instance = null;
+            static reminderCount = 0;
+            #text;
+            #intervalRange;
+            #intervalId;
+
+            constructor(text, intervalRange) {
+               if (Reminder.#instance) return Reminder.#instance;
+               this.Text = text;
+               this.IntervalRange = intervalRange;
+               this.#showText();
+
+               Reminder.#instance = this;
+            }
+
+            get Text() {
+               return this.#text;
+            }
+
+            get IntervalRange() {
+               return this.#intervalRange;
+            }
+
+            set Text(text) {
+               if (text === '') throw new Error('Потрібен текст');
+               this.#text = text;
+            }
+
+            set IntervalRange(intervalRange) {
+               if (intervalRange <= 0) throw new Error('Інтервал має бути додатнім числом');
+               this.#intervalRange = intervalRange * 1000;
+            }
+
+            #showText() {
+               this.#intervalId = setInterval(() => {
+                  Reminder.reminderCount++;
+                  console.log(`Нагадування ${Reminder.reminderCount} - ${this.#text}`)
+               }, this.#intervalRange);
+            }
+
+            changeText(newText) {
+               if(!newText) throw new Error('Треба текст повідомлення');
+               this.#text = newText;
+               console.log('Повідомлення змінено:' + newText);
+            }
+
+            stop() {
+               if(this.#intervalId) {
+                  clearInterval(this.#intervalId);
+                  console.log(`Нагадування зупинено після ${Reminder.reminderCount} разів`);
+                  Reminder.reminderCount = 0;
+               }
+            }
+         }
+
+         try {
+            let reminder1 = new Reminder('Час виходити!', 3);
+            setTimeout(() => reminder1.changeText('Наполегливо нагадую, що пора виходити!'), 15000);
+            setTimeout(() => reminder1.stop(), 22000)
+         } catch (error) {
+            console.error(error.message);
          }
          
          }
