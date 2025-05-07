@@ -21,15 +21,52 @@
       //принцип КОМПОЗИЦІЇ коли основний об'єкт не буде існувати при видаленні частини
 
       //спочатку описуємо менший об'єкт, продукт
-      class Product{
+      class Product {
          constructor(title, amount, unit, company) {
-            
+            this.title = title
+            this.amount = amount
+            this.unit = unit
+            this.company = company
+         }
+
+         toString(){
+            return `${this.title}: ${this.amount} ${this.unit}, ${this.company}`
          }
       }
 
-      class GoodsBase {
+      class ProductsBase {
+         constructor(title) {
+            this.title = title
+            this.productsList = []
+         }
 
+         addProduct(newProduct) {
+            //додати перевірку чи був вже товар
+            this.productsList.push(newProduct)
+         }
+
+         removeProduct(productToRemove) {
+            this.productsList = this.productsList.filter((prod) => prod.title !== productToRemove)
+         }
+
+         printProducts() {
+            document.write('<ol>')
+               this.productsList.forEach(prod => document.write(`<li>${prod}</li>`))
+            document.write('</ol>')
+         }
       }
+
+      const store = new ProductsBase ("Shop")
+      const prod1 = new Product('Хліб Український', 10, 'шт', 'Мій хліб')
+      store.addProduct(prod1)
+      store.addProduct(new Product('Хліб Житній', 20, 'шт', 'Мій хліб'))
+      store.addProduct(new Product('Рулет', 10, 'шт', 'Мій хліб'))
+      store.addProduct(new Product('Багет', 5, 'шт', 'Мій хліб'))
+      store.printProducts()
+      store.removeProduct('Хліб Житній')
+      store.printProducts()
+
+
        
        }
  </script>
