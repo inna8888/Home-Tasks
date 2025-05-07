@@ -75,6 +75,64 @@
          } catch (error) {
             document.writeln(error.message);
          }
+
+
+         // class CompanyCar {
+         //    // Статична змінна для збереження єдиного екземпляра
+         //    private static instance: CompanyCar | null = null;
+
+         //    // Приватні поля класу (оголошені через TypeScript синтаксис)
+         //    private _driver: string;
+         //    private _brand: string;
+         //    private _identifier: string;
+
+         //    // Конструктор з перевіркою Singleton
+         //    constructor(driver: string, brand: string, identifier: string) {
+         //       if (CompanyCar.instance) {
+         //          return CompanyCar.instance;
+         //       }
+
+         //       this.Driver = driver;
+         //       this.Brand = brand;
+         //       this.Identifier = identifier;
+
+         //       CompanyCar.instance = this;
+         //    }
+
+         //    // Геттер для водія
+         //    public get Driver(): string {
+         //       return this._driver;
+         //    }
+
+         //    // Сеттер для водія з валідацією
+         //    public set Driver(name: string) {
+         //       if (!name) throw new Error("Введіть ім'я водія");
+         //       this._driver = name;
+         //    }
+
+         //    public get Brand(): string {
+         //       return this._brand;
+         //    }
+
+         //    public set Brand(title: string) {
+         //       if (!title) throw new Error("Введіть марку автомобіля");
+         //       this._brand = title;
+         //    }
+
+         //    public get Identifier(): string {
+         //       return this._identifier;
+         //    }
+
+         //    public set Identifier(id: string) {
+         //       if (!id) throw new Error("Введіть номер автомобіля");
+         //       this._identifier = id;
+         //    }
+
+         //    // Метод для виводу опису авто
+         //    public toString(): string {
+         //       return `Службове авто ${this.Brand} з номером ${this.Identifier}, відповідальний водій - ${this.Driver}<br>`;
+         //    }
+         //    }
          
       }
    </script>
