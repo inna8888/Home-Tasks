@@ -27,23 +27,19 @@
       Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх треба створити і додати на сторінку)
 
    </p>
-   <p>Список рандомних бажань</p>
+   <p>Список рандомних бажань:</p>
 
    <div id="container" class="wish-box"></div>
 
-   <script>
-   
-   let confirmMessage = confirm("Let's start the task?");
-   if (confirmMessage) {
-      
+   <script>      
       // Масив зі списком бажань
       const wishList = [
          'Спостерігати захід сонця у тиші.',
          'Поспати 8 годин без перерви — ну хоча б раз на місяць!',
          'Випити каву гарячою',
          'Прийти в магазин без списку — і не забути половину.',
-         
-         "Залишити після себе спадщину, що вплине на майбутні покоління"
+         'Подивитися гарний фільм',
+         'Прогулятися на свіжому повітрі'
       ];
 
       // Функція для отримання випадкового бажання
@@ -66,7 +62,7 @@
 
       // Основна функція для відображення випадкових бажань
       function getRandomWishList(repetition = 3) {
-         let container = document.getElementById("myContainer");
+         let container = document.getElementById("container");
          for (let index = 0; index < repetition; index++) {
             let wish = getRandomWish(wishList);
             let wishContainer = createWishContainer(wish);
@@ -81,7 +77,6 @@
          }
       };
 
-   }
    </script>
 </body>
 </html>
