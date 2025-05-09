@@ -8,7 +8,8 @@
 <body>
    <h1>Задача 5</h1>
    <p>
-       З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одне значення від заданого мінімального до заданого максимального. Якщо значення досягне максимального, то наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір номерів місяців. 
+      Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+
 
    </p>
 
@@ -19,24 +20,6 @@
       let confirmMessage = confirm("Let's start the task?");
       if (confirmMessage) {
       
-      function generateMonthNumbers(startMonth = 1, endMonth = 12) {
-         let current = startMonth;
-         function innerFunc() {
-            let temporary = current;
-            if (current === endMonth) {current = startMonth}
-            else current++;
-            return temporary;
-         }
-         return innerFunc;
-      }
-
-      let monthNumbers = generateMonthNumbers();
-
-      for (let ind = 0; ind < 25; ind++) {
-         document.writeln(`Номер місяця ${monthNumbers()}<br>`)
-         
-      }
-
       }
 
    </script>
