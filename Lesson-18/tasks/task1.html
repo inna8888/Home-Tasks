@@ -4,6 +4,11 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <style>
+      body { font-family: Arial; padding: 20px; }
+      input, button { margin: 5px; font-size: 1.2em; }
+      #result { margin-top: 10px; font-weight: bold; }
+    </style>
 </head>
 <body>
          
@@ -12,36 +17,31 @@
       Розробити калькулятор
    </p>
 
-   <script>
+   <h1>Калькулятор</h1>
+   <div id="container">
       
-      //1.Вводимо необхідні дані
-      let confirmMessage = confirm("Let's run the task")
-      if (confirmMessage) {
+      <div>
+         <label for="num1">Перше число</label>
+         <input id="num1" placeholder="Введіть число">
+      </div>
       
-         //0)знайшли посилання на контейнер, у який будемо додавати елементи div
-      let container = document.getElementById('myContaner')
-      for (let i = 0; i < 4; i++) {
-        //1)створили елемент
-        const el = document.createElement('div')
-        //2)наповнили вмістом
-        el.innerText = Math.random()
-        //3)вставили у контейнер
-        container.append(el)
-      }
-      -------------------------------
-      let myDiv = document.createElement('div')
-      myDiv.innerText = '111111'
-      document.body.append(myDiv)
+      <div>
+         <label for="num2">Друге число</label>
+         <input id="num2" placeholder="Введіть число">
+      </div>
+      
+      <div>
+         <button id="add">+</button>
+         <button id="substract">−</button>
+         <button id="multiply">*</button>
+         <button id="devide">/</button>
+      </div>
 
-      let myDiv2 = document.createElement('div')
-      myDiv2.innerText = '0000'
-      document.body.prepend(myDiv2)
+      <div id="result">Результат: </div>
 
-      document.querySelector('#myContaner').append(myDiv2.cloneNode(true))
+   </div>
 
-
-
-      }
-   </script>
+   <script src="task1.js"></script>
+   
 </body>
 </html>

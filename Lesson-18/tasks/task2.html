@@ -4,6 +4,58 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+
+   <style>
+      body {
+        font-family: Arial;
+        padding: 30px;
+      }
+  
+      .container {
+        max-width: 400px;
+        margin: auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+      }
+  
+      .container div {
+        margin-bottom: 15px;
+      }
+  
+      input {
+        font-size: 1.2em;
+        padding: 5px;
+        width: 100%;
+      }
+  
+      button {
+        font-size: 1.2em;
+        padding: 10px;
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+  
+      button:hover {
+        background-color: #0056b3;
+      }
+  
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+  
+      p {
+        margin: 0;
+        font-size: 1.2em;
+      }
+    </style>
+    
 </head>
 <body>
    <h1>Задача 2</h1>
@@ -12,13 +64,50 @@
 
    </p>
 
+   <div class="container">
+
+      <div class="grn_container">
+         <label for="grn">Сума в гривнях:</label>
+         <input type="number" id="grn" placeholder="Введіть число">
+      </div>
+
+      <button class="button">Конвертувати</button>
+
+      <div class="dol_container">
+         <label for="dol">Сума в доларах:</label>
+         <p id="dol">0</p>
+      </div>
+
+      <div class="euro_container">
+         <label for="euro">Сума в євро':</label>
+         <p id="euro">0</p>
+      </div>
+
+   </div>
+
    <script>
 
       let confirmMessage = confirm("Let's start the task?")
       if (confirmMessage) {
-      
-      
-   }
+
+         function convertGrn() {
+            const rateDol = 41;
+            const rateEuro = 45;
+            const grn = parseFloat(document.querySelector("#grn").value);
+            const dolSum = document.querySelector("#dol");
+            const euroSum = document.querySelector("#euro");
+
+            if (grn > 0) {
+               dolSum.innerText = (grn / rateDol).toFixed(2);
+               euroSum.innerText = (grn / rateEuro).toFixed(2);
+            }
+         }
+
+         const buttonConvert = document.querySelector(".button");
+         if (buttonConvert) {
+            buttonConvert.onclick = convertGrn;
+         }
+      }
 </script>
 </body>
 </html>

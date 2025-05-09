@@ -4,53 +4,82 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+
+   <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .wish-box {
+        border: 2px solid #a2d2ff;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 0;
+        background-color: #f0f8ff;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      }
+    </style>
+
 </head>
 <body>
    <h1>Задача 4</h1>
    <p>
-      Дано масив хлопців і дівчат вивести всі можливі комбінації для танців з хлопців і дівчат.
+      Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх треба створити і додати на сторінку)
+
    </p>
+   <p>Список рандомних бажань</p>
+
+   <div id="container" class="wish-box"></div>
 
    <script>
    
    let confirmMessage = confirm("Let's start the task?");
    if (confirmMessage) {
       
-      function getCombinationsForDancing(arrListBoys, arrListGirls) {
-         if (arrListBoys.length === 0 || arrListGirls.length === 0) return [[]];
-         const resCombinations = [];
-         const selectBoy = arrListBoys[0];
-         const changeArrListBoys = arrListBoys.slice(1);
-         for (let girlNum = 0; girlNum < arrListGirls.length; girlNum++) {
-            const selectGirl = arrListGirls[girlNum];
-            const changeArrListGirls = [
-            ...arrListGirls.slice(0, girlNum),
-            ...arrListGirls.slice(girlNum + 1),
-            ];
-            const currentArr = getCombinationsForDancing(
-            changeArrListBoys,
-            changeArrListGirls
-            );
-            for (const subCurrentArr of currentArr) {
-            resCombinations.push([
-               `${selectBoy} - ${selectGirl}`,
-               ...subCurrentArr,
-            ]);
-            }
-         }
-         return resCombinations;
+      // Масив зі списком бажань
+      const wishList = [
+         'Спостерігати захід сонця у тиші.',
+         'Поспати 8 годин без перерви — ну хоча б раз на місяць!',
+         'Випити каву гарячою',
+         'Прийти в магазин без списку — і не забути половину.',
+         
+         "Залишити після себе спадщину, що вплине на майбутні покоління"
+      ];
+
+      // Функція для отримання випадкового бажання
+      function getRandomWish(arr) {
+         let randomWishInd = Math.floor(Math.random() * arr.length);
+         return arr[randomWishInd];
       }
 
-      const listBoys = ["Dmytro", "Ivan", "Igor"];
-      const listGirls = ["Inna", "Hanna", "Mariia"];
-      const combinations = getCombinationsForDancing(listBoys, listGirls);
-      document.write(
-         `Список хлопців: ${listBoys}<br>
-         Список дівчат: ${listGirls}<br><br>
-         Можливі комбінації для танців:<br>${combinations.join(
-            "<br>"
-         )}`
-      );
+      // Функція для створення контейнера з бажанням
+      function createWishContainer(wish) {
+         let div = document.createElement("div");
+         div.className = "wish-container";
+
+         let h2 = document.createElement("h2");
+         h2.innerText = wish;
+         div.append(h2);
+
+         return div;
+      }
+
+      // Основна функція для відображення випадкових бажань
+      function getRandomWishList(repetition = 3) {
+         let container = document.getElementById("myContainer");
+         for (let index = 0; index < repetition; index++) {
+            let wish = getRandomWish(wishList);
+            let wishContainer = createWishContainer(wish);
+            container.append(wishContainer);
+         }
+      }
+
+      // Підключення обробника завантаження сторінки
+      window.onload = function () {
+         if (confirm("Почати тестування?")) {
+            getRandomWishList();
+         }
+      };
 
    }
    </script>
