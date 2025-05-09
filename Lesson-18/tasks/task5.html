@@ -4,6 +4,21 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+
+   <style>
+      table {
+        border-collapse: collapse;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+      }
+      td {
+        border: 1px solid #333;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 1.2em;
+      }
+    </style>
+
 </head>
 <body>
    <h1>Задача 5</h1>
@@ -12,6 +27,7 @@
 
 
    </p>
+   <div id="table-container"></div>
 
    <script>
       
@@ -20,6 +36,27 @@
       let confirmMessage = confirm("Let's start the task?");
       if (confirmMessage) {
       
+         const container = document.getElementById('table-container');
+
+         const rows = 3;
+         const cols = 4;
+
+         const table = document.createElement('table');
+
+         for (let i = 0; i < rows; i++) {
+            const tr = document.createElement('tr');
+
+            for (let j = 0; j < cols; j++) {
+            const td = document.createElement('td');
+            td.innerText = Math.floor(Math.random() * 100); // випадкове число від 0 до 99
+            tr.appendChild(td);
+            }
+
+            table.appendChild(tr);
+         }
+
+         container.appendChild(table);
+
       }
 
    </script>
