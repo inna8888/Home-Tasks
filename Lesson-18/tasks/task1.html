@@ -18,7 +18,29 @@
       let confirmMessage = confirm("Let's run the task")
       if (confirmMessage) {
       
-         
+         //0)знайшли посилання на контейнер, у який будемо додавати елементи div
+      let container = document.getElementById('myContaner')
+      for (let i = 0; i < 4; i++) {
+        //1)створили елемент
+        const el = document.createElement('div')
+        //2)наповнили вмістом
+        el.innerText = Math.random()
+        //3)вставили у контейнер
+        container.append(el)
+      }
+      -------------------------------
+      let myDiv = document.createElement('div')
+      myDiv.innerText = '111111'
+      document.body.append(myDiv)
+
+      let myDiv2 = document.createElement('div')
+      myDiv2.innerText = '0000'
+      document.body.prepend(myDiv2)
+
+      document.querySelector('#myContaner').append(myDiv2.cloneNode(true))
+
+
+
       }
    </script>
 </body>
