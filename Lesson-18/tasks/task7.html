@@ -4,6 +4,14 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <style>
+    .stage {
+      border: 2px solid #bbb;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
    <h1>Задача 7</h1>
@@ -11,12 +19,104 @@
       Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто, автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати  - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
    </p>
 
+   <h1>Подорож — 3 етапи</h1>
+
+   <!-- Етапи -->
+   <div class="stage" id="stage1">
+      <h2>Етап 1</h2>
+      <label>Транспорт:
+         <select>
+         <option value="авто" data-price="100">Авто (100 грн)</option>
+         <option value="автобус" data-price="60">Автобус (60 грн)</option>
+         <option value="літак" data-price="200">Літак (200 грн)</option>
+         </select>
+      </label><br>
+
+      <p>Харчування:</p>
+      <label><input type="checkbox" data-price="10">Сніданок (10 грн)</label>
+      <label><input type="checkbox" data-price="15">Обід (15 грн)</label>
+      <label><input type="checkbox" data-price="20">Вечеря (20 грн)</label>
+
+      <p>Гід:</p>
+      <label><input type="radio" name="guide1" data-price="50" checked>Гід 1 (50 грн)</label>
+      <label><input type="radio" name="guide1" data-price="70">Гід 2 (70 грн)</label>
+      <label><input type="radio" name="guide1" data-price="90">Гід 3 (90 грн)</label>
+   </div>
+
+   <div class="stage" id="stage2">
+      <h2>Етап 2</h2>
+      <label>Транспорт:
+         <select>
+         <option value="авто" data-price="100">Авто (100 грн)</option>
+         <option value="автобус" data-price="60">Автобус (60 грн)</option>
+         <option value="літак" data-price="200">Літак (200 грн)</option>
+         </select>
+      </label><br>
+
+      <p>Харчування:</p>
+      <label><input type="checkbox" data-price="10">Сніданок (10 грн)</label>
+      <label><input type="checkbox" data-price="15">Обід (15 грн)</label>
+      <label><input type="checkbox" data-price="20">Вечеря (20 грн)</label>
+
+      <p>Гід:</p>
+      <label><input type="radio" name="guide2" data-price="50" checked>Гід 1 (50 грн)</label>
+      <label><input type="radio" name="guide2" data-price="70">Гід 2 (70 грн)</label>
+      <label><input type="radio" name="guide2" data-price="90">Гід 3 (90 грн)</label>
+   </div>
+
+   <div class="stage" id="stage3">
+      <h2>Етап 3</h2>
+      <label>Транспорт:
+         <select>
+         <option value="авто" data-price="100">Авто (100 грн)</option>
+         <option value="автобус" data-price="60">Автобус (60 грн)</option>
+         <option value="літак" data-price="200">Літак (200 грн)</option>
+         </select>
+      </label><br>
+
+      <p>Харчування:</p>
+      <label><input type="checkbox" data-price="10">Сніданок (10 грн)</label>
+      <label><input type="checkbox" data-price="15">Обід (15 грн)</label>
+      <label><input type="checkbox" data-price="20">Вечеря (20 грн)</label>
+
+      <p>Гід:</p>
+      <label><input type="radio" name="guide3" data-price="50" checked>Гід 1 (50 грн)</label>
+      <label><input type="radio" name="guide3" data-price="70">Гід 2 (70 грн)</label>
+      <label><input type="radio" name="guide3" data-price="90">Гід 3 (90 грн)</label>
+   </div>
+
+   <button onclick="calculateTotal()">Підрахувати загальну вартість</button>
+   <p id="result"></p>
+
    <script>
       
       //1.Вводимо необхідні дані
       let confirmMessage = confirm("Let's resolve tasks! You have 3 attempts with 10 sec interval");
       if (confirmMessage) {
          
+         function calculateTotal() {
+         let total = 0;
+         const stages = document.querySelectorAll('.stage');
+
+         stages.forEach(stage => {
+         // Транспорт
+         const transport = stage.querySelector('select');
+         const selectedOption = transport.options[transport.selectedIndex];
+         total += Number(selectedOption.dataset.price);
+
+         // Харчування
+         const foodCheckboxes = stage.querySelectorAll('input[type="checkbox"]:checked');
+         foodCheckboxes.forEach(cb => {
+            total += Number(cb.dataset.price);
+         });
+
+         // Гід
+         const guide = stage.querySelector('input[type="radio"]:checked');
+         if (guide) total += Number(guide.dataset.price);
+         });
+
+         document.getElementById('result').textContent = `Загальна вартість: ${total} грн`;
+      }
          
    }
    </script>
