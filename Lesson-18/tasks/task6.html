@@ -4,51 +4,98 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+
+     <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    td {
+      padding: 10px;
+      border: 1px solid #333;
+    }
+    input[type="number"] {
+      width: 60px;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+
 </head>
 <body>
    <h1>Задача 6</h1>
    <p>
-      З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач». Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.
+      Користувач задає кількість оцінок і натискає на кнопку «get table». В результаті формується таблиця з input, куди користувач вводить оцінки. Після цього натискає на кнопку “get sum” і знаходить середнє значення.
 
    </p>
 
+   <div id="first_container">
+      <label for="input">Введіть кількість оцінок:</label>
+      <input id="first_input" type="number">
+   </div>
+   <button id="getTableBtn">Get Table</button>
+  
+   <div id="table-container"></div>
+   
    <script>
       
       let confirmMessage = confirm("Let's start the task?");
       if (confirmMessage) {
-      
-      function letterIterator(word) {
-         let index = 0;
-         function iterateWordFunc() {
-            if (index < word.length) {
-               let letter = word[index];
-               index++;
-               return letter;
-            }  else {
-                  return null;
-               }
-         }
-         return iterateWordFunc;
-      }
 
-      //знаходжу скільки букв вгадано
-      function countCorrectLetters(word) {
-         let countCorrect = 0;
-         let lettersOfIteratedWord = letterIterator(word); 
-         for (let ind = 0; ind < word.length; ind++) {
-            const letterFromUser = prompt(`Відгадайте загадку.\nНазва пори року після зими. Має 6 літер англійською мовою.\nВведіть ${ind + 1} літеру:`);
-            if (lettersOfIteratedWord().toLowerCase() === letterFromUser.toLowerCase()) {
-               countCorrect++;
+         const getTableBtn = document.getElementById("getTableBtn");
+                       
+         getTableBtn.onclick = function () {
+            const numberOfMarks = parseInt(document.getElementById('first_input').value);
+            const container = document.getElementById('table-container');
+
+            const table = document.createElement('table');
+
+            for (let i = 0; i < 1; i++) {
+               const tr = document.createElement('tr');
+
+               for (let j = 0; j < numberOfMarks; j++) {
+               const td = document.createElement('td');
+               const input = document.createElement("input");
+               input.type = 'number';
+               input.className = 'gradeInput';
+               td.appendChild(input);
+               tr.appendChild(td);
+               }
+               table.appendChild(tr);
+            }
+            container.appendChild(table);
+
+         //створюю кнопку для підрахунку суми
+            const sumBtn = document.createElement("button");
+            container.appendChild(sumBtn);
+            sumBtn.id = 'getSumBtn';
+            sumBtn.innerText = 'Get Sum';
+            const getSumBtn = document.getElementById("getSumBtn");
+         //та  контейнер для виводу результата
+            const resultDiv = document.createElement('div');
+            resultDiv.id = 'result';
+            container.appendChild(resultDiv);
+
+            sumBtn.onclick = function () {
+               const inputs = document.querySelectorAll('.gradeInput');
+
+               let sum = 0;
+               let count = 0;
+
+               inputs.forEach(input => {
+                  const value = parseFloat(input.value);
+                  if (!isNaN(value)) {
+                     sum += value;
+                     count++;
+                  }
+               });
+
+            const avg = count ? (sum / count).toFixed(2) : 0;     
+            resultDiv.textContent = `Середнє значення: ${avg}`;
             }
          }
-         return countCorrect;
-      }
-
-      let conandrum = "spring";
-      let wordLength = conandrum.length
-      
-      document.writeln(`Ви вгадали ${countCorrectLetters(conandrum)} з ${wordLength} літер <br>
-      Загадане слово - ${conandrum}`)
       }
 
    </script>
