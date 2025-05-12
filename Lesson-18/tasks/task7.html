@@ -8,8 +8,7 @@
 <body>
    <h1>Задача 7</h1>
    <p>
-      Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.
-
+      Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто, автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати  - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
    </p>
 
    <script>
@@ -18,33 +17,7 @@
       let confirmMessage = confirm("Let's resolve tasks! You have 3 attempts with 10 sec interval");
       if (confirmMessage) {
          
-         function checkTasks() {
-            
-            let countCorrect = 0;
-            let attempts = 0;
-            let intervalId = setInterval(() => {
-               let num1 = parseInt(1 + Math.floor(Math.random() * 10 - 1 + 1));
-               let num2 = parseInt(1 + Math.floor(Math.random() * 10 - 1 + 1));
-               let userAnswer = prompt(`Порахуйте приклад:\n${num1} + ${num2} =`);
-               if (parseInt(userAnswer) === num1 + num2) {
-                  countCorrect++;
-               }
-               attempts++;
-
-               if (attempts === 3) {
-               clearInterval(intervalId);
-               alert(`Ви вирішили правильно ${countCorrect} приклад(и) з ${attempts}`)
-               }
-            }, 10000);      
-
-            // setTimeout(() => {
-            //    clearInterval(intervalId)
-            //    alert(`Ви вирішили правильно ${countCorrect} приклад(и)`)
-            // }, 31000);
-
-         }
          
-         checkTasks();
    }
    </script>
 </body>
