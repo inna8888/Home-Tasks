@@ -102,17 +102,17 @@
          // Транспорт
          const transport = stage.querySelector('select');
          const selectedOption = transport.options[transport.selectedIndex];
-         total += Number(selectedOption.dataset.price);
+         total += parseFloat(selectedOption.dataset.price);
 
          // Харчування
          const foodCheckboxes = stage.querySelectorAll('input[type="checkbox"]:checked');
-         foodCheckboxes.forEach(cb => {
-            total += Number(cb.dataset.price);
+         foodCheckboxes.forEach(checkbox => {
+            total += parseFloat(checkbox.dataset.price);
          });
 
          // Гід
          const guide = stage.querySelector('input[type="radio"]:checked');
-         if (guide) total += Number(guide.dataset.price);
+         if (guide) total += parseFloat(guide.dataset.price);
          });
 
          document.getElementById('result').textContent = `Загальна вартість: ${total} грн`;

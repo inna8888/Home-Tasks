@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .wish-box {
+        border: 2px solid #a2d2ff;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 60px;
+        background-color: #1695e5;
+      }
+    </style>
+
+</head>
+<body>
+   <h1>Задача 4</h1>
+   <p>
+      Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх треба створити і додати на сторінку)
+
+   </p>
+   <p>Список рандомних бажань:</p>
+
+   <div id="container" class="wish-box"></div>
+
+   <script>      
+      // Масив зі списком бажань
+      const wishList = [
+         'Спостерігати захід сонця у тиші.',
+         'Поспати 8 годин без перерви — ну хоча б раз на місяць!',
+         'Випити каву гарячою',
+         'Завершити курс JS',
+         'Подивитися гарний фільм',
+         'Прогулятися на свіжому повітрі'
+      ];
+
+      // Функція для отримання випадкового бажання
+      function getRandomWish(arr) {
+         let randomWishInd = Math.floor(Math.random() * arr.length);
+         return arr[randomWishInd];
+      }
+
+      // Функція для створення контейнера з бажанням
+      function createWishContainer(wish) {
+         let div = document.createElement("div");
+         div.className = "wish-container";
+
+         let h2 = document.createElement("h2");
+         h2.innerText = wish;
+         div.append(h2);
+
+         return div;
+      }
+
+      // Основна функція для відображення випадкових бажань
+      function getRandomWishList(repetition = 3) {
+         let container = document.getElementById("container");
+         for (let index = 0; index < repetition; index++) {
+            let wish = getRandomWish(wishList);
+            let wishContainer = createWishContainer(wish);
+            container.append(wishContainer);
+         }
+      }
+
+      // Підключення обробника завантаження сторінки
+      window.onload = function () {
+         if (confirm("Почати тестування?")) {
+            getRandomWishList();
+         }
+      };
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      .box {
+        border: 2px solid #a2d2ff;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 60px;
+        background-color: #1695e5;
+      }
+   </style>
+</head>
+<body>
+   <h1>Задача 3</h1>
+   <p>
+      Користувач задає рік народження. Визначити кількість років користувача.
+
+   </p>
+
+   <p>Визначення віку:</p>
+   <div id="container" class="box"></div>
+
+
+   <script>
+      
+      let confirmMessage = confirm("Let's start the task?");
+      if (confirmMessage) {
+
+         const container = document.getElementById("container");
+
+         // cтворення контейнера для введення року народження
+         const div = document.createElement("div");
+         div.className = "child-container";
+         container.append(div);
+
+         const label = document.createElement("label");
+         label.innerText = "Введіть рік народження:";
+         div.append(label);
+
+         const input = document.createElement("input");
+         input.type = "number";
+         input.id = "input1";
+         div.append(input)
+
+         // cтворення контейнера для виводу результату
+         const pLabel = document.createElement("p");
+         pLabel.innerText = "Вам виповнюється років:";
+         container.append(pLabel);
+
+         const pOutput = document.createElement("p");
+         pOutput.id = "output";
+         pOutput.innerText = "—";
+         container.append(pOutput);
+
+         // Функція для розрахунку віку
+         function getAge() {
+            const currentYear = new Date().getFullYear();
+            const userBYear = parseInt(input.value);
+
+            if (isNaN(userBYear) || userBYear > currentYear) {
+               alert("Будь ласка, введіть реальний рік народження");
+               pOutput.innerText = "—";
+               return;
+            }
+            
+            const age = currentYear - userBYear;
+            pOutput.innerText = age.toString();
+         }
+
+      input.addEventListener("change", getAge);
+      
+      }
+</script>
+</body>
+</html>
