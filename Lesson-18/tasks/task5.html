@@ -41,21 +41,26 @@
          const rows = 3;
          const cols = 4;
 
-         const table = document.createElement('table');
+         function createTable (rows, cols) {
 
-         for (let i = 0; i < rows; i++) {
-            const tr = document.createElement('tr');
+            const table = document.createElement('table');
 
-            for (let j = 0; j < cols; j++) {
-            const td = document.createElement('td');
-            td.innerText = Math.floor(Math.random() * 100); // випадкове число від 0 до 99
-            tr.appendChild(td);
+            for (let i = 0; i < rows; i++) {
+               const tr = document.createElement('tr');
+
+               for (let j = 0; j < cols; j++) {
+               const td = document.createElement('td');
+               td.innerText = Math.floor(Math.random() * 100); // випадкове число від 0 до 99
+               tr.appendChild(td);
+               }
+
+               table.appendChild(tr);
             }
 
-            table.appendChild(tr);
+            container.appendChild(table);
          }
 
-         container.appendChild(table);
+         let table1 = createTable(rows, cols);
 
       }
 
