@@ -4,78 +4,82 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
-
-   <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
+    <style>
+      div{
+         margin-bottom: 10px;
       }
-      .wish-box {
-        border: 2px solid #a2d2ff;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px 60px;
-        background-color: #1695e5;
+      .container {
+         width: 400px;
+         height: 300px;
+         margin: 0 auto;
+         border: 1px solid #0cda2b;
+         padding: 5px;
+         display: flex;
+      }
+      .container ol {
+         padding: 15px 20px;
+         border-radius: 8px;
+         width: 50px;
+         height: 200px;
       }
     </style>
-
 </head>
 <body>
-   <h1>Задача 4</h1>
+   <h1>Задача 3</h1>
    <p>
-      Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх треба створити і додати на сторінку)
+      Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона рамка (спробуйте додати можливість відображення кількості кліків біля назви таблиці з використанням відповідно доданого для цього атрибута).
 
-   </p>
-   <p>Список рандомних бажань:</p>
+   <div id="container" class="container"> </div>
 
-   <div id="container" class="wish-box"></div>
+   <div>
+      <button type="button">Color the lists!</button>
+   </div>
 
-   <script>      
-      // Масив зі списком бажань
-      const wishList = [
-         'Спостерігати захід сонця у тиші.',
-         'Поспати 8 годин без перерви — ну хоча б раз на місяць!',
-         'Випити каву гарячою',
-         'Завершити курс JS',
-         'Подивитися гарний фільм',
-         'Прогулятися на свіжому повітрі'
-      ];
+   <script>
 
-      // Функція для отримання випадкового бажання
-      function getRandomWish(arr) {
-         let randomWishInd = Math.floor(Math.random() * arr.length);
-         return arr[randomWishInd];
-      }
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
 
-      // Функція для створення контейнера з бажанням
-      function createWishContainer(wish) {
-         let div = document.createElement("div");
-         div.className = "wish-container";
+         
+         //створюю списки з рандомними числами
+         let qty = 5;
+         let elemNumMin = 1;
+         let elemNumMax = 10;
+         let elemMin = 1;
+         let elemMax = 100;
+         
+         function getLists (qty, elemNumMin, elemNumMax, elemMin, elemMax) {
+            let container = document.getElementById("container");
+            for (let i = 0; i < qty; i++) {
+               let ol = document.createElement('ol');
+               container.appendChild(ol);
 
-         let h2 = document.createElement("h2");
-         h2.innerText = wish;
-         div.append(h2);
-
-         return div;
-      }
-
-      // Основна функція для відображення випадкових бажань
-      function getRandomWishList(repetition = 3) {
-         let container = document.getElementById("container");
-         for (let index = 0; index < repetition; index++) {
-            let wish = getRandomWish(wishList);
-            let wishContainer = createWishContainer(wish);
-            container.append(wishContainer);
+               let elemNum = Math.floor(Math.random() * (elemNumMax - elemNumMin + 1)) + elemNumMin;
+               for (let j = 0; j < elemNum; j++) {
+                  let li = document.createElement('li');
+                  li.innerText = Math.floor(Math.random() * (elemMax - elemMin + 1)) + elemMin;
+                  ol.append(li);
+               }
+            }
          }
-      }
 
-      // Підключення обробника завантаження сторінки
-      window.onload = function () {
-         if (confirm("Почати тестування?")) {
-            getRandomWishList();
+         getLists(qty, elemNumMin, elemNumMax, elemMin, elemMax);
+
+         //зафарбовую списки відповідно до кількості елементів
+         function colorLists() {
+            let olLists = document.querySelectorAll('#container ol');
+            for (const ol of olLists) {
+               if (ol.children.length % 2 === 0) {
+                  ol.style.backgroundColor = 'rgba(0, 128, 0, 0.3)';
+               } else {
+                  ol.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+               }
+            }
          }
-      };
 
-   </script>
+         document.querySelector('button').addEventListener('click', colorLists);
+
+      }
+</script>
 </body>
 </html>

@@ -10,34 +10,48 @@
    <h1>Задача 1</h1>
    <p>
       Дано 10 рядків тексту «Hello!» у окремих div. При кліку на якийсь із них усі наступні повинні бути зафарбовані у червоний колір.
-
    </p>
 
-   <h1>Калькулятор</h1>
+   <h1>Зафарбувати ті, що нижче</h1>
    <div id="container">
       
-      <div>
-         <label for="num1">Перше число</label>
-         <input id="num1" placeholder="Введіть число">
-      </div>
-      
-      <div>
-         <label for="num2">Друге число</label>
-         <input id="num2" placeholder="Введіть число">
-      </div>
-      
-      <div>
-         <button id="add">+</button>
-         <button id="substract">−</button>
-         <button id="multiply">*</button>
-         <button id="devide">/</button>
-      </div>
-
-      <div id="result">Результат: </div>
-
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+      <div>Hello!</div>
+           
    </div>
 
-   <script src="task1.js"></script>
+   <script>
+      // element.parentElement
+      // .nextElementSibling
+      // .previousElementSibling
+      // .firstElementChild
+      // .lastElementChild
+      const items = document.querySelectorAll('#container div');
+
+      function colorBelowElements (items) {
+
+         items.forEach(div => {
+            div.addEventListener('click', () => {
+               let next = div.nextElementSibling;
+               while (next) {
+                  next.style.color = 'red';
+                  next = next.nextElementSibling;
+               }
+            })
+         })
+      }
+
+      colorBelowElements(items);
+
+   </script>
    
 </body>
 </html>

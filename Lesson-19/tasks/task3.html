@@ -4,76 +4,82 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
-
-   <style>
-      .box {
-        border: 2px solid #a2d2ff;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px 60px;
-        background-color: #1695e5;
+    <style>
+      div{
+         margin-bottom: 10px;
       }
-   </style>
+      .container {
+         width: 400px;
+         height: 300px;
+         margin: 0 auto;
+         border: 1px solid #0cda2b;
+         padding: 5px;
+         display: flex;
+      }
+      .container ol {
+         padding: 15px 20px;
+         border-radius: 8px;
+         width: 50px;
+         height: 200px;
+      }
+    </style>
 </head>
 <body>
    <h1>Задача 3</h1>
    <p>
-      Користувач задає рік народження. Визначити кількість років користувача.
-
+      Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
    </p>
 
-   <p>Визначення віку:</p>
-   <div id="container" class="box"></div>
+   <div id="container" class="container"> </div>
 
+   <div>
+      <button type="button">Color the lists!</button>
+   </div>
 
    <script>
-      
-      let confirmMessage = confirm("Let's start the task?");
+
+      let confirmMessage = confirm("Let's start the task?")
       if (confirmMessage) {
 
-         const container = document.getElementById("container");
+         
+         //створюю списки з рандомними числами
+         let qty = 5;
+         let elemNumMin = 1;
+         let elemNumMax = 10;
+         let elemMin = 1;
+         let elemMax = 100;
+         
+         function getLists (qty, elemNumMin, elemNumMax, elemMin, elemMax) {
+            let container = document.getElementById("container");
+            for (let i = 0; i < qty; i++) {
+               let ol = document.createElement('ol');
+               container.appendChild(ol);
 
-         // cтворення контейнера для введення року народження
-         const div = document.createElement("div");
-         div.className = "child-container";
-         container.append(div);
-
-         const label = document.createElement("label");
-         label.innerText = "Введіть рік народження:";
-         div.append(label);
-
-         const input = document.createElement("input");
-         input.type = "number";
-         input.id = "input1";
-         div.append(input)
-
-         // cтворення контейнера для виводу результату
-         const pLabel = document.createElement("p");
-         pLabel.innerText = "Вам виповнюється років:";
-         container.append(pLabel);
-
-         const pOutput = document.createElement("p");
-         pOutput.id = "output";
-         pOutput.innerText = "—";
-         container.append(pOutput);
-
-         // Функція для розрахунку віку
-         function getAge() {
-            const currentYear = new Date().getFullYear();
-            const userBYear = parseInt(input.value);
-
-            if (isNaN(userBYear) || userBYear > currentYear) {
-               alert("Будь ласка, введіть реальний рік народження");
-               pOutput.innerText = "—";
-               return;
+               let elemNum = Math.floor(Math.random() * (elemNumMax - elemNumMin + 1)) + elemNumMin;
+               for (let j = 0; j < elemNum; j++) {
+                  let li = document.createElement('li');
+                  li.innerText = Math.floor(Math.random() * (elemMax - elemMin + 1)) + elemMin;
+                  ol.append(li);
+               }
             }
-            
-            const age = currentYear - userBYear;
-            pOutput.innerText = age.toString();
          }
 
-      input.addEventListener("change", getAge);
-      
+         getLists(qty, elemNumMin, elemNumMax, elemMin, elemMax);
+
+         //зафарбовую списки відповідно до кількості елементів
+         function colorLists() {
+            let olLists = document.querySelectorAll('#container ol');
+            for (const ol of olLists) {
+               if (ol.children.length % 2 === 0) {
+                  ol.style.backgroundColor = 'rgba(0, 128, 0, 0.3)';
+               } else {
+                  ol.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+               }
+            }
+         }
+
+         document.querySelector('button').addEventListener('click', colorLists);
+
       }
 </script>
 </body>
