@@ -4,82 +4,100 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
-    <style>
-      div{
-         margin-bottom: 10px;
+   <style>
+      table {
+         border-collapse: collapse;
+         margin: 20px;
+         display: inline-block;
       }
-      .container {
-         width: 400px;
-         height: 300px;
-         margin: 0 auto;
-         border: 1px solid #0cda2b;
-         padding: 5px;
-         display: flex;
+      td {
+         border: 1px solid #000;
+         width: 40px;
+         height: 40px;
+         text-align: center;
+         cursor: pointer;
       }
-      .container ol {
-         padding: 15px 20px;
-         border-radius: 8px;
-         width: 50px;
-         height: 200px;
+      .highlighted {
+         border: 3px solid red;
       }
-    </style>
+      h3 {
+         text-align: center;
+      }
+   </style>
 </head>
 <body>
    <h1>Задача 3</h1>
    <p>
       Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона рамка (спробуйте додати можливість відображення кількості кліків біля назви таблиці з використанням відповідно доданого для цього атрибута).
 
-   <div id="container" class="container"> </div>
-
-   <div>
-      <button type="button">Color the lists!</button>
-   </div>
+   <div id="tables-container"></div>
 
    <script>
+      
+      //1.Вводимо необхідні дані
 
-      let confirmMessage = confirm("Let's start the task?")
+      let confirmMessage = confirm("Let's start the task?");
       if (confirmMessage) {
-
-         
-         //створюю списки з рандомними числами
-         let qty = 5;
-         let elemNumMin = 1;
-         let elemNumMax = 10;
-         let elemMin = 1;
-         let elemMax = 100;
-         
-         function getLists (qty, elemNumMin, elemNumMax, elemMin, elemMax) {
-            let container = document.getElementById("container");
-            for (let i = 0; i < qty; i++) {
-               let ol = document.createElement('ol');
-               container.appendChild(ol);
-
-               let elemNum = Math.floor(Math.random() * (elemNumMax - elemNumMin + 1)) + elemNumMin;
-               for (let j = 0; j < elemNum; j++) {
-                  let li = document.createElement('li');
-                  li.innerText = Math.floor(Math.random() * (elemMax - elemMin + 1)) + elemMin;
-                  ol.append(li);
-               }
-            }
+      
+         function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
          }
 
-         getLists(qty, elemNumMin, elemNumMax, elemMin, elemMax);
+         const container = document.getElementById("tables-container");
 
-         //зафарбовую списки відповідно до кількості елементів
-         function colorLists() {
-            let olLists = document.querySelectorAll('#container ol');
-            for (const ol of olLists) {
-               if (ol.children.length % 2 === 0) {
-                  ol.style.backgroundColor = 'rgba(0, 128, 0, 0.3)';
-               } else {
-                  ol.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-               }
+         for (let t = 1; t <= 3; t++) {
+            // обгортка для заголовка і таблиці
+            const wrapper = document.createElement('div');
+            wrapper.style.display = 'inline-block';
+            wrapper.style.margin = '10px';
+
+            // заголовок таблиці з лічильником
+            const title = document.createElement('h3');
+            title.innerText = `Таблиця ${t} (кліків: `;
+            const counter = document.createElement('span');
+            counter.innerText = "0";
+            counter.dataset.count = "0";
+            title.appendChild(counter);
+            title.append(")");
+
+            // таблиця
+            const table = document.createElement('table');
+            table.setAttribute('data-table-index', t);
+
+            for (let i = 0; i < 3; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < 3; j++) {
+               const cell = document.createElement('td');
+               cell.innerText = getRandomNumber(1, 100);
+
+               // обробник кліку
+               cell.addEventListener('click', function () {
+                  // прибрати рамки з усіх таблиць
+                  document.querySelectorAll('table').forEach(tbl => {
+                  tbl.classList.remove('highlighted');
+                  });
+
+                  // виділити поточну таблицю
+                  table.classList.add('highlighted');
+
+                  // оновити лічильник
+                  let currentCount = parseInt(counter.dataset.count);
+                  currentCount++;
+                  counter.dataset.count = currentCount;
+                  counter.innerText = currentCount;
+               });
+
+               row.appendChild(cell);
             }
+            table.appendChild(row);
+            }
+
+            wrapper.appendChild(title);
+            wrapper.appendChild(table);
+            container.appendChild(wrapper);
          }
-
-         document.querySelector('button').addEventListener('click', colorLists);
-
       }
-</script>
+
+   </script>
 </body>
 </html>
