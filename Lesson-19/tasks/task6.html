@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+    <style>
+      div{
+         margin-bottom: 10px;
+      }
+      .container {
+         width: 400px;
+         height: 300px;
+         margin: 0 auto;
+         border: 1px solid #0cda2b;
+         padding: 5px;
+         display: flex;
+      }
+      .container ol {
+         padding: 15px 20px;
+         border-radius: 8px;
+         width: 50px;
+         height: 200px;
+      }
+    </style>
+</head>
+<body>
+   <h1>Задача 6</h1>
+   <p>
+      Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні. При цьому є два стовпці. В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний. При натисканні на зелену стрілку спортсмен переміщається у список для змагань. При натисканні на червону стрілку спортсмен переміщається у загальний список.
+
+   </p>
+
+   <div id="container" class="container"> </div>
+
+   <div>
+      <button type="button">Color the lists!</button>
+   </div>
+
+   <script>
+
+      let confirmMessage = confirm("Let's start the task?")
+      if (confirmMessage) {
+
+         
+         //створюю списки з рандомними числами
+         let qty = 5;
+         let elemNumMin = 1;
+         let elemNumMax = 10;
+         let elemMin = 1;
+         let elemMax = 100;
+         
+         function getLists (qty, elemNumMin, elemNumMax, elemMin, elemMax) {
+            let container = document.getElementById("container");
+            for (let i = 0; i < qty; i++) {
+               let ol = document.createElement('ol');
+               container.appendChild(ol);
+
+               let elemNum = Math.floor(Math.random() * (elemNumMax - elemNumMin + 1)) + elemNumMin;
+               for (let j = 0; j < elemNum; j++) {
+                  let li = document.createElement('li');
+                  li.innerText = Math.floor(Math.random() * (elemMax - elemMin + 1)) + elemMin;
+                  ol.append(li);
+               }
+            }
+         }
+
+         getLists(qty, elemNumMin, elemNumMax, elemMin, elemMax);
+
+         //зафарбовую списки відповідно до кількості елементів
+         function colorLists() {
+            let olLists = document.querySelectorAll('#container ol');
+            for (const ol of olLists) {
+               if (ol.children.length % 2 === 0) {
+                  ol.style.backgroundColor = 'rgba(0, 128, 0, 0.3)';
+               } else {
+                  ol.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+               }
+            }
+         }
+
+         document.querySelector('button').addEventListener('click', colorLists);
+
+      }
+</script>
+</body>
+</html>

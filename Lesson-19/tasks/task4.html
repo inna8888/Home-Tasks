@@ -59,7 +59,6 @@
             counter.dataset.count = "0";
             title.appendChild(counter);
             title.append(")");
-
             // таблиця
             const table = document.createElement('table');
             table.setAttribute('data-table-index', t);
@@ -76,10 +75,8 @@
                   document.querySelectorAll('table').forEach(tbl => {
                   tbl.classList.remove('highlighted');
                   });
-
                   // виділити поточну таблицю
                   table.classList.add('highlighted');
-
                   // оновити лічильник
                   let currentCount = parseInt(counter.dataset.count);
                   currentCount++;
