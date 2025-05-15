@@ -33,54 +33,19 @@
 
    <div id="container" class="container"> </div>
 
-   <div>
-      <button type="button">Color the lists!</button>
-   </div>
-
    <script>
 
       let confirmMessage = confirm("Let's start the task?")
       if (confirmMessage) {
 
-         
-         //створюю списки з рандомними числами
-         let qty = 5;
-         let elemNumMin = 1;
-         let elemNumMax = 10;
-         let elemMin = 1;
-         let elemMax = 100;
-         
-         function getLists (qty, elemNumMin, elemNumMax, elemMin, elemMax) {
-            let container = document.getElementById("container");
-            for (let i = 0; i < qty; i++) {
-               let ol = document.createElement('ol');
-               container.appendChild(ol);
-
-               let elemNum = Math.floor(Math.random() * (elemNumMax - elemNumMin + 1)) + elemNumMin;
-               for (let j = 0; j < elemNum; j++) {
-                  let li = document.createElement('li');
-                  li.innerText = Math.floor(Math.random() * (elemMax - elemMin + 1)) + elemMin;
-                  ol.append(li);
-               }
+         class StudentsManager {
+            constructor (studentsList){
+               this.studentsList = studentsList;
             }
+
+            renderHeader
+
          }
-
-         getLists(qty, elemNumMin, elemNumMax, elemMin, elemMax);
-
-         //зафарбовую списки відповідно до кількості елементів
-         function colorLists() {
-            let olLists = document.querySelectorAll('#container ol');
-            for (const ol of olLists) {
-               if (ol.children.length % 2 === 0) {
-                  ol.style.backgroundColor = 'rgba(0, 128, 0, 0.3)';
-               } else {
-                  ol.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-               }
-            }
-         }
-
-         document.querySelector('button').addEventListener('click', colorLists);
-
       }
 </script>
 </body>
