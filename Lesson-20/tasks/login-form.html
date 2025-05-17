@@ -8,6 +8,7 @@
     <script>
       // Задача. Розробити форму для введення логіна і пароля. Якщо введено вірний логін і пароль (логін: "склад", пароль:"паляниця"), то привітати користувача.
 
+//варіант коли є один універсальний метод для створення інпута, а вже потім він використовується у методі рендер для створення іменованих інпунтів
       // class LoginForm {
       //   constructor() {}
 
@@ -64,10 +65,9 @@
       //   }
       // } 
 
+      //тут окремо методи для створення кожного інпута:
       class LoginForm {
-         constructor() {
-            
-         }
+         constructor() {}
 
          renderLogin(){
                const loginContainer = document.createElement('div')
@@ -100,24 +100,49 @@
                return passwordContainer
          }
 
+         onSend (event) {
+            const customEvent = new CustomEvent('completed', {
+              detail: {
+                login: this.loginInp.value,
+                password: this.passwordInp.value,
+              },
+              bubbles: true,
+            })
+            event.target.dispatchEvent(customEvent)
+         }
+
          render(containerSelector){
             const formContainer = document.createElement('div') //створили головний контейнер, а далі наповнюємо
             formContainer.append(this.renderLogin())
             formContainer.append(this.renderPassword())
 
+            const btn = document.createElement('button')
+            btn.innerText = 'Login'
+            btn.onclick = this.onSend.bind(this)
+            formContainer.append(btn)
+
+            this.$el = formContainer //додано DOM елемент форми у змінну
             if (containerSelector) {
                document.querySelector(containerSelector).append(formContainer)
             }
-
             return formContainer
          }
       }
 
       window.onload = function () {
-        const f1 = new LoginForm()
-        f1.render('#cnt')
-        f1.$el.addEventListener('completed', (e) => console.log(e.detail))
-      }
+          const f1 = new LoginForm();
+          f1.render('#cnt');
+
+          f1.$el.addEventListener('completed', (e) => {
+            const { login, password } = e.detail;
+
+            if (login === 'склад' && password === 'паляниця') {
+              alert('Вітаємо, доступ дозволено!');
+            } else {
+              alert('Невірний логін або пароль!');
+            }
+          });
+        }
     </script>
   </head>
   <body>
