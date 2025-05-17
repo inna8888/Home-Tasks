@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .counter {
+         margin: 10px 0;
+         font-weight: bold;
+      }
+  </style>
+</head>
+<body>
+         
+   <h1>Задача 4</h1>
+   <p>
+      На сторінці міститься певна кількість кнопок і інпутів. Підраховувати загальну кількість кліків окремо на кнопках і окремо на інпутах.
+
+   </p>
+
+   <div>
+      <button>Кнопка 1</button>
+      <button>Кнопка 2</button>
+      <button>Кнопка 3</button>
+  </div>
+
+  <div>
+      <input type="text" placeholder="Текст">
+      <input type="text" placeholder="Текст">
+  </div>
+
+  <div class="counter">Кількість кліків на кнопках: <span id="buttonCount">0</span></div>
+  <div class="counter">Кількість кліків на інпутах: <span id="inputCount">0</span></div>
+
+ 
+   <script>
+      
+      //1.Вводимо необхідні дані
+      if (confirmMessage = confirm("Let's run the task? ")) {
+      
+         class ClickCounter {
+            constructor() {
+               this.buttonClicks = 0;
+               this.inputClicks = 0;
+               this.buttonDisplay = document.getElementById('buttonCount');
+               this.inputDisplay = document.getElementById('inputCount');
+
+               this.init();
+            }
+
+            init () {
+               //делегування події через документ
+               document.addEventListener('click', (event) => this.handleClick(event));
+            }
+
+            handleClick (event) {
+               const target = event.target;
+
+               if (target.tagName === 'BUTTON') {
+                  this.buttonClicks++;
+                  this.buttonDisplay.textContent = this.buttonClicks;
+               }
+
+               if (target.tagName === 'INPUT') {
+                  this.inputClicks++;
+                  this.inputDisplay.textContent = this.inputClicks;
+               }
+            }
+         }
+
+         //ініціалізація
+         const counter = new ClickCounter();
+
+      }
+   </script>
+</body>
+</html>
