@@ -18,9 +18,74 @@
       //1.Вводимо необхідні дані
       let confirmMessage = confirm("Let's run the task? ")
       if (confirmMessage) {
-      
-         
+         // Базовий клас Client
+         class Client {
+            constructor(id, fullName, balance) {
+               this.id = id;
+               this.fullName = fullName;
+               this.balance = balance;
+            }
+
+            addMoney(amount) {
+               if (amount > 0) {
+                  this.balance += amount;
+               }
+            }
+
+            withdrawMoney(amount) {
+               if (amount > 0 && amount <= this.balance) {
+                  this.balance -= amount;
+                  return true;
+               }
+               return false; // недостатньо коштів
+            }
+
+            toString() {
+               return `Клієнт: ${this.fullName}, ID: ${this.id}, Баланс: ${this.balance.toFixed(2)} грн`;
+            }
          }
+
+         // Похідний клас GoldenClient
+         class GoldenClient extends Client {
+            constructor(id, fullName, balance, creditLimit, creditInterest) {
+               super(id, fullName, balance);
+               this.creditLimit = creditLimit;
+               this.creditInterest = creditInterest; // у відсотках
+            }
+
+            withdrawMoney(amount) {
+               if (amount > 0 && amount <= this.balance + this.creditLimit) {
+                  this.balance -= amount;
+                  return true;
+               }
+               return false; // перевищено кредитний ліміт
+            }
+
+            calculatePenalty() {
+               if (this.balance < 0) {
+                  const debt = Math.abs(this.balance); //функція, яка повертає модуль числа (тобто робить його додатнім)
+                  return (debt * this.creditInterest) / 100;
+               }
+               return 0;
+            }
+
+            toString() {
+               const baseInfo = super.toString();
+               const penalty = this.calculatePenalty().toFixed(2);
+               return `${baseInfo}, Кредитний ліміт: ${this.creditLimit}, Відсоток: ${this.creditInterest}%, Пеня: ${penalty} грн`;
+            }
+         }
+
+         const client1 = new Client(1, "Максим Невинний", 1000);
+         client1.addMoney(500);
+         client1.withdrawMoney(300);
+         document.write(client1.toString(), '<br>'); // без кредиту
+
+         const goldenClient1 = new GoldenClient(2, "Ден Борров", 2000, 1000, 5);
+         goldenClient1.withdrawMoney(2500); // з кредитом
+         document.write(goldenClient1.toString());
+  
+      }
    </script>
 </body>
 </html>
