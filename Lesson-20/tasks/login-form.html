@@ -122,7 +122,7 @@
             formContainer.append(btn)
 
             this.$el = formContainer //додано DOM елемент форми у змінну
-            if (containerSelector) {
+            if (containerSelector) {//цю перевірку зазвичай завжди додають
                document.querySelector(containerSelector).append(formContainer)
             }
             return formContainer
